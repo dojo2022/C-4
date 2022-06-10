@@ -50,3 +50,4 @@ INSERT INTO recipe VALUES(null, 0, 'レンジで簡単チーズオムレツ', 10
 SELECT * FROM recipe;
 
 
+//
