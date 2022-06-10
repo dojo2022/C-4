@@ -29,3 +29,4 @@ INSERT INTO user VALUES (null, 'DOJO', '山田太郎', 'password');
 //---------------------------------------------------
 SELECT * FROM user;
 
+//
