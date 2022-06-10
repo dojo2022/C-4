@@ -1,0 +1,46 @@
+
+//食事記録トランザクション
+//---------------------------------------------------
+
+
+//STEP1.テーブルがすでに存在していれば、削除する。
+//---------------------------------------------------
+DROP TABLE IF EXISTS record;
+
+
+
+//STEP2.テーブルを作成する
+//---------------------------------------------------
+CREATE TABLE record(
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  userid INT NOT NULL,
+  date DATE NOT NULL,
+  mealtime VARCHAR(1) NOT NULL,
+  recipe VARCHAR(30) NOT NULL,
+  savings INT NOT NULL
+);
+
+
+
+//STEP3.テーブルにテストデータを格納する
+//--------------------------------------------------------------------------------
+INSERT INTO record VALUES(null, 1, '2022-6-9', '朝', '卵かけご飯', 126);
+INSERT INTO record VALUES(null, 1, '2022-6-9', '昼', '外食', 0);
+INSERT INTO record VALUES(null, 1, '2022-6-9', '夕', '外食', 0);
+
+INSERT INTO record VALUES(null, 1, '2022-6-8', '朝', '卵かけご飯', 126);
+INSERT INTO record VALUES(null, 1, '2022-6-8', '朝', 'さっぱり レタスのレモンサラダ', 100);
+INSERT INTO record VALUES(null, 1, '2022-6-8', '昼', '外食', 0);
+INSERT INTO record VALUES(null, 1, '2022-6-8', '夕', '外食', 0);
+
+INSERT INTO record VALUES(null, 2, '2022-6-9', '朝', '卵かけご飯', 126);
+INSERT INTO record VALUES(null, 2, '2022-6-9', '昼', '外食', 0);
+INSERT INTO record VALUES(null, 2, '2022-6-9', '夕', '外食', 0);
+
+
+
+//STEP.4テーブルに格納されたデータを確認する
+//---------------------------------------------------
+SELECT * FROM record;
+
+
