@@ -1,0 +1,37 @@
+
+//アラートトランザクション
+//---------------------------------------------------
+
+
+//STEP1.テーブルがすでに存在していれば、削除する。
+//---------------------------------------------------
+DROP TABLE IF EXISTS alert;
+
+
+
+//STEP2.テーブルを作成する
+//---------------------------------------------------
+CREATE TABLE alert(
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  userid INT NOT NULL,
+  days VARCHAR(2) NOT NULL,
+  morning INT,
+  lunch INT,
+  dinner INT
+);
+※追加フィールドの修正
+
+
+
+//STEP3.テーブルにテストデータを格納する
+//-----------------------------------------------------------------
+INSERT INTO alert VALUES(null, 1, '平日', 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '休日', 10, 10, 10);
+
+INSERT INTO alert VALUES(null, 1, '平日', 5, 5, 10);
+
+
+
+//STEP.4テーブルに格納されたデータを確認する
+//---------------------------------------------------
+SELECT * FROM alert;
