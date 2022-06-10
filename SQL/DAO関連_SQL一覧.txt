@@ -28,7 +28,7 @@ INSERT INTO recipe VALUES(null, ?, ?, ?, ?, ?, ?);
 
 
 
-※以降のSQL文は要修正
+※以降のSQL文は要修正します。
 
 recordテーブル関連
 
