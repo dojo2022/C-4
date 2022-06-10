@@ -19,7 +19,7 @@ CREATE TABLE alert(
   lunch INT,
   dinner INT
 );
-※追加フィールドの修正
+//※追加フィールドの修正
 
 
 
