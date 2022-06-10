@@ -32,4 +32,4 @@ INSERT INTO record_note VALUES(null, 2, '2022-06-09', '備考');
 //---------------------------------------------------
 SELECT * FROM record_note;
 
-
+//
