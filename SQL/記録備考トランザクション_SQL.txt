@@ -1,0 +1,35 @@
+//記録備考トランザクション
+//---------------------------------------------------
+
+
+//STEP1.テーブルがすでに存在していれば、削除する。
+//---------------------------------------------------
+DROP TABLE IF EXISTS record_note;
+
+
+
+//STEP2.テーブルを作成する
+//---------------------------------------------------
+CREATE TABLE record_note(
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  userid INT NOT NULL,
+  date DATE NOT NULL,
+  remarks VARCHAR(200)
+);
+
+
+
+//STEP3.テーブルにテストデータを格納する
+//-----------------------------------------------------------------
+INSERT INTO record_note VALUES(null, 1, '2022-06-09', '備考');
+INSERT INTO record_note VALUES(null, 1, '2022-06-08', '備考');
+
+INSERT INTO record_note VALUES(null, 2, '2022-06-09', '備考');
+
+
+
+//STEP.4テーブルに格納されたデータを確認する
+//---------------------------------------------------
+SELECT * FROM record_note;
+
+
