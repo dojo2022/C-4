@@ -1,0 +1,31 @@
+
+//userテーブル
+//---------------------------------------------------
+
+
+//STEP1.テーブルがすでに存在していれば、削除する。
+//---------------------------------------------------
+DROP TABLE IF EXISTS user;
+
+
+
+//STEP2.テーブルを作成する
+//---------------------------------------------------
+CREATE TABLE user(
+  userid INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  user VARCHAR(20) NOT NULL,
+  name VARCHAR(20) NOT NULL,
+  pw VARCHAR(10) NOT NULL
+);
+
+
+
+//STEP3.テーブルにテストデータを格納する
+//---------------------------------------------------------------
+INSERT INTO user VALUES (null, 'DOJO', '山田太郎', 'password');
+
+
+//STEP.4テーブルに格納されたデータを確認する
+//---------------------------------------------------
+SELECT * FROM user;
+
