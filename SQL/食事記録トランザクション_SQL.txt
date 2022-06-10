@@ -44,3 +44,4 @@ INSERT INTO record VALUES(null, 2, '2022-6-9', '夕', '外食', 0);
 SELECT * FROM record;
 
 
+//
