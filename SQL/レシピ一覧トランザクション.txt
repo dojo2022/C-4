@@ -1,0 +1,52 @@
+//レシピ一覧トランザクション
+//---------------------------------------------------
+
+//STEP1.テーブルがすでに存在していれば、削除する。
+//---------------------------------------------------
+DROP TABLE IF EXISTS recipe;
+
+
+
+//STEP2.テーブルを作成する
+//---------------------------------------------------
+CREATE TABLE recipe(
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  userid INT NOT NULL,
+  recipe VARCHAR(30) NOT NULL,
+  cost INT NOT NULL,
+  time INT,
+  url VARCHAR(100),
+  remarks VARCHAR(200)
+);
+
+
+
+//STEP3.テーブルにテストデータを格納する
+//--------------------------------------------------------------------------------
+INSERT INTO recipe VALUES(null, 0, '青のり香る卵焼き', 100, 15, 'https://www.kurashiru.com/recipes/eaf1ab53-1692-4a40-91e1-f32cbc62c779', 'お気に入り');
+
+INSERT INTO recipe VALUES(null, 0, 'さっぱり レタスのレモンサラダ', 100, 5, 'https://www.kurashiru.com/recipes/26bdb8c0-f956-4551-969c-09ee576a7b16', 'とても簡単');
+
+INSERT INTO recipe VALUES(null, 0, 'ごはんによく合う さばの味噌煮', 200, 30, 'https://www.kurashiru.com/recipes/1df69012-acfc-4cef-984f-d0145c90e458', 'お酒によく合う');
+
+INSERT INTO recipe VALUES(null, 0, 'シャキシャキ 無限小松菜', 100, 20, 'https://www.kurashiru.com/recipes/563afcf7-97c1-4450-ae82-e6c320517558', 'レンチン料理');
+
+INSERT INTO recipe VALUES(null, 0, '糖質控え目 ささみと枝豆のナムル', 200, 10, 'https://www.kurashiru.com/recipes/5856b1dd-1913-41f8-a7be-bf1175090925', '糖質控え目');
+
+INSERT INTO recipe VALUES(null, 0, 'さっぱり酢味噌冷奴', 150, 10, 'https://www.kurashiru.com/recipes/d285dfed-4aa4-44bd-b9c4-46f0e8126d1c', '簡単');
+
+INSERT INTO recipe VALUES(null, 0, '卵かけご飯', 140, 0, '', '');
+
+INSERT INTO recipe VALUES(null, 1, 'きゅうりの漬物', 100, 0, 'https://www.kurashiru.com/recipes/c184ca35-d856-4948-8243-c2ad5afdf5e9', 'サンプルデータのため調理時間なし');
+
+INSERT INTO recipe VALUES(null, 2, '大根の漬物', 180, 600, '', '寝る前に');
+
+INSERT INTO recipe VALUES(null, 0, 'レンジで簡単チーズオムレツ', 100, 10, 'https://www.kurashiru.com/recipes/d2b4dd92-5611-418b-90c6-9b589c67b6f2', '');
+
+
+
+//STEP.4テーブルに格納されたデータを確認する
+//---------------------------------------------------
+SELECT * FROM recipe;
+
+
