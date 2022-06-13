@@ -7,10 +7,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>EngelS</p>
-	<a href="/EngelS/signupServlet">新規登録はこちら</a>
+	<h2>ログイン画面</h2>
+
+	<!-- ログインフォーム -->
 	<form method="POST" action="/EngelS/loginServlet">
-		<input type="submit" value="ログイン">
+		<table>
+			<tr>
+				<td>
+					ログインID<br>
+					*20文字以内
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					パスワード<br>
+					*10文字以内
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password">
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="ログイン"></td>
+			</tr>
+		</table>
 	</form>
+
+	<p id="err"></p>
+	<a href="/EngelS/signupServlet">新規登録はこちら</a>
 </body>
 </html>
