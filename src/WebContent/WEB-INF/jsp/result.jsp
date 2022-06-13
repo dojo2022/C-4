@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>result.jsp レシピ登録結果</p>
+<p>レシピ登録結果</p>
 
 レシピが追加できました！
 
 
-<a href="/EngelS/recipeSearchServlet">一覧に戻る</a>
-<a href="/EngelS/recipeAddServlet">続けて登録する</a>
+<button onclick="location.href='./recipeSearchServlet.java'">一覧に戻る</button>
+<button onclick="location.href='./recipeAddServlet.java'">続けて登録する</button>
 
 </body>
 </html>

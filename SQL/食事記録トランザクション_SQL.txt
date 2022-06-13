@@ -16,7 +16,7 @@ CREATE TABLE record(
   userid INT NOT NULL,
   date DATE NOT NULL,
   mealtime VARCHAR(1) NOT NULL,
-  recipe VARCHAR(30) NOT NULL,
+  recipeid INT NOT NULL,
   savings INT NOT NULL
 );
 
