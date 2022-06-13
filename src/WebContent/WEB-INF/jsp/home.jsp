@@ -8,12 +8,14 @@
 </head>
 
 <body>
-	<p>ホーム</p>
-	<a href="/EngelS/homeServlet">ホーム</a>
-	<a href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a>
-	<a href="/EngelS/recipeAddServlet">レシピ追加</a>
-    <!-- モーダルウィンドウではないですが設定画面出しました。 -->
-    <!-- CSSはコピペ時の状態 -->
+	<nav>
+		<ul class="list">
+			<li><a href="/EngelS/homeServlet">ホーム</a></li>
+			<li><a href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a></li>
+			<li><a href="/EngelS/recipeAddServlet">レシピ追加</a></li>
+		</ul>
+	</nav>
+    <!--設定ドロップダウンメニュー開始 -->
 	<nav>
 	    <ul id="dropmenu" class="dropmenu">
 		    <li><a href="#">設定</a>
@@ -28,6 +30,19 @@
 		    </li>
 	    </ul>
     </nav>
+    <!-- 設定ドロップダウンメニュー終わり -->
+    <h1>節約金額目標グラフ</h1>
+    <h2>目標削減金額<span>(金額取得)</span>円</h2>
+    <h2>目標達成まであと<span>(金額取得)</span>円</h2>
+    <p>期間：<span>(日付取得)</span>～<span>(日付取得)</span></p>
+    <div>
+    	～グラフをここに表示～
+    </div>
+    <a href="/EngelS/detailServlet">記録詳細へ</a>
+    <a href="/EngelS/recordServlet">+今日の記録</a>
+    ※画像にしたい
+    <br>
+    <p>以下フッター</p>
 </body>
 
 <footer>
