@@ -15,9 +15,12 @@ CREATE TABLE alert(
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   userid INT NOT NULL,
   days VARCHAR(2) NOT NULL,
-  morning INT,
-  lunch INT,
-  dinner INT
+  morning_min INT,
+  lunch_min INT,
+  dinner_min INT,
+  morning_max INT,
+  lunch_max INT,
+  dinner_max INT
 );
 //※追加フィールドの修正
 
@@ -25,10 +28,12 @@ CREATE TABLE alert(
 
 //STEP3.テーブルにテストデータを格納する
 //-----------------------------------------------------------------
-INSERT INTO alert VALUES(null, 1, '平日', 5, 5, 5);
-INSERT INTO alert VALUES(null, 1, '休日', 10, 10, 10);
+INSERT INTO alert VALUES(null, 1, '月', 5, 5, 5, 10, 20, 30);
+INSERT INTO alert VALUES(null, 1, '水', 10, 10, 10, 23, 33, 120);
 
-INSERT INTO alert VALUES(null, 1, '平日', 5, 5, 10);
+INSERT INTO alert VALUES(null, 1, '日', 5, 7, 10, 22, 33, 334);
+INSERT INTO alert VALUES(null, 2, '土', 1, 2, 2, 2, 4, 5);
+INSERT INTO alert VALUES(null, 3, '木', 3, 3, 4, 334, 3344, 33444);
 
 
 
