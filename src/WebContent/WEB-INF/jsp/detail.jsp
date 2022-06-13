@@ -8,7 +8,7 @@
 <title>記録詳細</title>
 </head>
 <body>
-		<button onclick="location.href='./home.html'">戻る
+		<button onclick="location.href='./homeServlet.java'">戻る
 	</button>
 </body>
 </html>
