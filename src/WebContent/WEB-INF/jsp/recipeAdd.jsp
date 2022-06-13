@@ -11,7 +11,7 @@
 
 
 	<input type="reset" name="reset" value="リセット" class="subbutton">
-	<input type="submit" name="REGIST" value="登録" class="button">
-	
+	<a href="/EngelS/resultServlet" class="menu"><input type="submit" name="REGIST" value="登録" class="button"></a>
+
 </body>
 </html>

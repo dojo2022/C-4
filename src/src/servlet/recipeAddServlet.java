@@ -40,14 +40,13 @@ public class recipeAddServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-				doGet(request, response);
+		// レシピ登録結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+		dispatcher.forward(request, response);
 	}
 
-	// レシピ登録結果ページにフォワードする　☆エラー確認：リクエストを解決できません(予想：リクエスト削除)、トークンの削除
-			/*
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-			dispatcher.forward(request, response);
-			*/
+
+
+
 
 }
