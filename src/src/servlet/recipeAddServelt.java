@@ -20,11 +20,10 @@ public class recipeAddServelt extends HttpServlet {
 	 * Default constructor.
 	 */
 
-	/*☆エラー確認：メソッドの戻り値がありません
-	public recipeAddServlet() {
+	public void recipeAddServlet() {
 		// TODO Auto-generated constructor stub
 	}
-	*/
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,5 +41,11 @@ public class recipeAddServelt extends HttpServlet {
 		// TODO Auto-generated method stub
 				doGet(request, response);
 	}
+
+	// レシピ登録結果ページにフォワードする　☆エラー確認：リクエストを解決できません(予想：リクエスト削除)、トークンの削除
+			/*
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+			dispatcher.forward(request, response);
+			*/
 
 }

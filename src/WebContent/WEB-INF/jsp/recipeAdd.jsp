@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>EngelS</p>
+<p>EngelS　レシピ登録</p>
+
+
+	<input type="reset" name="reset" value="リセット" class="subbutton">
+	<input type="submit" name="REGIST" value="登録" class="button">
+	
 </body>
 </html>

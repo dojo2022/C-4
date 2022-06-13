@@ -8,5 +8,12 @@
 </head>
 <body>
 <p>result.jsp レシピ登録結果</p>
+
+レシピが登録できました！
+
+
+<a href="/EngelS/recipeSearchServlet">一覧に戻る</a>
+<a href="/EngelS/recipeAddServlet">続けて登録する</a>
+
 </body>
 </html>
