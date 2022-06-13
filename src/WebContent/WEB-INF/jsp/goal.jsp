@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>目標金額設定 | EngelS</title>
 </head>
 <body>
-<p>目標金額設定</p>
+	<p>目標金額設定</p>
+	<form method="POST" action="/EngelS/homeServlet">
+		<input type="submit" value="変更">
+	</form>
 </body>
 </html>
