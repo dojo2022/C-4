@@ -1,5 +1,9 @@
 @charset "UTF-8";
+/*ヘッダー開始*/
 
+/*ヘッダー終わり*/
+
+/*設定ドロップダウンメニュー開始*/
 /*これ→ <ul id="dropmenu" class="dropmenu">*/
 .dropmenu{
   *zoom: 1;
@@ -17,15 +21,16 @@
 .dropmenu:after{
   clear: both;
 }
-/**/
+/*設定全体*/
 .dropmenu li{
   position: relative;
   width: 50px;   /* 変更点 変更まえ 20% */
-  float: left;
+  float: right;
   margin: 0;
   padding: 0;
   text-align: center;
 }
+/*設定ボタン*/
 .dropmenu li a{
   display: block;
   margin: 0;
@@ -36,10 +41,11 @@
   line-height: 1;
   text-decoration: none;
 }
+/*ドロップダウンメニュー全体*/
 .dropmenu li ul{
   list-style: none;
   position: absolute;
-  width: 200px; /* 変更点  変更前なし*/
+  width: 200px;
   top: 100%;
   left: 0;
   margin: 0;
@@ -48,20 +54,27 @@
 .dropmenu li ul li{
   width: 100%;
 }
+/*ドロップダウンメニュー項目ごと*/
 .dropmenu li ul li a{
   padding: 13px 15px;
   border-top: 1px solid #7c8c0e;
   background:gray;
   text-align: left;
 }
+/*設定ボタンを押したら*/
 .dropmenu li:hover > a{
   background:#4f4f4f; /*暗いグレー*/
 }
+/*ドロップダウンメニューの項目を押したら*/
 .dropmenu li a:hover{
   background:#4f4f4f; /*暗いグレー*/
 }
 
-#dropmenu { position: relative; z-index: 7; }
+#dropmenu {
+	position: relative;
+	z-index: 7; /*前に出す*/
+}
+
 #dropmenu li ul li{
   overflow: hidden;
   height: 0;
@@ -71,3 +84,8 @@
   overflow: visible;
   height: 38px;
 }
+
+/*設定ドロップダウンメニュー終わり*/
+
+/*フッター開始*/
+/*フッター終わり*/

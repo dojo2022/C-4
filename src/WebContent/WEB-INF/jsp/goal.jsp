@@ -8,8 +8,9 @@
 </head>
 <body>
 	<p>目標金額設定</p>
-	<form method="POST" action="/EngelS/homeServlet">
+	<form method="POST" action="/EngelS/goalServlet">
 		<input type="submit" value="変更">
 	</form>
+	<a href="/EngelS/homeServlet">ホームに戻る</a>
 </body>
 </html>
