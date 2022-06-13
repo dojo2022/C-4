@@ -7,9 +7,51 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>signup</p>
+	<h2>新規ユーザー登録</h2>
+
+	<!-- 新規ユーザー登録フォーム -->
 	<form method="POST" action="/EngelS/signupServlet">
-		<input type="submit" value="登録">
+		<table>
+			<tr>
+				<td>
+					ログインID<br>
+					*20字以内
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					ニックネーム<br>
+					*20字以内
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					パスワード<br>
+					*10文字以内
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password">
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="新規登録"></td>
+			</tr>
+		</table>
 	</form>
+
+	<p id="err"></p>
+
 </body>
 </html>
