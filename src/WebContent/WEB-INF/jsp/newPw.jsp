@@ -60,7 +60,8 @@
 		<a href="/EngelS/alertServlet">アラート設定</a>|
 		<a href="/EngelS/newPwServlet">パスワード変更</a>
 		<br>
-		<a href="/EngelS/loginServlet">ログアウト</a>
+		<a href="/EngelS/loginServlet">ログアウト</a><br>
+		<p>&copy;3SFY All rights reserved.</p>
 	</footer>
 </body>
 </html>

@@ -53,5 +53,9 @@
 
 	<p id="err"></p>
 
+	<footer>
+		<p>&copy;3SFY All rights reserved.</p>
+	</footer>
+
 </body>
 </html>
