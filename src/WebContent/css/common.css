@@ -1,1 +1,73 @@
 @charset "UTF-8";
+
+/*これ→ <ul id="dropmenu" class="dropmenu">*/
+.dropmenu{
+  *zoom: 1;
+  list-style-type: none;
+  margin: 100px 500px auto auto;
+  padding: 0;
+  float:right;
+}
+/*なぞ*/
+.dropmenu:before, .dropmenu:after{
+  content: "";
+  display: table;
+}
+/*なぞ*/
+.dropmenu:after{
+  clear: both;
+}
+/**/
+.dropmenu li{
+  position: relative;
+  width: 50px;   /* 変更点 変更まえ 20% */
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.dropmenu li a{
+  display: block;
+  margin: 0;
+  padding: 15px 0 11px;
+  background:gray;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+}
+.dropmenu li ul{
+  list-style: none;
+  position: absolute;
+  width: 200px; /* 変更点  変更前なし*/
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+.dropmenu li ul li{
+  width: 100%;
+}
+.dropmenu li ul li a{
+  padding: 13px 15px;
+  border-top: 1px solid #7c8c0e;
+  background:gray;
+  text-align: left;
+}
+.dropmenu li:hover > a{
+  background:#4f4f4f; /*暗いグレー*/
+}
+.dropmenu li a:hover{
+  background:#4f4f4f; /*暗いグレー*/
+}
+
+#dropmenu { position: relative; z-index: 7; }
+#dropmenu li ul li{
+  overflow: hidden;
+  height: 0;
+  transition: .2s;
+}
+#dropmenu li:hover ul li{
+  overflow: visible;
+  height: 38px;
+}
