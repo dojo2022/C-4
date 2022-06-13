@@ -9,7 +9,7 @@
 <body>
 <p>result.jsp レシピ登録結果</p>
 
-レシピが登録できました！
+レシピが登録追加できました！
 
 
 <a href="/EngelS/recipeSearchServlet">一覧に戻る</a>

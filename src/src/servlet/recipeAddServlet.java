@@ -10,19 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class recipeAddServelt
+ * Servlet implementation class recipeAddServlet
  */
-@WebServlet("/recipeAddServelt")
-public class recipeAddServelt extends HttpServlet {
+@WebServlet("/recipeAddServlet")
+public class recipeAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
 
+	/*
 	public void recipeAddServlet() {
 		// TODO Auto-generated constructor stub
 	}
+	*/
 
 
 	/**
