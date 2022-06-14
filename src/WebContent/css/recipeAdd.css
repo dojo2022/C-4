@@ -1,8 +1,12 @@
 /*最初から表示されてしまうためコメントアウトにて保留*/
 
 
-
 @charset "UTF-8";
+
+/*エラー内容を赤で表示(ログインjsp準拠)*/
+#err{
+	color: #ff0000;
+}
 
 /*レシピ追加におけるモーダルウィンドウ*/
 
@@ -19,7 +23,7 @@ body {
 }
 
 /* ボタンのデザイン */
-.btn {
+.button {
   display: inline-block;
   text-decoration: none;
   padding: 10px 20px;
@@ -30,7 +34,7 @@ body {
   transition: 0.3s;
 }
 
-.btn:hover {
+.button:hover {
   opacity: .8;
 }
 
@@ -70,9 +74,11 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   /* デフォルトでは非表示にしておく */
   opacity: 0;
   visibility: hidden;
+
   /* 表示の変化にかかる時間 */
   transition: .3s;
 }
@@ -85,13 +91,14 @@ body {
 
 /*モーダルウィンドウの×閉じるボタンは無し。「いいえ」を押すと閉じる仕様へ変更。/*
 /* モーダルウィンドウ内の閉じるボタン */
-.modal .close {
+/*.modal .close {
   position: absolute;
   top: 10px;
   right: 20px;
   cursor: pointer;
   font-size: 20px;
 }
+*/
 
 .modal h2 {
   font-size: 18px;
