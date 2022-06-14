@@ -12,8 +12,9 @@
 レシピが追加できました！
 
 
-<button onclick="location.href='./recipeSearchServlet.java'">一覧に戻る</button>
-<button onclick="location.href='./recipeAddServlet.java'">続けて登録する</button>
+<a href="/EngelS/recipeSearchServlet"><input type="button" value="一覧に戻る"></a>
+<a href="/EngelS/recipeAddServlet"><input type="button" value="続けて登録する"></a>
+
 
 </body>
 </html>

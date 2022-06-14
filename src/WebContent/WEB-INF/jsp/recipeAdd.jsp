@@ -5,8 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 共通CSSファイル(common.css)との連携 -->
+<link rel="stylesheet" type="text/css" href="/EngelS/css/common.css">
+
+<!-- レシピ追加CSSファイルとの連携 -->
+<link rel="stylesheet" type="text/css" href="/EngelS/css/recipeAdd.css">
+<script type="text/javascript" src="/EngelS/js/recipeAdd.js"></script>
 </head>
-<body>
+<body onload="init();">
 <h2>レシピ追加</h2>
 
 
@@ -20,7 +26,7 @@
 					レシピ名 *30文字以内
 				</td>
 				<td>
-					<input type="text" name="recipe">
+					<input type="text" name="recipe" id="recipe">
 				</td>
 			</tr>
 			<tr>
@@ -60,27 +66,40 @@
 
 					<!-- 登録ボタン…作業後半、クリックしたらモーダルを表示する仕様に変更 -->
 					<!--  actionページ遷移もモーダルへ移動 -->
-					<!--  <a href="#" class="btn">登録　モーダルウィンドウを表示</a> -->
-				<td><input type="submit" name="REGIST" value="登録" class="button"></td>
+					<!--  <a href="#" class="button">登録(モーダルウィンドウを表示)</a> -->
+					<!-- 元文章：<td><input type="submit" name="REGIST" value="登録" class="button"></td> -->
+				<td><a href="#" class="button" id="modal_regist" onclick="onclick_regist()">登録(モーダルウィンドウを表示)</a></td>
 			</tr>
 		</table>
 	</form>
 
 
-
+<!-- エラー表示(ログインjsp準拠) -->
+<p id="err"></p>
 
 <!-- オーバーレイ -->
 <div class="overlay"></div>
 
 <!-- モーダルウィンドウ -->
 <div class="modal">
-  <div class="close">&times</div>
+  <div class="close">&times;</div>
     <h2>この内容で登録しますか？</h2>
     <p>ここにモダルの内容(レシピ情報)が入ります。ここにモダルの内容が入ります。ここにモダルの内容が入ります。ここにモダルの内容が入ります。ここにモダルの内容が入ります。ここにモダルの内容が入ります。</p>
 
+	<table>
+		<tr>
+			<td>レシピ名</td>
+			<td><div id="modal_recipe"></div></td>
+		</tr>
+	</table>
 	<!-- 以下、はい(登録)、いいえ(モーダルウィンドウ消去)の追加 -->
 
+	<form method="POST" action="/EngelS/recipeAddServlet">
+		<input type="hidden" id="hidden_recipe">
 
+		<input type="submit" name="REGIST" value="はい" class="button">
+		<input type="submit" name="close" value="いいえ" class="button, close">
+	</form>
 
 </div>
 
