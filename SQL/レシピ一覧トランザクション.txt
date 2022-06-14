@@ -23,6 +23,8 @@ CREATE TABLE recipe(
 
 //STEP3.テーブルにテストデータを格納する
 //--------------------------------------------------------------------------------
+INSERT INTO recipe VALUES(null, 0, '外食', 0, 0, '', '');
+
 INSERT INTO recipe VALUES(null, 0, '青のり香る卵焼き', 100, 15, 'https://www.kurashiru.com/recipes/eaf1ab53-1692-4a40-91e1-f32cbc62c779', 'お気に入り');
 
 INSERT INTO recipe VALUES(null, 0, 'さっぱり レタスのレモンサラダ', 100, 5, 'https://www.kurashiru.com/recipes/26bdb8c0-f956-4551-969c-09ee576a7b16', 'とても簡単');
