@@ -66,9 +66,20 @@ SELECT * FROM record_note WHERE userid=?;
 
 
 goalテーブル関連
-//
+
+//目標金額の登録
+//-----------------------------------------------------------------
+INSERT INTO goal VALUES(null, ?, ?, ?, 0);
 
 
+//目標金額の検索
+//-----------------------------------------------------------------
+SELECT * FROM goal WHERE userid=? and date=?;
+
+
+//目標金額の更新
+//-----------------------------------------------------------------
+UPDATE goal SET money=?, sum=SELECT SUM(savings) FROM record WHERE userid=1 AND date>=goal.date WHERE userid=1 AND date=?;
 
 
 
