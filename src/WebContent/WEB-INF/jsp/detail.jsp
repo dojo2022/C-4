@@ -8,6 +8,10 @@
 <title>記録詳細</title>
 </head>
 <body>
+<header>詳細</header>
+<table>
+
+</table>
 		<button onclick="location.href='./homeServlet.java'">戻る
 	</button>
 </body>
