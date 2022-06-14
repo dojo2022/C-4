@@ -1,33 +1,70 @@
 package model;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.Serializable;
 
-/**
- * Servlet implementation class record
- */
-@WebServlet("/record")
-public class record extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class record implements Serializable {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	private int id;
+	private int userid;
+	private String date;
+	private String mealtime;
+	private int recipeid;
+	private int savings;
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getMealtime() {
+		return mealtime;
+	}
+	public void setMealtime(String mealtime) {
+		this.mealtime = mealtime;
+	}
+	public int getRecipeid() {
+		return recipeid;
+	}
+	public void setRecipeid(int recipeid) {
+		this.recipeid = recipeid;
+	}
+	public int getSavings() {
+		return savings;
+	}
+	public void setSavings(int savings) {
+		this.savings = savings;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	public record(int id, int userid, String date, String mealtime, int recipeid, int savings) {
+		super();
+		this.id = id;
+		this.userid = userid;
+		this.date = date;
+		this.mealtime = mealtime;
+		this.recipeid = recipeid;
+		this.savings = savings;
+	}
+
+	public record() {
+		this.id = 0;
+		this.userid = 0;
+		this.date = "";
+		this.mealtime = "朝";
+		this.recipeid = 0;
+		this.savings = 0;
 	}
 
 }
