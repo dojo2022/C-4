@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-
-<body>
+	<!-- ナビゲーション開始 -->
 	<nav>
 		<ul class="list">
 			<li><a href="/EngelS/homeServlet">ホーム</a></li>
@@ -15,6 +13,7 @@
 			<li><a href="/EngelS/recipeAddServlet">レシピ追加</a></li>
 		</ul>
 	</nav>
+	<!-- ナビゲーション終了 -->
     <!--設定ドロップダウンメニュー開始 -->
 	<nav>
 	    <ul id="dropmenu" class="dropmenu">
@@ -30,7 +29,10 @@
 		    </li>
 	    </ul>
     </nav>
-    <!-- 設定ドロップダウンメニュー終わり -->
+    <!-- 設定ドロップダウンメニュー終了 -->
+</head>
+
+<body>
     <h1>節約金額目標グラフ</h1>
     <h2>目標削減金額<span>(金額取得)</span>円</h2>
     <h2>目標達成まであと<span>(金額取得)</span>円</h2>
@@ -42,7 +44,6 @@
     <a href="/EngelS/recordServlet">+今日の記録</a>
     ※画像にしたい
     <br>
-    <p>以下フッター</p>
 </body>
 
 <footer>
@@ -60,8 +61,10 @@
 	<a href="/EngelS/newPwServlet">パスワード変更</a>
 	<br>
 	<a href="/EngelS/loginServlet">ログアウト</a>
+	<p>&copy;3SFY All rights reserved.</p>
 </footer>
 </html>
 
+<!-- 共通css,jsへのリンクです。必ず貼ってください！ -->
 <link rel="stylesheet" type="text/css" href="/EngelS/css/common.css">
 <script src="/EngelS/javascript/common.js"></script>
