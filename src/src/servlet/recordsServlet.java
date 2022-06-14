@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class recordServlet
  */
-@WebServlet("/recordServlet")
-public class recordServlet extends HttpServlet {
+@WebServlet("/recordsServlet")
+public class recordsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -21,8 +21,8 @@ public class recordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//record.jspに遷移
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/record.jsp");
+		//records.jspに遷移
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/records.jsp");
 		dispatcher.forward(request, response);
 	}
 
