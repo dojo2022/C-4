@@ -17,11 +17,11 @@
 		日付<input type="date">
 	</p>
 	<p>削除金額</p>
-	<form method="POST" action="/EngelS/recordServlet">
+	<form method="POST" action="/EngelS/recordServlet" id="record_form">
 		<table>
 			<tr>
 				<td>朝食</td>
-				<td><input type="text" placeholder="*選択してください"></td>
+				<td><input type="text" id="morning_recipeid" placeholder="*選択してください"></td>
 				<td>_円*要変更</td>
 			</tr>
 			<tr>
@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<td>昼食</td>
-				<td><input type="text" placeholder="*選択してください"></td>
+				<td><input type="text" id="lunch_recipeid" placeholder="*選択してください"></td>
 				<td>_円*要変更</td>
 			</tr>
 			<tr>
@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<td>夕食</td>
-				<td><input type="text" placeholder="*選択してください"></td>
+				<td><input type="text" id="dinner_recipeid" placeholder="*選択してください"></td>
 				<td>_円*要変更</td>
 			</tr>
 			<tr>
@@ -47,15 +47,12 @@
 		<p>
 			備考<input type="text">
 		</p>
-		<p>
-			今日の削減金額は_円です！*要変更
-		</p>
-		<p>
-			今日の目標:_円*要変更
-		</p>
+		<p>今日の削減金額は_円です！*要変更</p>
+		<p>今日の目標:_円*要変更</p>
 		<input type="submit" value="登録する">
 	</form>
+	<p id="output"></p>
+	<footer> </footer>
+	<script src="record.js"></script>
 </body>
-<footer>
-</footer>
 </html>
