@@ -43,6 +43,11 @@ INSERT INTO recipe VALUES(null, 2, '大根の漬物', 180, 600, '', '寝る前�
 
 INSERT INTO recipe VALUES(null, 0, 'レンジで簡単チーズオムレツ', 100, 10, 'https://www.kurashiru.com/recipes/d2b4dd92-5611-418b-90c6-9b589c67b6f2', '');
 
+INSERT INTO recipe VALUES(null, 0, 'やみつきキャベツ', 100, 5, 'https://recipe.rakuten.co.jp/recipe/1550008949', '居酒屋のそれ');
+
+INSERT INTO recipe VALUES(null, 0, '白滝きむちラーメン', 225, 15, 'https://cookpad.com/recipe/2577417', 'あったかい気持ちになる');
+
+INSERT INTO recipe VALUES(null, 0, '具なしバター醤油パスタ', 180, 10, 'https://cookpad.com/recipe/286579', '簡単！');
 
 
 //STEP.4テーブルに格納されたデータを確認する
