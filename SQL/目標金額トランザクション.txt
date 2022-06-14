@@ -23,10 +23,8 @@ CREATE TABLE goal(
 
 //STEP3.テーブルにテストデータを格納する
 //-----------------------------------------------------------------
-INSERT INTO goal VALUES(null, 1, '2022-06-01', 3000, 0);
-INSERT INTO goal VALUES(null, 2, '2022-06-01', 3000, 0);
-//※格納するデータの形式の修正
-
+INSERT INTO goal VALUES(null, 1, '2022-06-01', 3000, SELECT SUM(savings) FROM record WHERE userid=1);
+INSERT INTO goal VALUES(null, 2, '2022-06-01', 3000, SELECT SUM(savings) FROM record WHERE userid=2);
 
 
 //STEP.4テーブルに格納されたデータを確認する
