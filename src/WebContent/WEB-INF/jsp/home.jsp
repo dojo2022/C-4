@@ -41,7 +41,7 @@
     	～グラフをここに表示～
     </div>
     <a href="/EngelS/detailServlet">記録詳細へ</a>
-    <a href="/EngelS/recordServlet">+今日の記録</a>
+    <a href="/EngelS/recordsServlet">+今日の記録</a>
     ※画像にしたい
     <br>
 </body>
@@ -51,7 +51,7 @@
 	<a href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a>
 	<a href="/EngelS/recipeAddServlet">レシピ追加</a>
 	<br>
-	<a href="/EngelS/recordServlet">日々の食事記録</a>
+	<a href="/EngelS/recordsServlet">日々の食事記録</a>
 	<a href="/EngelS/detailServlet">詳細表示</a>
 	<br>
 	<a href="/EngelS/goalServlet">目標金額設定</a>

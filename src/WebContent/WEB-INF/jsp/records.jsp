@@ -17,7 +17,7 @@
 		日付<input type="date">
 	</p>
 	<p>削除金額</p>
-	<form method="POST" action="/EngelS/recordServlet" id="record_form">
+	<form method="POST" action="/EngelS/recordsServlet" id="record_form">
 		<table>
 			<tr>
 				<td>朝食</td>
@@ -53,6 +53,6 @@
 	</form>
 	<p id="output"></p>
 	<footer> </footer>
-	<script src="record.js"></script>
+	<script src="records.js"></script>
 </body>
 </html>

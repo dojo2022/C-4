@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class record implements Serializable {
+public class records implements Serializable {
 
 	private int id;
 	private int userid;
@@ -48,7 +48,7 @@ public class record implements Serializable {
 		this.savings = savings;
 	}
 
-	public record(int id, int userid, String date, String mealtime, int recipeid, int savings) {
+	public records (int id, int userid, String date, String mealtime, int recipeid, int savings) {
 		super();
 		this.id = id;
 		this.userid = userid;
@@ -58,7 +58,7 @@ public class record implements Serializable {
 		this.savings = savings;
 	}
 
-	public record() {
+	public records() {
 		this.id = 0;
 		this.userid = 0;
 		this.date = "";
