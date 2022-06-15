@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.userDAO;
+import model.user;
+
 /**
  * Servlet implementation class signupServlet
  */
@@ -29,8 +32,31 @@ public class signupServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ログインサーブレットにリダイレクトする
-		response.sendRedirect("/EngelS/loginServlet");
+
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		String user = request.getParameter("user");
+		String name = request.getParameter("name");
+		String pw = request.getParameter("pw");
+
+		// ログイン処理を行う
+		userDAO iDao = new userDAO();
+		if (iDao.newuser(new user(0, user, name, pw))) {	// ログイン成功
+			//request.setAttribute("result", (new Result("", "登録に成功しました。", "", "", "")));
+
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
+			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
+			//request.setAttribute("result", (new Result("", "既に登録されています。", "", "", "")));
+
+			// 結果ページにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signup.jsp");
+			dispatcher.forward(request, response);
+
+		}
 	}
 
 }
