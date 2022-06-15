@@ -56,6 +56,8 @@ public class loginServlet extends HttpServlet {
 		else {									// ログイン失敗
 			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
 			//request.setAttribute("result", (new Result("", "IDまたはPWに間違いがあります。", "", "", "")));
+			// ログインサーブレットにリダイレクトする
+			response.sendRedirect("/EngelS/loginServlet");
 		}
 
 
