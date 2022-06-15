@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+</head>
+
+<body>
+	<header>
 	<!-- ナビゲーション開始 -->
 	<nav>
 		<ul class="list">
@@ -30,9 +35,8 @@
 	    </ul>
     </nav>
     <!-- 設定ドロップダウンメニュー終了 -->
-</head>
+	</header>
 
-<body>
     <h1>節約金額目標グラフ</h1>
     <h2>目標削減金額<span>(金額取得)</span>円</h2>
     <h2>目標達成まであと<span>(金額取得)</span>円</h2>
