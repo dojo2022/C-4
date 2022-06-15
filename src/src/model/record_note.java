@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 	public class record_note implements Serializable {
 		//テーブルの項目を再現
@@ -27,7 +27,7 @@ import java.util.Date;
 			this.userid = userid;
 		}
 
-		public Date getDate() {
+		public java.sql.Date getDate() {
 			return date;
 		}
 
