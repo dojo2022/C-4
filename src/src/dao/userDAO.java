@@ -35,7 +35,7 @@ public class userDAO {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 				user card = new user(
-				rs.getInt("ID"),
+				rs.getInt("userid"),
 				rs.getString("user"),
 				rs.getString("name"),
 				rs.getString("pw")
@@ -143,15 +143,16 @@ public class userDAO {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = newuser.executeQuery();
 
-			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
 			rs.next();
-			if (rs.getInt("count(*)") == 1) {
+			if (rs.getInt("count(*)") == 1) {// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
 				result = false;
 			} else {
-				String Resql = "INSERT INTO IDPW (ID, PW) VALUES (?, ?)";
+				//ユーザーIDとパスワードが一致しなかった場合の登録処理
+				String Resql = "INSERT INTO user (userid, user, name, pw) VALUES (null, ?, ?, ?)";
 				PreparedStatement signup = conn.prepareStatement(Resql);
 				signup.setString(1, user.getUser());
-				signup.setString(2,user.getPw());
+				signup.setString(2,user.getName());
+				signup.setString(3,user.getPw());
 
 				signup.executeUpdate();
 				result = true;
