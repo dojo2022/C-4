@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text" id="user">
+					<input type="text" name="user" id="user">
 				</td>
 			</tr>
 			<tr>
@@ -33,7 +33,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="password" id="pw">
+					<input type="password" name="pw" id="pw">
 				</td>
 			</tr>
 			<tr>
