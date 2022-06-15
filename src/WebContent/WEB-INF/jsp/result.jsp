@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>レシピ登録結果</p>
+<h2>レシピ登録結果</h2>
 
 レシピが追加できました！
 

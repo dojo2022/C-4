@@ -2,22 +2,29 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- 共通CSSファイル(common.css)との連携 -->
-<link rel="stylesheet" type="text/css" href="/EngelS/css/common.css">
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <!-- 共通CSSファイル(common.css)との連携 -->
+ <link rel="stylesheet" type="text/css" href="/EngelS/css/common.css">
 
-<!-- レシピ追加CSSファイルとの連携 -->
-<link rel="stylesheet" type="text/css" href="/EngelS/css/recipeAdd.css">
-<script type="text/javascript" src="/EngelS/js/recipeAdd.js"></script>
+ <!-- レシピ追加CSSファイルとの連携 -->
+ <link rel="stylesheet" type="text/css" href="/EngelS/css/recipeAdd.css">
+
+ <!-- レシピ追加Jsファイルとの連携(onloadにて制御状態付き)-->
+ <script type="text/javascript" src="/EngelS/js/recipeAdd.js"></script>
 </head>
+
+ <!-- ボディ -->
+ <!-- onload…onloadが付いているタグの内容が読み込み終わったら -->
+	<!-- "init"(=初期化ファンクション)が実行される -->
 <body onload="init();">
-<h2>レシピ追加</h2>
+	<h2>レシピ追加</h2>
 
 
-<!-- レシピ追加フォーム -->
-<!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
+ <!-- レシピ追加フォーム -->
+ <!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
 
 	<form method="POST" action="/EngelS/recipeAddServlet">
 		<table>
@@ -34,7 +41,7 @@
 					費用(円) *半角数字
 				</td>
 				<td>
-					<input type="text" name="cost">
+					<input type="text" name="cost" id="cost">
 				</td>
 			</tr>
 			<tr>
@@ -42,7 +49,7 @@
 					調理時間(分) *半角数字
 				</td>
 				<td>
-					<input type="text" name="time">
+					<input type="text" name="time" id="time">
 				</td>
 			</tr>
 			<tr>
@@ -50,7 +57,7 @@
 					参考URL
 				</td>
 				<td>
-					<input type="text" name="url">
+					<input type="text" name="url" id="url">
 				</td>
 			</tr>
 			<tr>
@@ -58,7 +65,7 @@
 					備考<br>
 				</td>
 				<td>
-					<textarea name="remarks"  rows="5"></textarea>
+					<textarea name="remarks" id="remarks" rows="5"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -80,25 +87,57 @@
 <!-- オーバーレイ -->
 <div class="overlay"></div>
 
+
 <!-- モーダルウィンドウ -->
 <div class="modal">
-  <div class="close">&times;</div>
+
+	<!-- ×ボタンのプログラム。現状不要のためコメントアウト -->
+	<!-- <div class="close">&times;</div>  -->
+
+	<!-- モーダル内に表示される文章 -->
     <h2>この内容で登録しますか？</h2>
     <p>h2下pタグ起動テスト</p>
 
-	<!-- ①モーダル内レイアウト編集しやすくテーブルで文字を反映させる  -->
-	<!-- ②データ受け渡し用のプログラムはhiddenで別で準備 -->
+	<!-- 入力内容を、以下①②へそれぞれ受け渡す -->
+	<!-- ①モーダル内レイアウト編集しやすくテーブルへテキストのみ反映させる  -->
+	<!-- ②データ受け渡し用のプログラムはhiddenで別でセット -->
+
+	<!-- ①モーダル内準備  -->
 	<table>
 		<tr>
 			<td>レシピ名</td>
 			<td><div id="modal_recipe"></div></td>
 		</tr>
+		<tr>
+			<td>費用(円)</td>
+			<td><div id="modal_cost"></div></td>
+		</tr>
+		<tr>
+			<td>所要時間(分)</td>
+			<td><div id="modal_time"></div></td>
+		</tr>
+		<tr>
+			<td>URL</td>
+			<td><div id="modal_url"></div></td>
+		</tr>
+		<tr>
+			<td>備考</td>
+			<td><div id="modal_remarks"></div></td>
+		</tr>
 	</table>
-	<!-- 以下、はい(登録)、いいえ(モーダルウィンドウ消去)の追加 -->
+
+
+	<!-- ②データ受け渡し用プログラム -->
+	<!-- 記入してもらった項目をセット -->
 
 	<form method="POST" action="/EngelS/recipeAddServlet">
 		<input type="hidden" id="hidden_recipe">
+		<input type="hidden" id="hidden_cost">
+		<input type="hidden" id="hidden_time">
+		<input type="hidden" id="hidden_url">
+		<input type="hidden" id="hidden_remarks">
 
+		<!-- 以下、はい(登録)、いいえ(モーダルウィンドウ消去)の追加 -->
 		<input type="submit" name="REGIST" value="はい" class="button">
 		<input type="submit" name="close" value="いいえ" class="button, close">
 	</form>

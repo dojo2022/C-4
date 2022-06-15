@@ -1,4 +1,4 @@
-
+//☆49行目以降、費用cost分以降の処理合っているか要確認
 
 
 function init(){
@@ -39,10 +39,35 @@ function init(){
 
 function onclick_regist(){
 	//モーダルウィンドウの表示したい場所に画面の値をセットする。
+	//☆js文、コスト以降合っているか要確認
+	//innerHTML：HTML要素の取得、変更、削除、追加などが可能。
 
+	//レシピ名recipeの分
 	let recipe = document.getElementById("recipe").value;
 	document.getElementById("modal_recipe").innerHTML = recipe;
 	document.getElementById("hidden_recipe").value = recipe;
+
+	//費用costの分
+	let recipe = document.getElementById("cost").value;
+	document.getElementById("modal_cost").innerHTML = cost;
+	document.getElementById("hidden_cost").value = cost;
+
+	//所要時間timeの分
+	let recipe = document.getElementById("time").value;
+	document.getElementById("modal_time").innerHTML = time;
+	document.getElementById("hidden_time").value = time;
+
+	//参考URLurlの分
+	let recipe = document.getElementById("url").value;
+	document.getElementById("modal_url").innerHTML = url;
+	document.getElementById("hidden_url").value = url;
+
+	//備考remarksの分
+	let recipe = document.getElementById("remarks").value;
+	document.getElementById("modal_remarks").innerHTML = remarks;
+	document.getElementById("hidden_remarks").value = remarks;
+
+
 }
 
 
