@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/EngelS/css/signup.css">
 </head>
 <body>
 	<h2>新規ユーザー登録</h2>
 
 	<!-- 新規ユーザー登録フォーム -->
-	<form method="POST" action="/EngelS/signupServlet">
+	<form method="POST" action="/EngelS/signupServlet" id="signupform" onclick="signupfun()">
 		<table>
 			<tr>
 				<td>
@@ -20,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text">
+					<input type="text" name="user" id="user">
 				</td>
 			</tr>
 			<tr>
@@ -31,7 +32,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text">
+					<input type="text" name="name" id="name">
 				</td>
 			</tr>
 			<tr>
@@ -42,7 +43,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="password">
+					<input type="password" name="pw" id="pw">
 				</td>
 			</tr>
 			<tr>
@@ -58,4 +59,7 @@
 	</footer>
 
 </body>
+
+<script type="text/javascript" src="/EngelS/js/signup.js"></script>
+
 </html>

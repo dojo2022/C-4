@@ -4,6 +4,7 @@ function logfun(){
     	const log=document.getElementById('logform').user.value;
     	const pass=document.getElementById('logform').pw.value;
 
+		//未入力欄の検出とエラーメッセージの表示
 		if(log === ''){
 			if(pass === ''){
 	        	document.getElementById('err').textContent='ログインIDとパスワードが未入力です';

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>アラート設定</title>
+<link rel="stylesheet" type="text/css" href="/EngelS/css/common.css">
 </head>
 <header></header>
 <body>
