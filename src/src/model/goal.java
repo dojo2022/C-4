@@ -7,7 +7,7 @@ public class goal implements Serializable {
 	//フィールド
 	private int id; //ID
 	private int userid; //ユーザID
-	private java.sql.Date date; //日付
+	private String date; //日付
 	private int money; //目標金額
 	private int sum; //recordテーブルのsavings(節約金額)の合計が勝手にここに入る
 
@@ -24,10 +24,10 @@ public class goal implements Serializable {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public java.sql.Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(java.sql.Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public int getMoney() {
@@ -44,7 +44,7 @@ public class goal implements Serializable {
 	}
 
 	//引数のあるコンストラクタ
-	public goal(int id, int userid, java.sql.Date date, int money, int sum) {
+	public goal(int id, int userid, String date, int money, int sum) {
 		super();
 		this.id = id;
 		this.userid = userid;
