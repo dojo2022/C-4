@@ -1,3 +1,6 @@
+//☆今後のタスク(6/15 14:30)：レシピ追加処理のResultモデルについて(6/15 14:30時点ではモデル未作成)
+//現時点ではコメントアウトでResultモデルを停止中、今後は実装要検討
+
 package servlet;
 
 import java.io.IOException;
@@ -8,6 +11,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.recipeDAO;
+import model.recipeAdd;
 
 /**
  * Servlet implementation class recipeAddServlet
@@ -20,18 +27,11 @@ public class recipeAddServlet extends HttpServlet {
 	 * Default constructor.
 	 */
 
-	/*
-	public void recipeAddServlet() {
-		// TODO Auto-generated constructor stub
-	}
-	*/
-
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// レシピ登録ページにフォワードする
+		// レシピ追加ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeAdd.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -40,12 +40,61 @@ public class recipeAddServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		int userid = Integer.parseInt(session.getattribute("allList".userid));
+		String recipe = request.getParameter("recipe");
+		int cost = Integer.parseInt(session.getattribute("allList".cost));
+		int time = Integer.parseInt(session.getattribute("allList".time));
+		String url = request.getParameter("url");
+		String remarks = request.getParameter("remarks");
+
+		//レシピ登録結果(result.jsp)へ移動用のビーンズ作成(rtRec…resultRecipeの略)
+		recipeAdd rtRec = new recipeAdd(0, userid, recipe, cost, time, url, remarks);
+
+		//result.jspへ表示させるためにリクエストスコープへ格納(☆"cardList"のままで起動するか要確認)
+		request.setAttribute("cardList", rtRec);
+
+		//セッションスコープにユーザーIDを格納
+		session.getAttribute(request.getParameter("userid"));
+
+		// レシピ追加処理を行う
+		//現時点ではResultモデルを消去し画面遷移のみ行う普通のフォワード処理にしている、else無し
+		recipeDAO bDao = new recipeDAO();
+			if (bDao.insert(new recipeAdd(0, userid, recipe, cost, time, url, remarks ))){	// 登録成功
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+				}
+				/*
+				else { // 登録失敗
+				request.setAttribute("result",
+				new Result("登録エラー", "レコードを登録できませんでした。", "/WEB-INF/jsp/result.jsp"));
+				}
+				*/
+
 		// レシピ登録結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 		dispatcher.forward(request, response);
+
+
+		/*元のコード保留中(6/15 13:45)　Resultモデルがある場合の処理
+		// レシピ追加処理を行う
+				recipeDAO bDao = new recipeDAO();
+					if (bDao.insert(new recipeAdd(userid, recipe, cost, time, url, remarks ))){	// 登録成功
+						request.setAttribute("result",
+						new Result("登録完了", "レコードを登録しました。", "/EngelS/MenuServlet"));
+						}
+						else {												// 登録失敗
+						request.setAttribute("result",
+						new Result("登録エラー", "レコードを登録できませんでした。", "/simpleBC/MenuServlet"));
+						}
+
+				// レシピ登録結果ページにフォワードする
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+				dispatcher.forward(request, response);
+		*/
 	}
-
-
 
 
 

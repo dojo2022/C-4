@@ -1,3 +1,5 @@
+<!--☆今後のタスク：備考欄テキストフィールド200(300?)字制限かける -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,8 +21,10 @@
  <!-- ボディ -->
  <!-- onload…onloadが付いているタグの内容が読み込み終わったら -->
 	<!-- "init"(=初期化ファンクション)が実行される -->
+
 <body onload="init();">
 	<h2>レシピ追加</h2>
+	<p>※は必須入力項目です。</p>
 
 
  <!-- レシピ追加フォーム -->
@@ -30,26 +34,26 @@
 		<table>
 			<tr>
 				<td>
-					レシピ名 *30文字以内
+					レシピ名 ※30文字以内
 				</td>
 				<td>
-					<input type="text" name="recipe" id="recipe">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					費用(円) *半角数字
-				</td>
-				<td>
-					<input type="text" name="cost" id="cost">
+					<input type="text" name="recipe" id="recipe" maxlength="30" >
 				</td>
 			</tr>
 			<tr>
 				<td>
-					調理時間(分) *半角数字
+					費用(円) ※半角数字
 				</td>
 				<td>
-					<input type="text" name="time" id="time">
+					<input type="text" name="cost" id="cost">円
+				</td>
+			</tr>
+			<tr>
+				<td>
+					調理時間(分) ※半角数字
+				</td>
+				<td>
+					<input type="text" name="time" id="time">分
 				</td>
 			</tr>
 			<tr>
@@ -57,7 +61,7 @@
 					参考URL
 				</td>
 				<td>
-					<input type="text" name="url" id="url">
+					<input type="text" name="url" id="url" maxlength="100">
 				</td>
 			</tr>
 			<tr>
@@ -65,7 +69,7 @@
 					備考<br>
 				</td>
 				<td>
-					<textarea name="remarks" id="remarks" rows="5"></textarea>
+					<textarea name="remarks" id="remarks" rows="5" maxlength="200"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -96,7 +100,6 @@
 
 	<!-- モーダル内に表示される文章 -->
     <h2>この内容で登録しますか？</h2>
-    <p>h2下pタグ起動テスト</p>
 
 	<!-- 入力内容を、以下①②へそれぞれ受け渡す -->
 	<!-- ①モーダル内レイアウト編集しやすくテーブルへテキストのみ反映させる  -->
@@ -110,11 +113,11 @@
 		</tr>
 		<tr>
 			<td>費用(円)</td>
-			<td><div id="modal_cost"></div></td>
+			<td><div id="modal_cost"></div>円</td>
 		</tr>
 		<tr>
 			<td>所要時間(分)</td>
-			<td><div id="modal_time"></div></td>
+			<td><div id="modal_time"></div>分</td>
 		</tr>
 		<tr>
 			<td>URL</td>
@@ -136,6 +139,8 @@
 		<input type="hidden" id="hidden_time">
 		<input type="hidden" id="hidden_url">
 		<input type="hidden" id="hidden_remarks">
+
+
 
 		<!-- 以下、はい(登録)、いいえ(モーダルウィンドウ消去)の追加 -->
 		<input type="submit" name="REGIST" value="はい" class="button">
