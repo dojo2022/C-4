@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.userDAO;
+import model.result;
 import model.user;
 
 /**
@@ -41,16 +42,17 @@ public class signupServlet extends HttpServlet {
 
 		// ログイン処理を行う
 		userDAO iDao = new userDAO();
-		if (iDao.newuser(new user(0, user, name, pw))) {	// ログイン成功
-			//request.setAttribute("result", (new Result("", "登録に成功しました。", "", "", "")));
+		if (iDao.newuser(new user(0, user, name, pw))) {	// 登録成功時
+			// リクエストスコープにメッセージを格納する
+			request.setAttribute("result", (new result("登録に成功しました。", "", "")));
 
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 
 		} else {
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			//request.setAttribute("result", (new Result("", "既に登録されています。", "", "", "")));
+			// リクエストスコープにメッセージを格納する
+			request.setAttribute("result", (new result("既に登録されています。", "", "")));
 
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/signup.jsp");
