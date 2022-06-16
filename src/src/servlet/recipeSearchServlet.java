@@ -23,10 +23,9 @@ public class recipeSearchServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	//なんで罰が出ているのかを聞く
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");

@@ -46,9 +46,17 @@
 				<input type="text" name="query" size="30" maxlength="40" value="">
 				<input type="submit" name="btn" value="検索">
 			</form>
+
 			<!-- 費用と所要時間（あの追加されたやつ） -->
+
+			<input type="radio" name="num_of_inq" value="費用">費用
+			<input type="radio" name="num_of_inq" value="所要時間">所要時間
+
+
 			<!-- 一覧表 -->
+
 			<table border="1">
+			<div class= "scroll">
 				<tr>
 					<th>レシピ名</th>
 					<th>費用</th>
@@ -60,8 +68,9 @@
 					<td>${e.Cost}円</td>
 					<td>${e.Minutes}分</td>
 					<td><a href="/recipeSearchServlet" + "?recipeId=100
-						" class="btn">詳細</a></td>
+						class="btn">詳細</a></td>
 				</tr>
+			</div>
 			</table>
 
 
