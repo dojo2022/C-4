@@ -195,9 +195,9 @@ public class userDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 				// SELECT文を準備する
-				String sql = "select count(*) from user where user = ? and pw = ?";
+				String sql = "select count(*) from user where userid = ? and pw=?";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
-				pStmt.setString(1,user.getUser());
+				pStmt.setInt(1,user.getId());
 				pStmt.setString(2,user.getPw());
 
 				// SELECT文を実行し、結果表を取得する
@@ -208,10 +208,10 @@ public class userDAO {
 				if (rs.getInt("count(*)") == 1) {
 					result = false;
 				} else {
-					String Resql = "UPDATE user SET pw=? WHERE user=?";
+					String Resql = "UPDATE user SET pw=? WHERE userid=?";
 					PreparedStatement newpw = conn.prepareStatement(Resql);
 					newpw.setString(1, user.getPw());
-					newpw.setString(2,user.getUser());
+					newpw.setInt(2,user.getId());
 
 					newpw.executeUpdate();
 					result = true;
