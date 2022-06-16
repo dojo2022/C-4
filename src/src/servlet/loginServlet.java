@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,12 +42,15 @@ public class loginServlet extends HttpServlet {
 		// ログイン処理を行う
 		userDAO iDao = new userDAO();
 		if (iDao.isLoginOK(new user(0, user, "", pw))) {	// ログイン成功
+			userDAO dao = new userDAO();
+			user cardList = dao.select(new user(0, user, "", pw));
+
 			// セッションスコープにIDを格納する
 			HttpSession session = request.getSession();
-
-			userDAO dao = new userDAO();
-			List<user> cardList = dao.select(new user(0, user, "", pw));
 			session.setAttribute("allList", cardList);
+
+
+
 
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/homeServlet");
