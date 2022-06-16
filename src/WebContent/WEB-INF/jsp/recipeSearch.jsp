@@ -7,7 +7,9 @@
 <title>レシピ一覧・検索</title>
 <!-- 共通css,jsへのリンク ★各画面のもここに入れてください-->
 <link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/recipeSearch.css">
 <script src="./javascript/common.js"></script>
+<script src="./javascript/recipeSearch.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -40,68 +42,67 @@
 		</header>
 		<main>
 			<!--★皆さんが作ってるものをここに入れてください-->
-
-
-<form method="get" action=recipeSearch target="_blank">
-<input type="text" name="query" size="30" maxlength="40" value="">
-<input type="submit" name="btn" value="検索">
-</form>
-<!-- 費用と所要時間（あの追加されたやつ） -->
-<!-- 一覧表 -->
-<table border="1">
-    <tr>
-      <th>レシピ名</th>
-      <th>費用</th>
-      <th>所要時間</th>
-      <th>詳細ページ</th>
-    </tr>
-    <tr>
-      <td>${e.Name}</td>
-      <td>${e.Cost}円</td>
-      <td>${e.Minutes}分</td>
-      <td><a href="/recipeSearchServlet" + "?recipeId=100" class="btn">詳細</a></td>
-    </tr>
-  </table>
-
-
-
-<!--  how to use the parameter with <a> tag?-->
-<!--  how to make ajax request? -->
-
-<!-- オーバーレイ -->
-<div class="overlay"></div>
-
-<!-- モーダルウィンドウ -->
-<div class="modal">
-  <div class="close">×</div>
-<table>
+			<form method="get" action=recipeSearch target="_blank">
+				<input type="text" name="query" size="30" maxlength="40" value="">
+				<input type="submit" name="btn" value="検索">
+			</form>
+			<!-- 費用と所要時間（あの追加されたやつ） -->
+			<!-- 一覧表 -->
+			<table border="1">
 				<tr>
 					<th>レシピ名</th>
-					<td>${e.Name}</td>
-				</tr>
-				<tr>
 					<th>費用</th>
-					<td>${e.Cost}円</td>
-				</tr>
-				<tr>
 					<th>所要時間</th>
+					<th>詳細ページ</th>
+				</tr>
+				<tr>
+					<td>${e.Name}</td>
+					<td>${e.Cost}円</td>
 					<td>${e.Minutes}分</td>
+					<td><a href="/recipeSearchServlet" + "?recipeId=100
+						" class="btn">詳細</a></td>
 				</tr>
-				<tr>
-					<th>URL</th>
-					<td>${e.Url}</td>
-				</tr>
-				<tr>
-					<th>備考</th>
-					<td>${e.Notes}</td>
-				</tr>
+			</table>
 
-</table>
 
-</div>
 
-<!-- スクロールで高さを出すためのsectionタグ -->
-<section></section>
+			<!--  how to use the parameter with <a> tag?-->
+			<!--  how to make ajax request? -->
+
+			<!-- オーバーレイ -->
+			<div class="overlay"></div>
+
+			<!-- モーダルウィンドウ -->
+			<div class="modal">
+				<div class="close">×</div>
+				<table>
+					<tr>
+						<th>レシピ名</th>
+						<td>${e.Name}</td>
+					</tr>
+					<tr>
+						<th>費用</th>
+						<td>${e.Cost}円</td>
+					</tr>
+					<tr>
+						<th>所要時間</th>
+						<td>${e.Minutes}分</td>
+					</tr>
+					<tr>
+						<th>URL</th>
+						<td>${e.Url}</td>
+					</tr>
+					<tr>
+						<th>備考</th>
+						<td>${e.Notes}</td>
+					</tr>
+
+				</table>
+
+			</div>
+
+			<!-- スクロールで高さを出すためのsectionタグ -->
+			<section></section>
 
 
 		</main>
