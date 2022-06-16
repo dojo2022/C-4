@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import model.goal;
 
 public class goalDAO {
-	// 引数paramで指定されたレコードを登録し、成功したらtrueを返す OK
 	public boolean insert(goal param) {
 		Connection conn = null;
 		boolean result = false;
@@ -20,12 +19,12 @@ public class goalDAO {
 			// データベースに接続する OK
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
-			// SQL文を準備する 多分OK
-			String sql = "insert into goal (id,userid,date,money,sum) values (?,?,?,?,?)";
+			// SQL文を準備する
+			//記録したのはついたちということに強制的になる。理由は更新のSQL文参照
+			String sql = "insert into goal (id,userid,date,money,sum) values (?,?,concat('?' ,'-01'),?,?)";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// SQL文を完成させる 多分OK
 			if (param.getId() != 0) {
 				pStmt.setString(1, "%" + param.getId() + "%");
 			} else {
@@ -55,6 +54,7 @@ public class goalDAO {
 			} else {
 				pStmt.setString(5, "%");
 			}
+
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -94,8 +94,10 @@ public class goalDAO {
 			// データベースに接続する OK
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
-			// SQL文を準備する ★sum以降を節約金額を取ってきて合計する文にした dateには1日が入ればその月のすべての合計になる
-			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date>=?";
+			// SQL文
+			//カレンダーからは'2022-06'しか取ってこれない。なのでCONCAT関数で'-01'を連結！！
+			//そうすると常にその月の１日のデータを上書きすることになる。
+			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date=concat('?' ,'-01')";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
