@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>ホーム|EngelS</title>
-<!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/home.css">
 <script src="./javascript/common.js"></script>
+<script src="./javascript/home.js"></script>
+<script src="./javascript/graph.js"></script>
 </head>
 
 <body>
@@ -18,8 +20,8 @@
 				<ul id="dropmenu" class="dropmenu">
 					<li><a href="#">設定</a>
 						<ul>
-							<li class="username">ニックネーム取得</li>
-							<li>ログインID取得</li>
+							<li class="user">名前を取得${user.name}</li>
+							<li>ユーザーIDを取得${user.userid}</li>
 							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
