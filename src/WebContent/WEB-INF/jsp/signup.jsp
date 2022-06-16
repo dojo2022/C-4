@@ -10,6 +10,8 @@
 <body>
 	<h2>新規ユーザー登録</h2>
 
+	<p>${result.message1}</p>
+
 	<!-- 新規ユーザー登録フォーム -->
 	<form method="POST" action="/EngelS/signupServlet" id="signupform" onclick="signupfun()">
 		<table>
