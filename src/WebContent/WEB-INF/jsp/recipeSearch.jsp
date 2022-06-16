@@ -63,6 +63,8 @@
     </tr>
   </table>
 
+
+
 <!--  how to use the parameter with <a> tag?-->
 <!--  how to make ajax request? -->
 
@@ -100,8 +102,6 @@
 
 <!-- スクロールで高さを出すためのsectionタグ -->
 <section></section>
-
-
 
 
 		</main>
