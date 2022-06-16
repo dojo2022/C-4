@@ -54,7 +54,49 @@
 			<p>
 				期間：<span>(日付取得)</span>～<span>(日付取得)</span>
 			</p>
-			<section>～グラフをここに表示～</section>
+			<section style="width: 380px">
+				～グラフをここに表示～
+				<canvas id="myChart"></canvas>
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
+					integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+					crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+				<script>
+					var ctx = document.getElementById('myChart').getContext(
+							'2d');
+					var chart = new Chart(ctx, {
+						type : 'line',
+
+						// データを指定
+						data : {
+							labels : [ '2022-06-01', '2022-06-02', '2022-06-03', '2022-06-04', '2022-06-05', '2022-06-06', '2022-06-07' ],
+							datasets : [ {
+								label : 'dataset example',
+								borderColor : 'rgb(75, 192, 192)',
+								fill : false,
+								data : [ 110, 200, 50, 140, 300, 170, 110 ]
+							}, {
+								label : 'quota',
+								borderColor : '#f88',
+								fill : false,
+								data : [ 100, 100, 100, 100, 100, 100, 100 ]
+							} ]
+						},
+
+						// 設定はoptionsに記述
+						options : {
+							//タイトル
+							title : {
+								display : true,
+								text : '線グラフの例'
+							},
+							y: {
+								min: 0,
+							},
+						},
+					});
+				</script>
+			</section>
 			<a href="/EngelS/detailServlet">記録詳細へ</a> <a
 				href="/EngelS/recordsServlet">+今日の記録</a> ※画像にしたい <br>
 			<p>テスト</p>
