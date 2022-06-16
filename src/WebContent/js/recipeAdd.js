@@ -69,6 +69,3 @@ function onclick_regist(){
 
 
 
-
-
-

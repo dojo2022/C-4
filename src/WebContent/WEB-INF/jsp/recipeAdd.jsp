@@ -1,4 +1,4 @@
-<!--☆今後のタスク：備考欄テキストフィールド200(300?)字制限かける -->
+<!--☆今後のタスク： -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
