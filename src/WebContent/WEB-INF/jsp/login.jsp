@@ -11,6 +11,8 @@
 
 	<h2>ログイン画面</h2>
 
+	<p>${result.message1}</p>
+
 	<!-- ログインフォーム -->
 	<form id="logform" method="POST" action="/EngelS/loginServlet" onclick="logfun()">
 		<table>
