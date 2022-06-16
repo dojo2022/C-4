@@ -44,7 +44,7 @@ public class goalDAO {
 				pStmt.setString(2, "%");
 			}
 			if (param.getDate() != null) {
-				pStmt.setDate(3, param.getDate());
+				pStmt.setString(3, param.getDate());
 			}
 			else {
 				pStmt.setString(3, "%");
@@ -70,7 +70,7 @@ public class goalDAO {
 				goal card = new goal(
 				rs.getInt("id"),
 				rs.getInt("userid"),
-				rs.getDate("date"),
+				rs.getString("date"),
 				rs.getInt("money"),
 				rs.getInt("sum")
 				);
@@ -113,38 +113,38 @@ public class goalDAO {
 
 			// SQL文を準備する
 			//記録したのはついたちということに強制的になる。理由は更新のSQL文参照
-			String sql = "insert into goal (id,userid,date,money,sum) values (?,?,concat('?' ,'-01'),?,?)";
-
+			//String sql = "insert into goal (id,userid,date,money,sum) values (?,?,concat('?' ,'-01'),?,?)";
+			String sql = "insert into goal (id,userid,date,money,sum) values (?,?,?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			if (param.getId() != 0) {
-				pStmt.setString(1, "%" + param.getId() + "%");
+				pStmt.setInt(1,  param.getId() );
 			} else {
-				pStmt.setString(1, "%");
+				pStmt.setInt(1, 0);
 			}
 
 			if (param.getUserid() != 0) {
-				pStmt.setString(2, "%" + param.getUserid() + "%");
+				pStmt.setInt(2, param.getUserid());
 			} else {
-				pStmt.setString(2, "%");
+				pStmt.setInt(2, 0);
 			}
 
 			if (param.getDate() != null) {
-				pStmt.setString(3, "%" + param.getDate() + "%");
+				pStmt.setString(3,param.getDate());
 			} else {
-				pStmt.setString(3, "%");
+				pStmt.setString(3, null);
 			}
 
 			if (param.getMoney() != 0) {
-				pStmt.setString(4, "%" + param.getMoney() + "%");
+				pStmt.setInt(4,param.getMoney());
 			} else {
-				pStmt.setString(4, "%");
+				pStmt.setInt(4, 0);
 			}
 
 			if (param.getSum() != 0) {
-				pStmt.setString(5, "%" + param.getSum() + "%");
+				pStmt.setInt(5,param.getSum());
 			} else {
-				pStmt.setString(5, "%");
+				pStmt.setInt(5, 0);
 			}
 
 
@@ -189,7 +189,8 @@ public class goalDAO {
 			// SQL文
 			//カレンダーからは'2022-06'しか取ってこれない。なのでCONCAT関数で'-01'を連結！！
 			//そうすると常にその月の１日のデータを上書きすることになる。
-			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date=concat('?' ,'-01')";
+			//String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date=concat('?' ,'-01')";
+			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -216,7 +217,7 @@ public class goalDAO {
 			}
 			//date=?
 			if (param.getDate() != null) {
-				pStmt.setDate(4, param.getDate());
+				pStmt.setString(4, param.getDate());
 			}
 			else {
 				pStmt.setDate(4, null);
