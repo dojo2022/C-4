@@ -5,16 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.user;
 
 public class userDAO {
 
-	public List<user> select(user param) {
+	public user select(user user) {
 		Connection conn = null;
-		List<user> cardList = new ArrayList<user>();
+		user cardList;
+
 
 		try {
 			// JDBCドライバを読み込む
@@ -26,22 +25,21 @@ public class userDAO {
 			// SELECT文を準備する
 			String sql = "select * from user where user = ? and pw = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1,param.getUser());
-			pStmt.setString(2,param.getPw());
+			pStmt.setString(1,user.getUser());
+			pStmt.setString(2,user.getPw());
 
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				user card = new user(
-				rs.getInt("userid"),
-				rs.getString("user"),
-				rs.getString("name"),
-				rs.getString("pw")
-				);
-				cardList.add(card);
-			}
+			rs.next();
+			cardList = new user(
+			rs.getInt("userid"),
+			rs.getString("user"),
+			rs.getString("name"),
+			rs.getString("pw")
+			);
+
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
