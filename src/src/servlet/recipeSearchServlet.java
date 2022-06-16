@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.recipeDAO;
 import model.recipeAdd;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Servlet implementation class recipeSearchServlet
@@ -60,15 +59,16 @@ public class recipeSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		// TODO Auto-generated method stub
 		doGet(request, response);
 
 
 
-		}
+	}
 
 
-*/
+
 	}
 
 //}

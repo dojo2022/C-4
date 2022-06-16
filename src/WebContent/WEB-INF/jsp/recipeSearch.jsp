@@ -48,11 +48,21 @@
 </form>
 <!-- 費用と所要時間（あの追加されたやつ） -->
 <!-- 一覧表 -->
-<table border ="1">
+<table border="1">
+    <tr>
+      <th>レシピ名</th>
+      <th>費用</th>
+      <th>所要時間</th>
+      <th>詳細ページ</th>
+    </tr>
+    <tr>
+      <td>${e.Name}</td>
+      <td>${e.Cost}円</td>
+      <td>${e.Minutes}分</td>
+      <td><a href="/recipeSearchServlet" + "?recipeId=100" class="btn">詳細</a></td>
+    </tr>
+  </table>
 
-</table>
-<!-- クリックしたらモーダルを表示するボタン -->
-<a href="/recipeSearchServlet" + "?recipeId=100" class="btn">詳細</a>
 <!--  how to use the parameter with <a> tag?-->
 <!--  how to make ajax request? -->
 
