@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,38 +15,43 @@
 </header>
 <body>
 	<p>
-		日付<input type="date">
+		日付<input type="date" name="date">
 	</p>
 	<p>削除金額</p>
 	<form method="POST" action="/EngelS/recordsServlet" id="record_form">
 		<table>
 			<tr>
 				<td>朝食</td>
-				<td><input type="text" id="morning_recipeid" placeholder="*選択してください"></td>
-				<td>_円*要変更</td>
+				<td><select name="recipeid">
+						<option>*選択してください</option>
+						<c:forEach var="e" items="${cardList}">
+							<select value="${e.recipe}"></select>
+						</c:forEach>
+				</select></td>
+				<td>円*要変更</td>
 			</tr>
 			<tr>
 				<td>プラスorマイナス</td>
 			</tr>
 			<tr>
 				<td>昼食</td>
-				<td><input type="text" id="lunch_recipeid" placeholder="*選択してください"></td>
-				<td>_円*要変更</td>
+				<td><input type="text" name="recipeid" placeholder="*選択してください"></td>
+				<td><input type="text" name="savings">円*要変更</td>
 			</tr>
 			<tr>
 				<td>プラスorマイナス</td>
 			</tr>
 			<tr>
 				<td>夕食</td>
-				<td><input type="text" id="dinner_recipeid" placeholder="*選択してください"></td>
-				<td>_円*要変更</td>
+				<td><input type="text" name="recipeid" placeholder="*選択してください"></td>
+				<td><input type="text" name="savings">円*要変更</td>
 			</tr>
 			<tr>
 				<td>プラスorマイナス</td>
 			</tr>
 		</table>
 		<p>
-			備考<input type="text">
+			備考<input type="text" name="remarks">
 		</p>
 		<p>今日の削減金額は_円です！*要変更</p>
 		<p>今日の目標:_円*要変更</p>

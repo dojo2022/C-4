@@ -1,12 +1,14 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Date;
+//import java.util.Date;　念のためコメントアウト
 
 public class records implements Serializable {
 
 	private int id;
 	private int userid;
-	private String date;
+	private Date date;
 	private String mealtime;
 	private int recipeid;
 	private int savings;
@@ -23,10 +25,10 @@ public class records implements Serializable {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
-	public String getDate() {
+	public java.sql.Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getMealtime() {
@@ -48,7 +50,7 @@ public class records implements Serializable {
 		this.savings = savings;
 	}
 
-	public records (int id, int userid, String date, String mealtime, int recipeid, int savings) {
+	public records (int id, int userid, Date date, String mealtime, int recipeid, int savings) {
 		super();
 		this.id = id;
 		this.userid = userid;
@@ -61,7 +63,7 @@ public class records implements Serializable {
 	public records() {
 		this.id = 0;
 		this.userid = 0;
-		this.date = "";
+		this.date = null;
 		this.mealtime = "朝";
 		this.recipeid = 0;
 		this.savings = 0;
