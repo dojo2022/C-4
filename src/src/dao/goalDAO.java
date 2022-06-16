@@ -3,11 +3,103 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.goal;
 
 public class goalDAO {
+	public List<goal> select(goal param) {
+		Connection conn = null;
+		List<goal> cardList = new ArrayList<goal>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する EL式
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
+
+			// SQL文を準備する 改造ポイント
+			//param.getOrder();
+			String sql = "SELECT * FROM goal WHERE userid=? and date=?";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+
+
+			// SQL文を完成させる 改造ポイント
+			if (param.getId() != 0) {
+				pStmt.setInt(1, param.getId());
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+			if (param.getUserid() != 0) {
+				pStmt.setInt(2, param.getUserid());
+			}
+			else {
+				pStmt.setString(2, "%");
+			}
+			if (param.getDate() != null) {
+				pStmt.setDate(3, param.getDate());
+			}
+			else {
+				pStmt.setString(3, "%");
+			}
+			if (param.getMoney() != 0) {
+				pStmt.setInt(4, param.getMoney());
+			}
+			else {
+				pStmt.setString(4, "%");
+			}
+			if (param.getSum() != 0) {
+				pStmt.setInt(5, param.getSum());
+			}
+			else {
+				pStmt.setString(5, "%");
+			}
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする 繰り返し表現　取り出したデータを配列に
+			while (rs.next()) {
+				goal card = new goal(
+				rs.getInt("id"),
+				rs.getInt("userid"),
+				rs.getDate("date"),
+				rs.getInt("money"),
+				rs.getInt("sum")
+				);
+				cardList.add(card);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			cardList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			cardList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					cardList = null;
+				}
+			}
+		}
+		// 結果を返す
+		return cardList;
+	}
 	public boolean insert(goal param) {
 		Connection conn = null;
 		boolean result = false;
