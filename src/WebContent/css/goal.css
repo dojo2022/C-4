@@ -3,3 +3,48 @@
 main{
 	text-align:center;
 }
+
+.p1{
+	font-size:20px;
+	margin-top:30px;
+}
+
+.p2{
+	font-size:20px;
+	margin-top:30px;
+}
+
+span{
+	color:orange;
+	font-weight:bold;
+}
+
+.ca{
+	margin-top:30px;
+}
+.ca label{
+	font-size:20px;
+}
+
+.tx{
+	margin-top:30px;
+}
+.tx label{
+	font-size:20px;
+}
+
+.btn{
+	margin-top:30px;
+}
+
+.back{
+	font-size:20px;
+	margin-top:30px;
+}
+
+.msg{
+	color:orange;
+	font-size:20px;
+	font-weight:bold;
+	margin-bottom:20px;
+}
