@@ -13,7 +13,7 @@ import model.recipeAdd;
 import model.records;
 
 public class recordsDAO {
-	//レシピを検索して表示 recipeidを基にレシピを検索する
+	//レシピを検索して表示 recipeidを基にレシピを検索する ここを使うことはないかも
 	public List<recipeAdd> select(recipeAdd param) {
 		Connection conn = null;
 		List<recipeAdd> cardList = new ArrayList<recipeAdd>();
@@ -25,22 +25,16 @@ public class recordsDAO {
 			// データベースに接続する EL式
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
-			// SQL文を準備する 改造ポイント
-			String sql = "SELECT recipe, cost FROM recipe where id"
-					+ "=record.recipeid FROM record where userid=?";
+			// SQL文を準備する ここのデータが正常にとれていない ?にidを入れて、getとsetを1つ入れる
+			String sql = "SELECT recipe, cost FROM recipe WHERE userid=0 or userid = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 改造ポイント
-			if (param.getRecipe() != null) {
-				pStmt.setString(1, "%" + param.getRecipe() + "%");
+			if (param.getUserid() != 0) {
+				pStmt.setInt(1, param.getUserid());
 			} else {
 				pStmt.setString(1, "%");
-			}
-			if (param.getCost() != 0) {
-				pStmt.setString(2, "%" + param.getCost() + "%");
-			} else {
-				pStmt.setString(2, "%");
 			}
 
 			// SQL文を実行し、結果表を取得する
@@ -49,8 +43,7 @@ public class recordsDAO {
 			// 結果表をコレクションにコピーする 繰り返し表現　取り出したデータを配列に
 			while (rs.next()) {
 				recipeAdd card = new recipeAdd(
-						0, 0, rs.getString("recipe"),
-						0, 0, rs.getString("cost"), sql);
+						0, 0, rs.getString("recipe"), rs.getInt("cost"), 0, "", "");
 				cardList.add(card);
 			}
 		} catch (SQLException e) {
