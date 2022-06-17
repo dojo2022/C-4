@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,32 +45,43 @@
 
 
 
+<p>詳細</p>
+
+	<!-- フォーム -->
+	<form id="detail" method="GET" action="/EngelS/detailServlet"></form>
 <table border ="1">
-<!--  コピペしただけ。内容用変更 -->
-<tr>
-					<th>レシピ名</th>
-					<td>${e.Name}</td>
-				</tr>
-				<tr>
-					<th>費用</th>
-					<td>${e.Cost}円</td>
-				</tr>
-				<tr>
-					<th>所要時間</th>
-					<td>${e.Minutes}分</td>
-				</tr>
-				<tr>
-					<th>URL</th>
-					<td>${e.Url}</td>
-				</tr>
-				<tr>
-					<th>備考</th>
-					<td>${e.Notes}</td>
-				</tr>
+<div class= "scroll">
 
-</table>
+ <tr>
 
-<header>詳細</header>
+            <td>日付</td>
+            <td>３食</td>
+            <td>食事内容</td>
+            <td>節約金額</td>
+            <td>備考</td>
+        </tr>
+        <tr>
+			　　　 <td rowspan=3>
+			</td>
+	<!--  コピペしただけ -->
+	<c:forEach var="recipe" items="${cardList}">
+   <c:out value="${recipe}" />
+
+<!-- 朝昼晩-->
+  				<td>${recipe.mealtime}</td>
+
+ <!--  食事内容 -->
+      		<td>${cardList.recipeid}</td>
+ <!--  節約金額 -->
+      			<td>${cardList.savings}</td>
+ <!--  備考 -->
+      			<td rowspan=3>${cardList.remarks}</td>
+
+	</c:forEach>
+        </tr>
+   </div>
+    </table>
+
 <table>
 
 </table>

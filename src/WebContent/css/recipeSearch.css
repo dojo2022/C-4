@@ -1,1 +1,60 @@
 @charset "UTF-8";
+/* モーダルウィンドウ */
+.modal {
+  /* 位置の調整(真ん中に表示) */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* モーダルウィンドウ内の閉じるボタン */
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+}
+/* モーダルウィンドウ */
+.modal {
+  /* デフォルトでは非表示にしておく */
+  opacity: 0;
+  visibility: hidden;
+  /* 表示の変化にかかる時間 */
+  transition: .3s;
+}
+/* activeクラスのついたモーダルウィンドウ */
+.modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+/* オーバーレイ */
+.overlay {
+  /* デフォルトでは見えないようにする */
+  opacity: 0;
+  visibility: hidden;
+}
+/* オーバーレイ */
+.overlay {
+  /* 位置を固定 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* 画面いっぱいに広がるようにする */
+  width: 100%;
+  height: 100vh;
+  /* rgbaを使って60%の黒いオーバーレイにする */
+  background: rgba(0, 0, 0, 0.6);
+}
+/* activeクラスのついたオーバーレイ */
+.overlay.active {
+  /* activeクラスがついたときにオーバーレイを表示する */
+  opacity: 1;
+  visibility: visible;
+
+  .scroll {
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+}

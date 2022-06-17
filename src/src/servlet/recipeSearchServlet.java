@@ -38,8 +38,6 @@ public class recipeSearchServlet extends HttpServlet {
 		 *     Step 3:   Send the data as a response
 		 */
 
-		// Step 1:
-		String recipeid = request.getParameter("recipeid");
 
 		// Step 2:
 		recipeDAO eDao = new recipeDAO();
