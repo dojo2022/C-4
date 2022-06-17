@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +28,27 @@ public class goalServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+
+		//useridをセッションスコープから取得し変数useridに代入
+		HttpSession session = request.getSession();
+		user user = (user) session.getAttribute("allList");
+		int userid = user.getId();
+
+		//今ログインしている年月を取得し変数dateに代入
+		Calendar cl = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+		String date = sdf.format(cl.getTime())+"-01";
+
+		//DAOのインスタンスを生成
+		goalDAO gDao = new goalDAO();
+		//Beanを使わずに直接引数に検索条件を指定する。
+		goal goal= gDao.select(0,userid, date,0,0);
+
+		// 検索結果をリクエストスコープに格納する
+		//★セッションスコープじゃないといけない、、？
+		request.setAttribute("goal", goal);
+
 		// 金額設定画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
 		dispatcher.forward(request, response);
@@ -37,16 +60,13 @@ public class goalServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// リクエストパラメータを取得できた！
-		//カレンダーからは2022-06が取得→DAOのSQL文で日付まで入れる　できてない
+		//カレンダーからは2022-06が取得→SQL文を完成させるところで"-01"結合
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
 		String date = request.getParameter("date");
 		int money = Integer.parseInt(request.getParameter("new_money"));
-		System.out.println(userid);
-		System.out.println(date);
-		System.out.println(money);
 
 		//goalDAOのインスタンスを生成
 		goalDAO gDao = new goalDAO();
@@ -57,16 +77,19 @@ public class goalServlet extends HttpServlet {
 		//コンストラクタ　public result(String message1, String message2, String message3) {
 		if(gDao.update(new goal(0,userid,date,money,0))) {
 			// リクエストスコープにメッセージを格納する
-			request.setAttribute("result", (new result("目標金額を更新しました。", "", "")));
-			response.sendRedirect("/EngelS/goalServlet");
+			result res = new result("目標金額を更新しました。", "", "");
+			request.setAttribute("result",res);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
+			dispatcher.forward(request, response);
 		}else if(gDao.insert(new goal(0,userid,date,money,0))){
 			// リクエストスコープにメッセージを格納する
-			request.setAttribute("result", (new result("目標金額を新規登録しました。", "", "")));
-			response.sendRedirect("/EngelS/goalServlet");
+			request.setAttribute("result", (new result("新規目標を登録しました", "", "")));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
+			dispatcher.forward(request, response);
 		}else {
-			response.sendRedirect("/EngelS/goalServlet");
 			request.setAttribute("result", (new result("登録できませんでした", "", "")));
-			//★カレンダーを日まで入れてしまったが一応出来た！Daoのinsert文を直した、、
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 }
