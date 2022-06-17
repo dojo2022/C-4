@@ -59,6 +59,9 @@
 		<main>
 			<h2>レシピ登録結果</h2>
 
+			<!-- ☆セッションスコープからのデータ反映処理記入 (login.jsp h2下、Slack) -->
+
+
 			レシピが追加できました！
 
 	<form method="POST" action="/EngelS/recipeAddServlet">
@@ -72,8 +75,9 @@
 					<!-- imputtype=textを$valueに変更するとよさそう？  -->
 
 					<!-- input type="text" name="POST", value="$～←☆モジュールかテキスト要素確認" readonly -->
-														  <!--☆ ↓{}前にドル入れる(コメント内でもエラー出てしまうので未記入)  -->
-					<input type="text" name="recipe" value="${cardList.recipe}" readonly>
+
+					<!-- <input type="text" name="recipe" value="${cardList.recipe}" readonly>  -->
+					<input type="text" name="recipe" value="${recipe}" readonly>
 					<!-- <input type="text" name="recipe" id="recipe" disabled> -->
 				</td>
 			</tr>
