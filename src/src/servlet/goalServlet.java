@@ -75,15 +75,11 @@ public class goalServlet extends HttpServlet {
 		//戻り値がtrueだったら、更新処理完了
 		//更新処理完了の処理とは更新しましたのメッセージと同じページへのリダイレクト
 		//コンストラクタ　public result(String message1, String message2, String message3) {
+		System.out.println(gDao.update(new goal(0,userid,date,money,0)));
 		if(gDao.update(new goal(0,userid,date,money,0))) {
 			// リクエストスコープにメッセージを格納する
-			result res = new result("目標金額を更新しました。", "", "");
+			result res = new result("目標金額を設定しました。", "", "");
 			request.setAttribute("result",res);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
-			dispatcher.forward(request, response);
-		}else if(gDao.insert(new goal(0,userid,date,money,0))){
-			// リクエストスコープにメッセージを格納する
-			request.setAttribute("result", (new result("新規目標を登録しました", "", "")));
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
 			dispatcher.forward(request, response);
 		}else {

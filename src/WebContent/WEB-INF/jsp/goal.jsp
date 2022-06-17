@@ -48,9 +48,8 @@
 				設定月<input type="month" name="date">
 				<label>目標削減金額 <input type="text" name="new_money"> 円
 				</label>
-			<!-- 未設定の場合どうするかまだ考えてない -->
 				<input type="submit" value="変更" name="change_goal">
-				</form>
+			</form>
 
 			<a href="/EngelS/homeServlet">ホームに戻る</a>
 			<!-- 登録できました！のメッセージ -->
@@ -65,7 +64,6 @@
 			<p>テスト</p>
 			<p>テスト</p>
 			<p>テスト</p>
-
 		</main>
 
 		<footer>
