@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ログイン｜Engels</title>
 <link rel="stylesheet" type="text/css" href="/EngelS/css/login.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="text" name="user" id="user">
+					<input type="text" name="user" id="user" maxlength="20">
 				</td>
 			</tr>
 			<tr>
@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input type="password" name="pw" id="pw">
+					<input type="password" name="pw" id="pw" maxlength="10">
 				</td>
 			</tr>
 			<tr>
@@ -46,7 +46,7 @@
 		</table>
 	</form>
 
-	<p id="err"></p>
+	<p id="err">${result.message2}</p>
 	<a href="/EngelS/signupServlet">新規登録はこちら</a>
 
 	<footer>

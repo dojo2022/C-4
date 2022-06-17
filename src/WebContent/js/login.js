@@ -22,6 +22,7 @@ function logfun(){
 				return false;
 			}
 		} else {
+			//全メッセージを削除
 			document.getElementById('err').textContent='';
 		}
 

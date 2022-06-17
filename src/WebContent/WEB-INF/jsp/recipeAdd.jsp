@@ -1,15 +1,18 @@
 <!--☆今後のタスク： -->
+<!-- メインをセンターへ持ってくる(result.cssでテーブルの高さ、幅設定してセンター？) -->
+<!--レシピ追加サーブレットのスコープと合ってるか確認  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
- <meta charset="UTF-8">
- <title>Insert title here</title>
- <!-- 共通CSSファイル(common.css)との連携 -->
- <link rel="stylesheet" type="text/css" href="/EngelS/css/common.css">
+<meta charset="UTF-8">
+<title>レシピ追加|EngelS</title>
+
+<!-- 共通css,jsへのリンク 各画面のもここに-->
+<link rel="stylesheet" href="./css/common.css">
+<script src="./javascript/common.js"></script>
 
  <!-- レシピ追加CSSファイルとの連携 -->
  <link rel="stylesheet" type="text/css" href="/EngelS/css/recipeAdd.css">
@@ -22,13 +25,44 @@
  <!-- onload…onloadが付いているタグの内容が読み込み終わったら -->
 	<!-- "init"(=初期化ファンクション)が実行される -->
 
-<body onload="init();">
-	<h2>レシピ追加</h2>
-	<p>※は必須入力項目です。</p>
+ <body onload="init();">
+	<div class="container">
+		<header>
+			<!--設定ドロップダウンメニュー開始 -->
+			<nav class="drop">
+				<ul id="dropmenu" class="dropmenu">
+					<li><a href="#">設定</a>
+						<ul>
+							<li class="username">ニックネーム取得</li>
+							<li>ログインID取得</li>
+							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
+							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
+							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
+							<li><a href="/EngelS/loginServlet">ログアウト</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<!-- 設定ドロップダウンメニュー終了 -->
+			<!-- ナビゲーション開始 -->
+			<div class="nav">
+				<a href="/EngelS/homeServlet">ホーム</a>
+				<a href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a>
+				<a href="/EngelS/recipeAddServlet">レシピ追加</a>
+			</div>
+			<!-- ナビゲーション終了 -->
+			<div class="h_logo">
+				<img src="./img/logo.png">
+			</div>
+		</header>
+
+		<main>
+			<h2>レシピ追加</h2>
+			<p>※は必須入力項目です。</p>
 
 
- <!-- レシピ追加フォーム -->
- <!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
+ 		<!-- レシピ追加フォーム -->
+ 		<!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
 
 	<form method="POST" action="/EngelS/recipeAddServlet">
 		<table>
@@ -79,14 +113,14 @@
 					<!--  actionページ遷移もモーダルへ移動 -->
 					<!--  <a href="#" class="button">登録(モーダルウィンドウを表示)</a> -->
 					<!-- 元文章：<td><input type="submit" name="REGIST" value="登録" class="button"></td> -->
-				<td><a href="#" class="button" id="modal_regist" onclick="onclick_regist()">登録(モーダルウィンドウを表示)</a></td>
+				<td><a href="#" class="button" id="modal_regist" onclick="onclick_regist()">登録</a></td>
 			</tr>
 		</table>
 	</form>
 
 
-<!-- エラー表示(ログインjsp準拠) -->
-<p id="err"></p>
+<!-- エラー表示欄(BCログインjsp準拠) -->
+<span id="error_message"></span>">
 
 <!-- オーバーレイ -->
 <div class="overlay"></div>
@@ -152,5 +186,30 @@
 <!-- スクロールで高さを出すためのsectionタグ -->
 <section></section>
 
+		</main>
+		<footer>
+			<div class="f_logo">
+				<img src="./img/logo.png">
+			</div>
+			<div class="f1">
+				<a class="a1" href="/EngelS/homeServlet">ホーム</a>
+				<a href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a>
+				<a href="/EngelS/recipeAddServlet">レシピ追加</a> <br>
+			</div>
+			<div class="f2">
+				<a href="/EngelS/recordsServlet">1日の食事記録</a>
+				<a href="/EngelS/detailServlet">詳細表示</a> <br>
+			</div>
+			<div class="f3">
+				<a href="/EngelS/goalServlet">目標金額設定</a> | <a
+					href="/EngelS/alertServlet">アラート設定</a> | <a
+					href="/EngelS/newPwServlet">パスワード変更</a>
+			</div>
+			<div class="logout">
+				<a href="/EngelS/loginServlet">ログアウト</a>
+			</div>
+			<p>&copy;3SFY All rights reserved.</p>
+		</footer>
+	</div>
 </body>
 </html>

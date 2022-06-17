@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.userDAO;
+import model.result;
 import model.user;
 
 /**
@@ -41,23 +42,26 @@ public class loginServlet extends HttpServlet {
 
 		// ログイン処理を行う
 		userDAO iDao = new userDAO();
+		HttpSession session = request.getSession();
 		if (iDao.isLoginOK(new user(0, user, "", pw))) {	// ログイン成功
 			userDAO dao = new userDAO();
 			user cardList = dao.select(new user(0, user, "", pw));
 
 			// セッションスコープにIDを格納する
-			HttpSession session = request.getSession();
 			session.setAttribute("allList", cardList);
-
-
 
 
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/homeServlet");
 		}
 		else {									// ログイン失敗
-			// リクエストスコープに、タイトル、メッセージ、戻り先を格納する
-			//request.setAttribute("result", (new Result("", "IDまたはPWに間違いがあります。", "", "", "")));
+			// リクエストスコープにメッセージを格納する
+			session.setAttribute("result", (new result("", "ログインに失敗しました。", "")));
+
+			result result=(result)session.getAttribute("result");
+			String msg = result.getMessage2();
+
+			System.out.println(msg);
 			// ログインサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/loginServlet");
 		}

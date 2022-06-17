@@ -42,17 +42,15 @@
 
 		<main>
 			<p>目標金額設定</p>
-
+			<p>今月の目標金額は${goal.money}円です</p>
+			<p>今月の削減金額は${goal.sum}円です</p>
 			<form method="POST" action="/EngelS/goalServlet">
-				設定月<input type="date" name="date">
-
-				<p>選択した月の目標削減金額は円で、</p>
-				<p>現在${goal.sum}円削減達成中です。</p>
+				設定月<input type="month" name="date">
 				<label>目標削減金額 <input type="text" name="new_money"> 円
 				</label>
-				<!-- 未設定の場合どうするかまだ考えてない -->
+			<!-- 未設定の場合どうするかまだ考えてない -->
 				<input type="submit" value="変更" name="change_goal">
-			</form>
+				</form>
 
 			<a href="/EngelS/homeServlet">ホームに戻る</a>
 			<!-- 登録できました！のメッセージ -->
