@@ -26,7 +26,8 @@
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
 							<li><a href="/EngelS/loginServlet">ログアウト</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 			</nav>
 			<!-- 設定ドロップダウンメニュー終了 -->
@@ -43,19 +44,21 @@
 		</header>
 
 		<main>
-			<!-- ★ここから消す★ -->
 			<h1>節約金額目標グラフ</h1>
 			<h2>
-				目標削減金額<span>(金額取得)</span>円
+				目標削減金額<span>${goal.money}</span>円
 			</h2>
 			<h2>
-				目標達成まであと<span>(金額取得)</span>円
+				現在の達成金額は<span>${goal.sum}</span>円
+			</h2>
+			<h2>
+				あと<span></span>円
 			</h2>
 			<p>
-				期間：<span>(日付取得)</span>～<span>(日付取得)</span>
+			期間：<span>${goal.date}</span>
 			</p>
 			<section style="width: 380px">
-				～グラフをここに表示～
+				<!--  グラフをここに表示-->
 				<canvas id="myChart"></canvas>
 				<script
 					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
