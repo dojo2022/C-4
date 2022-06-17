@@ -100,7 +100,7 @@ public class alertDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into alert values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into alert values (null, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -205,17 +205,17 @@ public class alertDAO {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				if (card.getDays() != null && !card.getDays().equals("")) {
+				/*if (card.getDays() != null && !card.getDays().equals("")) {
 					pStmt.setString(1, card.getDays());
 				}
 				else {
 					pStmt.setString(1, null);
-				}
+				}*/
 				if (card.getMorning_min() != 0) {
-					pStmt.setInt(2, card.getMorning_min());
+					pStmt.setInt(1, card.getMorning_min());
 				}
 				else {
-					pStmt.setString(2, null);
+					pStmt.setString(1, null);
 				}
 				if (card.getLunch_min() != 0) {
 					pStmt.setInt(2, card.getLunch_min());
@@ -251,6 +251,7 @@ public class alertDAO {
 					pStmt.setString(6, null);
 				}
 				pStmt.setInt(7, card.getUserid());
+				pStmt.setString(8, card.getDays());
 
 				// SQL文を実行する
 				if (pStmt.executeUpdate() == 1) {
