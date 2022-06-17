@@ -1,4 +1,6 @@
 //☆49行目以降、費用cost分以降の処理合っているか要確認
+//☆☆エラーメッセージ、必須項目適応させる/*☆エラー表示関係停止中*/
+//☆エラーメッセージ、今後各項目で①～を入力してください！②半角数字で～と表示させる
 
 
 function init(){
@@ -67,5 +69,36 @@ function onclick_regist(){
 
 }
 
+/*☆エラー表示関係停止中*/
+ //BC引用必須項目エラー関係
 
+	/* [登録]ボタンをクリックしたときの処理 */
+	var recipeformObj = document.getElementById('recipe');
+	var costformObj = document.getElementById('cost');
+	var timeformObj = document.getElementById('time');
+	var errorMessageObj = document.getElementById('err');
+
+
+	//確認用プログラム
+	//alert(formObj.user_id.value);
+	//alert(formObj.ID.value);
+
+/*
+	//必須項目のエラー表示
+	//今後は
+	formObj.onsubmit = function() {
+	  //必須項目のいずれか(レシピ名か費用か所要時間)が入力されていない場合
+	  if (!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value) {
+	    //共通のエラーメッセージを表示させる
+	    errorMessageObj.textContent = '※必須項目を入力してください！';
+	    return false;
+	  }
+	  errorMessageObj.textContent = null;
+	};
+*/
+
+	/* [リセット]ボタンをクリックしたときの処理(実装済) */
+	formObj.onreset = function() {
+	  errorMessageObj.textContent = null;
+	};
 

@@ -1,5 +1,6 @@
 //☆今後のタスク(6/15 14:30)：レシピ追加処理のResultモデルについて(6/15 14:30時点ではモデル未作成)
 //現時点ではコメントアウトでResultモデルを停止中、今後は実装要検討
+//46行目辺りのエラー解消する
 
 package servlet;
 
@@ -15,21 +16,18 @@ import javax.servlet.http.HttpSession;
 
 import dao.recipeDAO;
 import model.recipeAdd;
+import model.user;
 
-/**
- * Servlet implementation class recipeAddServlet
- */
+
 @WebServlet("/recipeAddServlet")
 public class recipeAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Default constructor.
-	 */
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// レシピ追加ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeAdd.jsp");
@@ -43,11 +41,23 @@ public class recipeAddServlet extends HttpServlet {
 
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
+		//セッションからユーザー情報を得る
 		HttpSession session = request.getSession();
-		int userid = Integer.parseInt(session.getattribute("allList".userid));
+		user user = (user)session.getAttribute("allList");
+		int userid = user.getId();
+
+
+		//画面から入力情報を得る(ユーザーによるレシピ情報入力)
+
 		String recipe = request.getParameter("recipe");
-		int cost = Integer.parseInt(session.getattribute("allList".cost));
-		int time = Integer.parseInt(session.getattribute("allList".time));
+		//一度文字列としてcostを取ってくる
+		String costStr = request.getParameter("cost");
+		//文字列のcostをキャスト
+		int cost = Integer.parseInt(costStr);
+
+		String timeStr = request.getParameter("time");
+		int time = Integer.parseInt(timeStr);
+
 		String url = request.getParameter("url");
 		String remarks = request.getParameter("remarks");
 
@@ -65,6 +75,8 @@ public class recipeAddServlet extends HttpServlet {
 		recipeDAO bDao = new recipeDAO();
 			if (bDao.insert(new recipeAdd(0, userid, recipe, cost, time, url, remarks ))){	// 登録成功
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+				dispatcher.forward(request, response);
+				System.out.print("レシピ追加完了");
 				}
 				/*
 				else { // 登録失敗
