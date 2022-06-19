@@ -9,6 +9,8 @@
 <!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
 <script src="./javascript/common.js"></script>
+<link rel="stylesheet" href="./css/goal.css">
+<script src="./javascript/goal.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -41,31 +43,26 @@
 		</header>
 
 		<main>
-			<p>目標金額設定</p>
-			<p>今月の目標金額は${goal.money}円です</p>
-			<p>今月の削減金額は${goal.sum}円です</p>
+			<h1>目標金額設定</h1>
+			<p class="p1">今月の目標金額は<span>${goal.money}</span>円です</p>
+			<p class="p2">今月の削減金額は<span>${goal.sum}</span>円です</p>
 			<form method="POST" action="/EngelS/goalServlet">
-				設定月<input type="month" name="date">
+			<div class="ca">
+				<label>設定月<input type="month" name="date"></label>
+			</div>
+			<div class="tx">
 				<label>目標削減金額 <input type="text" name="new_money"> 円
 				</label>
-			<!-- 未設定の場合どうするかまだ考えてない -->
+			</div>
+			<div class="btn">
 				<input type="submit" value="変更" name="change_goal">
-				</form>
-
-			<a href="/EngelS/homeServlet">ホームに戻る</a>
+			</div>
+			</form>
+			<div class="back">
+				<a href="/EngelS/homeServlet">ホームに戻る</a>
+			</div>
 			<!-- 登録できました！のメッセージ -->
-			<p>${result.message1}</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-
+			<p class="msg">${result.message1}</p>
 		</main>
 
 		<footer>

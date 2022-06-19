@@ -1,5 +1,7 @@
 'use strict';
 
+//必須項目を入力してくださいとだけを出るようにする。 required=""で実装してみる
+
 document.getElementById('record_form').onsubmit = function(event) {
 	const w1 = document.getElementById('record_form').morning_recipeid.name;
 	const w2 = document.getElementById('record_form').lunch_recipeid.name;
@@ -25,4 +27,16 @@ document.getElementById('record_form').onsubmit = function(event) {
 		document.getElementById('output').textcontent = `*夕の食事記録を書いてください`;
 		return false;
 	}
+}
+
+//朝食１品追加
+function addMorningMenu(){
+
+	//どこに足すか
+	let td = document.getElementById('morning');
+	//何を足すか
+	let select = document.getElementById('morningSelect').cloneNode(true);
+	td.appendChild(document.createElement('br'));
+	td.appendChild(select);
+
 }
