@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -38,17 +36,12 @@ public class recordsServlet extends HttpServlet {
 
 		//recipeAddからレシピ名とcostをSELECTする
 		request.setCharacterEncoding("UTF-8");
+
 		//セッションスコープからuseridを取り出す
 		HttpSession session = request.getSession();
 		user user = (user) session.getAttribute("allList");
-		int userid = user.getId(); //numberformat exceptionになってた
-		//String recipe = request.getParameter("recipe");
-		//NumberFormatExceptionの対策として
-		//try {
-		//int cost = Integer.parseInt(request.getParameter("cost"));
-		//} catch (NumberFormatException e) {
+		int userid = user.getId();
 
-		//}
 		// 検索処理を行う
 		recordsDAO bDao = new recordsDAO();
 		List<recipeAdd> cardList = bDao
@@ -73,6 +66,16 @@ public class recordsServlet extends HttpServlet {
 		//★セッションスコープじゃないといけない、、？
 		request.setAttribute("goal", goal);
 
+		//今月の目標金額を/30して、表示する
+		goal goals = (goal) session.getAttribute("goal");
+		int goal_money = goal.getMoney();
+
+		//とりあえず30等分する
+		int money = goal_money / 30;
+
+		//リクエストスコープに30等分したものを表示させる
+		request.setAttribute("money", money);
+
 		//recordsjspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/records.jsp");
 		dispatcher.forward(request, response);
@@ -90,24 +93,16 @@ public class recordsServlet extends HttpServlet {
 		//セッションスコープからuseridを取る
 		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
-		//無理矢理に日付で登録
-		String days = request.getParameter("date");
-		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy/MM/dd");
-		//try catchを使えばエラーがおさまったので、とりあえずこの形に　nullを入れることで初期化できた
-		Date date = null;
-		try {
-			date = (Date) sdFormat.parse(days);
-		} catch (ParseException e) {
-			//自動生成された catch ブロック
-			e.printStackTrace();
-		}
+		String date = request.getParameter("date");
 		String mealtime = request.getParameter("mealtime");
-		int recipeid = Integer.parseInt(request.getParameter("recipeid"));
+		//int recipeid = Integer.parseInt(request.getParameter("recipeid"));
 		int savings = Integer.parseInt(request.getParameter("savings"));
+		String recipe = request.getParameter("recipe");
+		int recipeid = Integer.parseInt(request.getParameter("recipeid"));
 
 		// 登録処理を行う
 		recordsDAO bDao = new recordsDAO();
-		if (bDao.records_insert(new records(0, 0, date, mealtime, recipeid, savings))) { // 登録成功
+		if (bDao.records_insert(new records(0, 0, date, mealtime, recipeid, savings, recipe))) { // 登録成功
 			/*request.setAttribute("",
 					new Result("登録成功！", "レコードを登録しました。", "/EngelS/homeServlet"));*/
 		} else { // 登録失敗

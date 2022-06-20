@@ -80,7 +80,7 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する 改造ポイント
-			String sql = "SELECT userid, date, mealtime, recipeid, savings "
+			String sql = "SELECT userid, date, mealtime, recipeid, savings, recipe "
 					+ "FROM records WHERE userid LIKE ? AND date LIKE ? AND mealtime LIKE ? AND recipeid LIKE ? AND savings LIKE?"
 					+ "ORDER BY id";
 
@@ -124,7 +124,7 @@ public class recordsDAO {
 						rs.getString("date"),
 						rs.getString("mealtime"),
 						rs.getInt("recipeid"),
-						rs.getInt("savings"));
+						rs.getInt("savings"),(""));
 				cardList.add(card);
 			}
 		} catch (SQLException e) {
@@ -166,35 +166,30 @@ public class recordsDAO {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (card.getId() != 0) {
-				pStmt.setInt(1, card.getId());
+			if (card.getUserid() != 0) {
+				pStmt.setInt(1, card.getUserid());
 			} else {
 				pStmt.setInt(1, 0);
 			}
-			if (card.getUserid() != 0) {
-				pStmt.setInt(2, card.getUserid());
-			} else {
-				pStmt.setInt(2, 0);
-			}
 			if (card.getDate() != null && !card.getDate().equals("")) {
-				pStmt.setString(3, card.getDate());
+				pStmt.setString(2, card.getDate());
 			} else {
-				pStmt.setDate(3, null);
+				pStmt.setDate(2, null);
 			}
 			if (card.getMealtime() != null && !card.getMealtime().equals("")) {
-				pStmt.setString(4, card.getMealtime());
+				pStmt.setString(3, card.getMealtime());
 			} else {
-				pStmt.setString(4, null);
+				pStmt.setString(3, null);
 			}
 			if (card.getRecipeid() != 0) {
-				pStmt.setInt(5, card.getRecipeid());
+				pStmt.setInt(4, card.getRecipeid());
 			} else {
-				pStmt.setInt(5, 0);
+				pStmt.setInt(4, 0);
 			}
 			if (card.getSavings() != 0) {
-				pStmt.setInt(6, card.getSavings());
+				pStmt.setInt(5, card.getSavings());
 			} else {
-				pStmt.setInt(6, 0);
+				pStmt.setInt(5, 0);
 			}
 
 			// SQL文を実行する 1件だけ登録

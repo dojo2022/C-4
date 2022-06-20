@@ -10,6 +10,7 @@ public class records implements Serializable {
 	private String mealtime;
 	private int recipeid;
 	private int savings;
+	private String recipe;
 
 	public int getId() {
 		return id;
@@ -47,8 +48,15 @@ public class records implements Serializable {
 	public void setSavings(int savings) {
 		this.savings = savings;
 	}
+	public String getRecipe() {
+		return recipe;
+	}
+	public void setRecipe(String recipe) {
+		this.recipe = recipe;
+	}
 
-	public records (int id, int userid, String date, String mealtime, int recipeid, int savings) {
+
+	public records (int id, int userid, String date, String mealtime, int recipeid, int savings, String recipe) {
 		super();
 		this.id = id;
 		this.userid = userid;
@@ -56,6 +64,7 @@ public class records implements Serializable {
 		this.mealtime = mealtime;
 		this.recipeid = recipeid;
 		this.savings = savings;
+		this.recipe = recipe;
 	}
 
 	public records() {
@@ -65,6 +74,7 @@ public class records implements Serializable {
 		this.mealtime = "朝";
 		this.recipeid = 0;
 		this.savings = 0;
+		this.recipe = "";
 	}
 
 }
