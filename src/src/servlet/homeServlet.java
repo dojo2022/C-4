@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.goalDAO;
+import dao.testDAO;
 import model.goal;
+import model.records;
 import model.user;
 
 /**
@@ -47,6 +50,15 @@ public class homeServlet extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		//★セッションスコープじゃないといけない、、？
 		request.setAttribute("goal", goal);
+
+		//グラフデータの作成
+		//DAOのインスタンスを生成
+		testDAO graphDao = new testDAO();
+		//Beanを使わずに直接引数に検索条件を指定する。
+		List<records> sample= graphDao.select(0,userid, date,0,0);
+
+		//グラフデータをリクエストスコープに格納
+		request.setAttribute("graph", sample);
 
 		// ホーム画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
