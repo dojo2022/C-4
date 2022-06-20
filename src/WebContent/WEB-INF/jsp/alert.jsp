@@ -41,13 +41,13 @@
 		<main>
 			<p>アラート設定</p>
 			<form method="POST" action="/EngelS/alertServlet">
-				<input type="checkbox" name="days" value="月">月 <input
-					type="checkbox" name="days" value="火">火 <input
-					type="checkbox" name="days" value="水">水 <input
-					type="checkbox" name="days" value="木">木 <input
-					type="checkbox" name="days" value="金">金 <input
-					type="checkbox" name="days" value="土">土 <input
-					type="checkbox" name="days" value="日">日
+				<input type="checkbox" name="Mon" value="月">月 <input
+					type="checkbox" name="Tue" value="火">火 <input
+					type="checkbox" name="Wed" value="水">水 <input
+					type="checkbox" name="Thu" value="木">木 <input
+					type="checkbox" name="Fri" value="金">金 <input
+					type="checkbox" name="Sat" value="土">土 <input
+					type="checkbox" name="Sun" value="日">日
 				<p>調理時間</p>
 				<table>
 					<tr>
@@ -71,10 +71,15 @@
 						<td><input type="text" name="dinner_max"></td>
 						<td>分</td>
 					</tr>
+					<tr>
+						<td>
+							<!-- 画面が更新されて入力されたものも消えてしまうので、JSで対応する -->
+							<input type="submit" name="SUBMIT" value="確定">
+						</td>
+					</tr>
 				</table>
-				<!-- 画面が更新されて入力されたものも消えてしまうので、JSで対応する -->
-				<input type="submit" name="SUBMIT" value="確定">
 			</form>
+			<p>${result.message1}</p>
 			<a href="/EngelS/homeServlet"><input type="button" name="SUBMIT"
 				value="ホームに戻る"></a>
 		</main>
