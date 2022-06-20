@@ -119,6 +119,7 @@ public class recipeDAO {
 			}
 
 			// 結果を返す
+			System.out.print("結果を返す");
 			return cardList;
 
 		}//19行目public List～の閉じ
@@ -139,53 +140,47 @@ public class recipeDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 				// SQL文を準備する
-				String sql = "insert into recipe (id, userid, recipe, cost, time, url, remarks) values (null, ?, ?, ?, ?, ?, ?)";
+				//☆これで確定のはず！自動追加のidはinsert(の中でid削除)、?マーク一つ消して6個にしている(6/20 10:15)		set***の第1引数に指定		1, 2, 3  4, 5, 6, 7
+				String sql = "insert into recipe (userid, recipe, cost, time, url, remarks) values (?, ?, ?, ?, ?, ?)";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				//文字列型の場合入力部分が空欄だったら、nullではなく空文字として情報登録(あいまい検索等は後日レシピ一覧と調整)
-				if (recipeAdd.getId() != 0) {
-					pStmt.setInt(1, recipeAdd.getId());
+
+				if (recipeAdd.getUserid() != 0) {
+					pStmt.setInt(1, recipeAdd.getUserid());
 				}
 				else {
 					pStmt.setString(1, "");
 				}
-
-				if (recipeAdd.getUserid() != 0) {
-					pStmt.setInt(2, recipeAdd.getUserid());
+				if (recipeAdd.getRecipe() != null) {
+					pStmt.setString(2, recipeAdd.getRecipe());
 				}
 				else {
 					pStmt.setString(2, "");
 				}
-				if (recipeAdd.getRecipe() != null) {
-					pStmt.setString(3, recipeAdd.getRecipe());
+				if (recipeAdd.getCost() != 0) {
+					pStmt.setInt(3, recipeAdd.getCost());
 				}
 				else {
 					pStmt.setString(3, "");
 				}
-				if (recipeAdd.getCost() != 0) {
-					pStmt.setInt(4, recipeAdd.getCost());
+				if (recipeAdd.getTime() != 0) {
+					pStmt.setInt(4, recipeAdd.getTime());
 				}
 				else {
 					pStmt.setString(4, "");
 				}
-				if (recipeAdd.getTime() != 0) {
-					pStmt.setInt(5, recipeAdd.getTime());
+				if (recipeAdd.getUrl() != null && !recipeAdd.getUrl().equals("")) {
+					pStmt.setString(5, recipeAdd.getUrl());
 				}
 				else {
 					pStmt.setString(5, "");
 				}
-				if (recipeAdd.getUrl() != null && !recipeAdd.getUrl().equals("")) {
-					pStmt.setString(6, recipeAdd.getUrl());
+				if (recipeAdd.getRemarks() != null && !recipeAdd.getRemarks().equals("")) {
+					pStmt.setString(6, recipeAdd.getRemarks());
 				}
 				else {
 					pStmt.setString(6, "");
-				}
-				if (recipeAdd.getRemarks() != null && !recipeAdd.getRemarks().equals("")) {
-					pStmt.setString(7, recipeAdd.getRemarks());
-				}
-				else {
-					pStmt.setString(7, "");
 				}
 
 
@@ -213,6 +208,7 @@ public class recipeDAO {
 			}//87行目 finally～の閉じ
 
 			// 結果を返す
+			System.out.print("結果を返す");
 			return result;
 
 		}//13行目 public boolean～の閉じ

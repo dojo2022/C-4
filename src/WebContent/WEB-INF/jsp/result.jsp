@@ -62,7 +62,7 @@
 			<!-- ☆セッションスコープからのデータ反映処理記入 (login.jsp h2下、Slack) -->
 
 
-			レシピが追加できました！
+			レシピが追加できました(画面遷移のみ確認済 データ移動要確認)！
 
 	<form method="POST" action="/EngelS/recipeAddServlet">
 		<table>
@@ -77,7 +77,7 @@
 					<!-- input type="text" name="POST", value="$～←☆モジュールかテキスト要素確認" readonly -->
 
 					<!-- <input type="text" name="recipe" value="${cardList.recipe}" readonly>  -->
-					<input type="text" name="recipe" value="${recipe}" readonly>
+					<input type="text" name="recipe" value="${cardList.recipe}" readonly>
 					<!-- <input type="text" name="recipe" id="recipe" disabled> -->
 				</td>
 			</tr>
@@ -113,7 +113,7 @@
 					備考<br>
 				</td>
 				<td>
-					<textarea name="remarks" value="${cardList.remarks}" readonly></textarea>
+					<textarea name="remarks"  readonly>${cardList.remarks}</textarea>
 					<!-- <textarea name="remarks" id="remarks" rows="5" disabled></textarea>  -->
 				</td>
 			</tr>

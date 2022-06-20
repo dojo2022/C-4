@@ -168,11 +168,11 @@
 	<!-- 記入してもらった項目をセット -->
 
 	<form method="POST" action="/EngelS/recipeAddServlet">
-		<input type="hidden" id="hidden_recipe">
-		<input type="hidden" id="hidden_cost">
-		<input type="hidden" id="hidden_time">
-		<input type="hidden" id="hidden_url">
-		<input type="hidden" id="hidden_remarks">
+		<input type="hidden" name="recipe" id="hidden_recipe">
+		<input type="hidden"  name="cost" id="hidden_cost">
+		<input type="hidden" name="time" id="hidden_time">
+		<input type="hidden" name="url" id="hidden_url">
+		<input type="hidden" name="remarks" id="hidden_remarks">
 
 
 
