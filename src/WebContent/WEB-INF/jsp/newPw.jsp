@@ -7,7 +7,9 @@
 <title>パスワード変更|EngelS</title>
 <!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" type="text/css" href="/EngelS/css/newPw.css">
 <script src="./javascript/common.js"></script>
+<script type="text/javascript" src="/EngelS/js/newPw.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -40,41 +42,35 @@
 		</header>
 		<main>
 
-	<h2>パスワード変更</h2>
+			<h2>パスワード変更</h2>
 
-	<!-- パスワード変更フォーム -->
-	<form method="POST" action="/EngelS/newPwServlet">
-		<table>
-			<tr>
-				<td>
-					現在のパスワード
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="text" value="${allList.pw}"/>>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					パスワード<br>
-					※10文字以内
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="password" name="newpw">
-				</td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="登録"></td>
-			</tr>
-		</table>
-	</form>
+			<!-- パスワード変更フォーム -->
+			<form id="chaform" method="POST" action="/EngelS/newPwServlet"
+				onclick="chafun()">
+				<table>
+					<tr>
+						<td>現在のパスワード</td>
+					</tr>
+					<tr>
+						<td><input type="text" value="${allList.pw}" id="oldpw">
+						</td>
+					</tr>
+					<tr>
+						<td>パスワード<br> ※10文字以内
+						</td>
+					</tr>
+					<tr>
+						<td><input type="password" name="newpw" id="newpw"></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="登録"></td>
+					</tr>
+				</table>
+			</form>
 
-	<p id="err"></p>
+			<p id="err"></p>
 
-	</main>
+		</main>
 		<footer>
 			<div class="f_logo">
 				<img src="./img/logo.png">
