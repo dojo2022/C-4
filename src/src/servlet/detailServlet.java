@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,11 +48,11 @@ public class detailServlet extends HttpServlet {
 
 		// Step 2:
 		recordsDAO rcsDao = new recordsDAO();
-		records rcs = rcsDao.select(new records(0, userid, "", "", 0, 0));
+	List<records> rcs = rcsDao.select(new records(0, userid, "", "", 0, 0));
 		//records rcs = recordsというオブジェクトに書き換わる。
 
 		// Step 3:
-		request.setAttribute("recipe",rcs);
+	request.setAttribute("recipe",rcs);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/detail.jsp");
 		dispatcher.forward(request, response);
