@@ -64,7 +64,7 @@ public class goalDAO {
 		// 結果を返す
 		return g;
 	}
-	/*
+
 	public boolean insert(goal param) {
 		Connection conn = null;
 		boolean result = false;
@@ -77,7 +77,8 @@ public class goalDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into goal (userid,date,money,sum) values (?,?,?,?)";
+			String sql = "INSERT into goal (userid,date,money,sum) values (?,?,?,?)";
+			//SELECT SUM(savings) FROM record WHERE userid=1 AND date BETWEEN '2022-01-01' AND '2022-01-31');
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			if (param.getUserid() != 0) {
@@ -101,7 +102,7 @@ public class goalDAO {
 			if (param.getSum() != 0) {
 				pStmt.setInt(4,param.getSum());
 			} else {
-				pStmt.setInt(5, 0);
+				pStmt.setInt(4, 0);
 			}
 
 
@@ -130,7 +131,7 @@ public class goalDAO {
 		// 結果を返す
 		return result;
 	}
-	*/
+
 
 	// 引数paramで指定されたレコードを更新し、成功したらtrueを返す OK
 	public boolean update(goal param) {
@@ -146,6 +147,7 @@ public class goalDAO {
 
 			// SQL文
 			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date=?";
+			//SELECT SUM(savings) FROM record WHERE userid=1 AND date BETWEEN '2022-01-01' AND '2022-01-31');
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる

@@ -8,11 +8,12 @@
 <title>目標金額設定|EngelS</title>
 <!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
-<script src="./javascript/common.js"></script>
 <link rel="stylesheet" href="./css/goal.css">
-<script src="./javascript/goal.js"></script>
 </head>
+
 <body>
+	<script src="./js/common.js"></script>
+	<script src="./js/goal.js"></script>
 	<div class="container">
 		<header>
 			<!--設定ドロップダウンメニュー開始 -->
@@ -46,6 +47,9 @@
 			<h1>目標金額設定</h1>
 			<p class="p1">今月の目標金額は<span>${goal.money}</span>円です</p>
 			<p class="p2">今月の削減金額は<span>${goal.sum}</span>円です</p>
+			<div id="p3">
+				<p></p>
+			</div>
 			<form method="POST" action="/EngelS/goalServlet">
 			<div class="ca">
 				<label>設定月<input type="month" name="date"></label>
