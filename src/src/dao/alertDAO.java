@@ -215,40 +215,40 @@ public class alertDAO {
 					pStmt.setInt(1, card.getMorning_min());
 				}
 				else {
-					pStmt.setString(1, null);
+					pStmt.setInt(1, 0);
 				}
 				if (card.getLunch_min() != 0) {
 					pStmt.setInt(2, card.getLunch_min());
 				}
 				else {
-					pStmt.setString(2, null);
+					pStmt.setInt(2, 0);
 				}
 
 				if (card.getDinner_min() != 0) {
 					pStmt.setInt(3, card.getDinner_min());
 				}
 				else {
-					pStmt.setString(3, null);
+					pStmt.setInt(3, 0);
 				}
 
 				if (card.getMorning_max() != 0) {
 					pStmt.setInt(4, card.getMorning_max());
 				}
 				else {
-					pStmt.setString(4, null);
+					pStmt.setInt(4, 0);
 				}
 				if (card.getLunch_max() != 0) {
 					pStmt.setInt(5, card.getLunch_max());
 				}
 				else {
-					pStmt.setString(5, null);
+					pStmt.setInt(5, 0);
 				}
 
 				if (card.getDinner_max() != 0) {
 					pStmt.setInt(6, card.getDinner_max());
 				}
 				else {
-					pStmt.setString(6, null);
+					pStmt.setInt(6, 0);
 				}
 				pStmt.setInt(7, card.getUserid());
 				pStmt.setString(8, card.getDays());
