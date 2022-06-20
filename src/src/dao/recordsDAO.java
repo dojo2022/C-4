@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Date;
 
+import model.recipeAdd;
 import model.records;
 
 public class recordsDAO {
-<<<<<<< Updated upstream
 	//レシピを検索して表示 recipeidを基にレシピを検索する ここを使うことはないかも
-	public List<records> select(records param) {
+	public List<recipeAdd> select(recipeAdd param) {
 		Connection conn = null;
-		List<records>cardList = new ArrayList<records>();
+		List<recipeAdd> cardList = new ArrayList<recipeAdd>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -42,7 +42,7 @@ public class recordsDAO {
 
 			// 結果表をコレクションにコピーする 繰り返し表現　取り出したデータを配列に
 			while (rs.next()) {
-				records card = new records(
+				recipeAdd card = new recipeAdd(
 						0, 0, rs.getString("recipe"), rs.getInt("cost"), 0, "", "");
 				cardList.add(card);
 			}
@@ -69,10 +69,6 @@ public class recordsDAO {
 
 	//詳細記録で表示するもの
 	public List<records> select(records param) {
-=======
-	//レシピを検索して表示 recipeidを基にレシピを検索する
-	public records select(records param) {
->>>>>>> Stashed changes
 		Connection conn = null;
 		List<records> cardList = new ArrayList<records>();
 
@@ -84,16 +80,37 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する 改造ポイント
-			String sql = "SELECT mealtime, SELECT recipe FROM recipe WHERE id=records.recipeid, "
-					+ "savings FROM records where userid=?";
+			String sql = "SELECT userid, date, mealtime, recipeid, savings "
+					+ "FROM records WHERE userid LIKE ? AND date LIKE ? AND mealtime LIKE ? AND recipeid LIKE ? AND savings LIKE?"
+					+ "ORDER BY id";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 改造ポイント
-			if (param.getId() != 0) {
-				pStmt.setInt(1, param.getId());
+			if (param.getUserid() != 0) {
+				pStmt.setInt(1, param.getUserid());
 			} else {
 				pStmt.setString(1, "%");
+			}
+			if (param.getDate() != null) {
+				pStmt.setString(2, param.getDate());
+			} else {
+				pStmt.setString(2, "%");
+			}
+			if (param.getMealtime() != null) {
+				pStmt.setString(3, "%" + param.getMealtime() + "%");
+			} else {
+				pStmt.setString(3, "%");
+			}
+			if (param.getRecipeid() != 0) {
+				pStmt.setInt(4, param.getRecipeid());
+			} else {
+				pStmt.setString(4, "%");
+			}
+			if (param.getSavings() != 0) {
+				pStmt.setInt(5, param.getSavings());
+			} else {
+				pStmt.setString(5, "%");
 			}
 
 			// SQL文を実行し、結果表を取得する
@@ -128,7 +145,7 @@ public class recordsDAO {
 			}
 		}
 		// 結果を返す
-		return (records) cardList;
+		return cardList;
 	}
 
 	// 日々の食事記録を登録
