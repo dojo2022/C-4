@@ -60,6 +60,12 @@ public class homeServlet extends HttpServlet {
 		//グラフデータをリクエストスコープに格納
 		request.setAttribute("graph", sample);
 
+		//月の最終日を取得
+		int daymax = cl.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+		//月の最終日をリクエストスコープに格納
+		request.setAttribute("daymax", daymax);
+
 		// ホーム画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
 		dispatcher.forward(request, response);
