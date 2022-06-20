@@ -58,6 +58,12 @@
 			期間：<span>${goal.date}</span>
 			</p>
 			<section style="width: 380px">
+				<div hidden>
+					<c:forEach var="List" items="${graph}">
+						<p class="savings">${List.savings}</p>
+						<p class="date">${List.date}</p>
+					</c:forEach>
+				</div>
 				<!--  グラフをここに表示-->
 				<canvas id="myChart"></canvas>
 				<script
@@ -73,12 +79,13 @@
 
 						// データを指定
 						data : {
-							labels : [ '2022-06-01', '2022-06-02', '2022-06-03', '2022-06-04', '2022-06-05', '2022-06-06', '2022-06-07' ],
+							labels : Arraydate(),
 							datasets : [ {
 								label : 'dataset example',
 								borderColor : 'rgb(75, 192, 192)',
 								fill : false,
-								data : [ 110, 200, 50, 140, 300, 170, 110 ]
+								data : Arraydata()
+
 							}, {
 								label : 'quota',
 								borderColor : '#f88',
@@ -99,14 +106,31 @@
 							},
 						},
 					});
+
+					function Arraydata(){
+						var hoge = document.getElementsByClassName('savings');
+						var data = [];
+
+						for(let i = 0; i < hoge.length; i++){
+							data.push(hoge[i].textContent);
+						};
+						return data;
+					}
+
+					function Arraydate(){
+						var hoge = document.getElementsByClassName('date');
+						var data = [];
+
+						for(let i = 0; i < hoge.length; i++){
+							data.push(hoge[i].textContent);
+						};
+						return data;
+					}
 				</script>
 			</section>
 			<a href="/EngelS/detailServlet">記録詳細へ</a> <a
 				href="/EngelS/recordsServlet">+今日の記録</a> ※画像にしたい <br>
-			<c:forEach var="data" items="${graph}">
-				<p>${data.date}</p>
-				<p>${data.savings}</p>
-			</c:forEach>
+
 			<p>テスト</p>
 			<p>テスト</p>
 			<p>テスト</p>
