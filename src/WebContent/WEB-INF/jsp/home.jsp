@@ -63,6 +63,8 @@
 						<p class="savings">${List.savings}</p>
 						<p class="date">${List.date}</p>
 					</c:forEach>
+					<p class="goal">${goal.money}</p>
+					<p class="daymax">${daymax}</p>
 				</div>
 				<!--  グラフをここに表示-->
 				<canvas id="myChart"></canvas>
@@ -79,7 +81,7 @@
 
 						// データを指定
 						data : {
-							labels : Arraydate(),
+							labels : Arraylabel(),
 							datasets : [ {
 								label : 'dataset example',
 								borderColor : 'rgb(75, 192, 192)',
@@ -107,6 +109,7 @@
 						},
 					});
 
+					//グラフデータの設定
 					function Arraydata(){
 						var hoge = document.getElementsByClassName('savings');
 						var data = [];
@@ -117,14 +120,29 @@
 						return data;
 					}
 
-					function Arraydate(){
+					//ラベルの設定
+					function Arraylabel(){
 						var hoge = document.getElementsByClassName('date');
-						var data = [];
+						var label = [];
 
 						for(let i = 0; i < hoge.length; i++){
-							data.push(hoge[i].textContent);
+							label.push(hoge[i].textContent);
 						};
-						return data;
+						return label;
+					}
+
+					//目標金額の日割り計算
+					function Arraylabel(){
+						var hoge = document.getElementsByClassName('date');
+						const goal = document.getElementsByClassName('goal');
+						const daymax = document.getElementsByClassName('daymax');
+
+						var quota = [];
+
+						for(let i = 0; i < hoge.length; i++){
+							quota.push(hoge[i].textContent);
+						};
+						return quota;
 					}
 				</script>
 			</section>
