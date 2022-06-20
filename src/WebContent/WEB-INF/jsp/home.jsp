@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,6 @@
 <link rel="stylesheet" href="./css/home.css">
 <script src="./javascript/common.js"></script>
 <script src="./javascript/home.js"></script>
-<script src="./javascript/graph.js"></script>
 </head>
 
 <body>
@@ -63,7 +63,8 @@
 				<script
 					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
 					integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
-					crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+					crossorigin="anonymous" referrerpolicy="no-referrer">
+				</script>
 				<script>
 					var ctx = document.getElementById('myChart').getContext(
 							'2d');
@@ -102,8 +103,10 @@
 			</section>
 			<a href="/EngelS/detailServlet">記録詳細へ</a> <a
 				href="/EngelS/recordsServlet">+今日の記録</a> ※画像にしたい <br>
-			<p>テスト</p>
-			<p>テスト</p>
+			<c:forEach var="data" items="${graph}">
+				<p>${data.date}</p>
+				<p>${data.savings}</p>
+			</c:forEach>
 			<p>テスト</p>
 			<p>テスト</p>
 			<p>テスト</p>
