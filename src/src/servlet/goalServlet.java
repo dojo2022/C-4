@@ -45,8 +45,7 @@ public class goalServlet extends HttpServlet {
 		//Beanを使わずに直接引数に検索条件を指定する。
 		goal goal= gDao.select(0,userid, date,0,0);
 
-		// 検索結果をリクエストスコープに格納する
-		//★セッションスコープじゃないといけない、、？
+		// 検索結果をリクエストスコープに格納
 		request.setAttribute("goal", goal);
 
 		// 金額設定画面にフォワードする
@@ -72,20 +71,21 @@ public class goalServlet extends HttpServlet {
 		goalDAO gDao = new goalDAO();
 
 		//Daoのupdateメソッドを実行する(dateをString型にした)
-		//戻り値がtrueだったら、更新処理完了
-		//更新処理完了の処理とは更新しましたのメッセージと同じページへのリダイレクト
 		//コンストラクタ　public result(String message1, String message2, String message3) {
-		System.out.println(gDao.update(new goal(0,userid,date,money,0)));
 		if(gDao.update(new goal(0,userid,date,money,0))) {
-			// リクエストスコープにメッセージを格納する
-			result res = new result("目標金額を設定しました。", "", "");
-			request.setAttribute("result",res);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
-			dispatcher.forward(request, response);
-		}else {
-			request.setAttribute("result", (new result("登録できませんでした", "", "")));
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
-			dispatcher.forward(request, response);
+			//セッションスコープにメッセージを格納する
+			session.setAttribute("result", (new result("目標金額を更新しました。", "", "")));
+			//ゴールサーブレットにリダイレクトする
+			response.sendRedirect("/EngelS/goalServlet");
+		}else if(gDao.insert(new goal(0,userid,date,money,0))) {
+			//セッションスコープにメッセージを格納する
+			session.setAttribute("result", (new result("新規目標金額を設定しました。", "", "")));
+			//ゴールサーブレットにリダイレクトする
+			response.sendRedirect("/EngelS/goalServlet");
+		}else{
+			session.setAttribute("result", (new result("登録できませんでした", "", "")));
+			//ゴールサーブレットにリダイレクトする
+			response.sendRedirect("/EngelS/goalServlet");
 		}
 	}
 }
