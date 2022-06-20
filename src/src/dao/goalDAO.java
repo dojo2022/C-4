@@ -77,8 +77,8 @@ public class goalDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "INSERT into goal (userid,date,money,sum) values (?,?,?,?)";
-			//SELECT SUM(savings) FROM record WHERE userid=1 AND date BETWEEN '2022-01-01' AND '2022-01-31');
+			String sql = "INSERT into goal (userid,date,money,sum) values (?,?,?,SELECT SUM(savings) FROM record WHERE userid=? AND date>=?)";
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			if (param.getUserid() != 0) {
@@ -99,12 +99,17 @@ public class goalDAO {
 				pStmt.setInt(3, 0);
 			}
 
-			if (param.getSum() != 0) {
-				pStmt.setInt(4,param.getSum());
+			if (param.getUserid() != 0) {
+				pStmt.setInt(4,param.getUserid());
 			} else {
 				pStmt.setInt(4, 0);
 			}
 
+			if (param.getDate() != null) {
+				pStmt.setString(5,param.getDate()+"-01");
+			} else {
+				pStmt.setString(5, null);
+			}
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -146,8 +151,7 @@ public class goalDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文
-			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? WHERE userid=? AND date=?";
-			//SELECT SUM(savings) FROM record WHERE userid=1 AND date BETWEEN '2022-01-01' AND '2022-01-31');
+			String sql = "UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? AND date>=? WHERE userid=? AND date=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -163,17 +167,23 @@ public class goalDAO {
 			else {
 				pStmt.setInt(2, 0);
 			}
-			if (param.getUserid() != 0) {
-				pStmt.setInt(3, param.getUserid());
+			if (param.getDate() != null) {
+				pStmt.setString(3, param.getDate()+"-01");
 			}
 			else {
 				pStmt.setInt(3, 0);
 			}
-			if (param.getDate() != null) {
-				pStmt.setString(4, param.getDate()+"-01");
+			if (param.getUserid() != 0) {
+				pStmt.setInt(4, param.getUserid());
 			}
 			else {
-				pStmt.setDate(4, null);
+				pStmt.setInt(4, 0);
+			}
+			if (param.getDate() != null) {
+				pStmt.setString(5, param.getDate()+"-01");
+			}
+			else {
+				pStmt.setDate(5, null);
 			}
 
 			// SQL文を実行する

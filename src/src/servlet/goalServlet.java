@@ -48,6 +48,7 @@ public class goalServlet extends HttpServlet {
 		// 検索結果をリクエストスコープに格納
 		request.setAttribute("goal", goal);
 
+
 		// 金額設定画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
 		dispatcher.forward(request, response);
@@ -74,17 +75,14 @@ public class goalServlet extends HttpServlet {
 		//コンストラクタ　public result(String message1, String message2, String message3) {
 		if(gDao.update(new goal(0,userid,date,money,0))) {
 			//セッションスコープにメッセージを格納する
-			session.setAttribute("result", (new result("目標金額を更新しました。", "", "")));
+			session.setAttribute("result", (new result("", "", "目標金額を更新しました。")));
 			//ゴールサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/goalServlet");
 		}else if(gDao.insert(new goal(0,userid,date,money,0))) {
-			//セッションスコープにメッセージを格納する
-			session.setAttribute("result", (new result("新規目標金額を設定しました。", "", "")));
-			//ゴールサーブレットにリダイレクトする
+			session.setAttribute("result", (new result("", "", "新規目標金額を設定しました。")));
 			response.sendRedirect("/EngelS/goalServlet");
 		}else{
-			session.setAttribute("result", (new result("登録できませんでした", "", "")));
-			//ゴールサーブレットにリダイレクトする
+			session.setAttribute("result", (new result("", "", "登録できませんでした")));
 			response.sendRedirect("/EngelS/goalServlet");
 		}
 	}
