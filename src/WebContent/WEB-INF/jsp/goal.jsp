@@ -21,8 +21,8 @@
 				<ul id="dropmenu" class="dropmenu">
 					<li><a href="#">設定</a>
 						<ul>
-							<li class="username">ニックネーム取得</li>
-							<li>ログインID取得</li>
+							<li class="username">ID：</li>
+							<li>ニックネーム：</li>
 							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
@@ -45,11 +45,11 @@
 
 		<main>
 			<h1>目標金額設定</h1>
-			<p class="p1">今月の目標金額は<span>${goal.money}</span>円です</p>
-			<p class="p2">今月の削減金額は<span>${goal.sum}</span>円です</p>
-			<div id="p3">
-				<p></p>
-			</div>
+			<p class="money">今月の目標金額は￥</p><div id="money">${goal.money}</div>
+			<br>
+			<p class="sum">今月の削減金額は￥</p><div id="sum">${goal.sum}</div>
+			<br>
+			<p class="sagaku">目標まであと￥</p><div id="sagaku"></div>
 			<form method="POST" action="/EngelS/goalServlet">
 			<div class="ca">
 				<label>設定月<input type="month" name="date"></label>
@@ -66,7 +66,7 @@
 				<a href="/EngelS/homeServlet">ホームに戻る</a>
 			</div>
 			<!-- 登録できました！のメッセージ -->
-			<p class="msg">${result.message1}</p>
+			<p class="msg">${result.message3}</p>
 		</main>
 
 		<footer>

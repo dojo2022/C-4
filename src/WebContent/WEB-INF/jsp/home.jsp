@@ -8,11 +8,11 @@
 <title>ホーム|EngelS</title>
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/home.css">
-<script src="./javascript/common.js"></script>
-<script src="./javascript/home.js"></script>
 </head>
 
 <body>
+<script src="./js/common.js"></script>
+<script src="./js/home.js"></script>
 	<div class="container">
 		<header>
 			<!--設定ドロップダウンメニュー開始 -->
@@ -45,15 +45,12 @@
 
 		<main>
 			<h1>節約金額目標グラフ</h1>
-			<h2>
-				目標削減金額<span>${goal.money}</span>円
-			</h2>
-			<h2>
-				現在の達成金額は<span>${goal.sum}</span>円
-			</h2>
-			<h2>
-				あと<span></span>円
-			</h2>
+			<p class="money">今月の目標金額は￥</p><div id="money">${goal.money}</div>
+			<br>
+			<p class="sum">今月の削減金額は￥</p><div id="sum">${goal.sum}</div>
+			<br>
+			<p class="sagaku">目標まであと￥</p><div id="sagaku"></div>
+
 			<p>
 			期間：<span>${goal.date}</span>
 			</p>
@@ -63,6 +60,8 @@
 						<p class="savings">${List.savings}</p>
 						<p class="date">${List.date}</p>
 					</c:forEach>
+					<p class="goal">${goal.money}</p>
+					<p class="daymax">${daymax}</p>
 				</div>
 				<!--  グラフをここに表示-->
 				<canvas id="myChart"></canvas>
@@ -79,7 +78,7 @@
 
 						// データを指定
 						data : {
-							labels : Arraydate(),
+							labels : Arraylabel(),
 							datasets : [ {
 								label : 'dataset example',
 								borderColor : 'rgb(75, 192, 192)',
@@ -107,6 +106,7 @@
 						},
 					});
 
+					//グラフデータの設定
 					function Arraydata(){
 						var hoge = document.getElementsByClassName('savings');
 						var data = [];
@@ -117,28 +117,34 @@
 						return data;
 					}
 
-					function Arraydate(){
+					//ラベルの設定
+					function Arraylabel(){
 						var hoge = document.getElementsByClassName('date');
-						var data = [];
+						var label = [];
 
 						for(let i = 0; i < hoge.length; i++){
-							data.push(hoge[i].textContent);
+							label.push(hoge[i].textContent);
 						};
-						return data;
+						return label;
+					}
+
+					//目標金額の日割り計算
+					function Arraylabel(){
+						var hoge = document.getElementsByClassName('date');
+						const goal = document.getElementsByClassName('goal');
+						const daymax = document.getElementsByClassName('daymax');
+
+						var quota = [];
+
+						for(let i = 0; i < hoge.length; i++){
+							quota.push(hoge[i].textContent);
+						};
+						return quota;
 					}
 				</script>
 			</section>
-			<a href="/EngelS/detailServlet">記録詳細へ</a> <a
-				href="/EngelS/recordsServlet">+今日の記録</a> ※画像にしたい <br>
-
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テスト</p>
-			<p>テストaaaa</p>
-			<!-- ★ここまで消す★ -->
+			<a href="/EngelS/detailServlet">記録詳細へ</a>
+			<div class="rec"><a href="/EngelS/recordsServlet">+今日の記録</a></div>
 		</main>
 
 		<footer>
