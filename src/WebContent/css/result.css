@@ -4,6 +4,12 @@ main{
 	text-align:center;
 }
 
+/*resultモデルのメッセージ「レシピが追加できました！」の部分*/
+p{
+	color:orange;
+	font-weight:bold;
+}
+
 /*resultモデル：追加完了メッセージ*/
 span{
 	color:orange;

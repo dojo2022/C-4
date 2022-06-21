@@ -9,7 +9,7 @@
 	/*記入に関するエラー関係の変数宣言*/
 	// [登録]ボタンをクリックしたときの処理 */
 	//var recipeformObj = document.getElementById('recipe');
-	//77行目に記載：var costformObj = document.getElementById('cost');
+	var costformObj = document.getElementById('cost');
 	var timeformObj = document.getElementById('time');
 
 	//☆☆jsp上でのエラーメッセージ表示の処理
@@ -72,17 +72,30 @@
 	*/
 
 	//費用costに半角数字が入力されたか確認(空文字NG) 関数宣言のパターン
-	function costcheck(){
-		//変数宣言
-		var costformObj = document.getElementById('cost');
+	costformObj.onchange = function(){	//変数の宣言は12行目
+		//半角数字のみの記入なら、メッセージなしで正常起動
 		if (str.match(/^[0-9]+$/)) {
 		errorMessageObj.textContent = null;
-
 	  	}
 	  	//半角で入力が無かった場合にエラーメッセージを表示させる
 	    errorMessageObj.textContent = '※費用は半角で入力してください！';
 	    return false;
 	};
+
+
+	/*テスト(実行できず)*/
+	//費用costに半角数字が入力されたか確認(空文字NG) 関数宣言のパターン
+	//function costcheck(){
+		//変数宣言
+		//var costformObj = document.getElementById('cost');
+		//半角数字のみの記入なら、メッセージなしで正常起動
+		//if (str.match(/^[0-9]+$/)) {
+		//errorMessageObj.textContent = null;
+	  	//}
+	  	//半角で入力が無かった場合にエラーメッセージを表示させる
+	    //errorMessageObj.textContent = '※費用は半角で入力してください！';
+	    //return false;
+	//};
 
 
 /*要調整(必須３か所チェック手段)　一旦停止

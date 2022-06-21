@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.userDAO;
+import model.user;
 
 
 /**
@@ -24,12 +28,21 @@ public class resultServlet extends HttpServlet {
 		// 結果ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 		dispatcher.forward(request, response);
+
+		//セッションからユーザー情報を得る
+		HttpSession session = request.getSession();
+		user user = (user)session.getAttribute("allList");
+
+		//ユーザーアイコン部分：${user1.user}と${user1.name}を使えるようにする処理
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1",user1);
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 
 }
