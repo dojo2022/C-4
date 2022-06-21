@@ -52,10 +52,7 @@ public class recipeSearchServlet extends HttpServlet {
 		 *     Step 3:   Send the data as a response
 		 */
 
-		//useridの取得
-		HttpSession session = request.getSession();
-		user user = (user)session.getAttribute("allList");
-		int userid = user.getId();
+
 
 		// Step 2:
 		recipeDAO eDao = new recipeDAO();
