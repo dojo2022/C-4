@@ -47,13 +47,28 @@ function records() {
 
 //朝食１品追加
 function addMorningMenu() {
+	addSelect('morning_recipe', 'morningRecipe');
+}
+
+
+//昼食１品追加
+function addlunchMenu() {
+	addSelect('lunch_recipe', 'lunchRecipe');
+}
+
+//夕食1品追加
+function adddinnerMenu() {
+	addSelect('dinner_recipe', 'dinnerRecipe');
+}
+
+function addSelect(td_name, select_name){
 
 	//レシピのプルダウンを追加する処理
 	//①どこに足すか
-	let td = document.getElementById('morning_recipe');
+	let td = document.getElementById(td_name);
 
 	//②何を足すか
-	let select = document.getElementById('morningRecipe').cloneNode(true);
+	let select = document.getElementById(select_name).cloneNode(true);
 
 	//select変数のonchangeイベントにselectFunctionを紐づける。
 	select.addEventListener('onchange', selectFunction, false);
@@ -65,74 +80,44 @@ function addMorningMenu() {
 	td.appendChild(select);
 }
 
-
-//昼食１品追加
-function addlunchMenu() {
-
-	//レシピのプルダウンを追加する処理
-	//①どこに足すか
-	let td = document.getElementById('lunch_recipe');
-
-	//②何を足すか
-	let select = document.getElementById('lunchRecipe').cloneNode(true);
-
-	//brを入れて次に段になるようしている。
-	td.appendChild(document.createElement('br'));
-
-	//①で取得したelement要素に、②の要素を追加
-	td.appendChild(select);
-}
-
-
-//夕食1品追加
-function adddinnerMenu() {
-
-	//レシピのプルダウンを追加する処理
-	//①どこに足すか
-	let td = document.getElementById('dinner_recipe');
-
-	//②何を足すか
-	let select = document.getElementById('dinnerRecipe').cloneNode(true);
-
-	//brを入れて次に段になるようしている。
-	td.appendChild(document.createElement('br'));
-
-	//①で取得したelement要素に、②の要素を追加
-	td.appendChild(select);
-}
-
 //レシピと金額連動させる 朝
-function selectFunction(){
+function selectFunction(ele){
+	//eleにはイベントが発生したelementが入っている。
+
+	let index = ele.selectedIndex;			//選択されたコードを取得
+	let saving = ele.nextElementSibling; 	//隣接している次の兄弟要素を取得
+
+	saving.selectedIndex = index;
 	//
-	const select = document.getElementById('morning');
-	const savings = document.getElementById('morning_savings');
-	let index = select.selectedIndex;
+	//const select = document.getElementById('morning');
+	//const savings = document.getElementById('morning_savings');
+	//let index = select.selectedIndex;
 	//console.log(index);
 
 	//選ぶ
-	savings.selectedIndex = index;
+	//savings.selectedIndex = index;
 }
 
 //レシピと金額連動させる 昼
-function selectFunctions(){
-	//
-	const select = document.getElementById('lunch');
-	const savings = document.getElementById('lunch_savings');
-	let index = select.selectedIndex;
-	//console.log(index);
-
-	//選ぶ
-	savings.selectedIndex = index;
-}
+//function selectFunctions(){
+//	//
+//	const select = document.getElementById('lunch');
+//	const savings = document.getElementById('lunch_savings');
+//	let index = select.selectedIndex;
+//	//console.log(index);
+//
+//	//選ぶ
+//	savings.selectedIndex = index;
+//}
 
 //レシピと金額連動させる 夕
-function selectFunctionss(){
-	//
-	const select = document.getElementById('dinner');
-	const savings = document.getElementById('dinner_savings');
-	let index = select.selectedIndex;
-	//console.log(index);
+//function selectFunctionss(){
+//	//
+//	const select = document.getElementById('dinner');
+//	const savings = document.getElementById('dinner_savings');
+//	let index = select.selectedIndex;
+//	//console.log(index);
 
-	//選ぶ
-	savings.selectedIndex = index;
-}
+//	//選ぶ
+//	savings.selectedIndex = index;
+//}

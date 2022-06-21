@@ -58,7 +58,7 @@
 						<td id="morning_recipe">
 						<div id="morningRecipe">
 						<input type="checkbox" id="morning_mealtime" name="mealtime" value="朝" checked>朝
-						<select id="morning" name="recipe" onChange="selectFunction()">
+						<select id="morning" name="recipe" onChange="selectFunction(this)">
 								<option>＊選択してください</option>
 								<!-- データから取得できたのを確認済み -->
 								<c:forEach var="recipe" items="${cardList}">
@@ -86,21 +86,21 @@
 						<td id="lunch_recipe">
 						<div id="lunchRecipe">
 						<input type="checkbox" id="lunch_mealtime" name="mealtime" value="昼"checked>昼
-						<select id="lunch" name="recipe" onChange="selectFunctions()">
-								<option>＊選択してください</option>
-								<!-- データから取得できたのを確認済み　jsp側に問題か -->
-								<c:forEach var="recipe" items="${cardList}">
-									<option><c:out value="${recipe.recipe}" /></option>
-								</c:forEach>
+						<select id="lunch" name="recipe" onChange="selectFunction(this)">
+							<option>＊選択してください</option>
+							<!-- データから取得できたのを確認済み　jsp側に問題か -->
+							<c:forEach var="recipe" items="${cardList}">
+								<option><c:out value="${recipe.recipe}" /></option>
+							</c:forEach>
 						</select>
-							<select id="lunch_savings" name="savings" onChange="plus()">
-								<!-- お金が自動で表示されるように作る -->
-								<option>＊自動選択</option>
-								<!-- データから取得できたのを確認済み　jsp側に問題か -->
-								<c:forEach var="recipe" items="${cardList}">
-									<option id="number2"><c:out value="${recipe.cost}" />円
-									</option>
-								</c:forEach>
+						<select id="lunch_savings" name="savings" onChange="plus()">
+							<!-- お金が自動で表示されるように作る -->
+							<option>＊自動選択</option>
+							<!-- データから取得できたのを確認済み　jsp側に問題か -->
+							<c:forEach var="recipe" items="${cardList}">
+								<option id="number2"><c:out value="${recipe.cost}" />円
+								</option>
+							</c:forEach>
 						</select>
 						</div>
 						</td>
@@ -114,7 +114,7 @@
 						<td id="dinner_recipe">
 						<div id="dinnerRecipe">
 						<input type="checkbox" id="dinner_mealtime" name="mealtime" value="夕" checked>夕
-						<select id="dinner" name="recipeid" onChange="selectFunctionss()">
+						<select id="dinner" name="recipeid" onChange="selectFunction(this)">
 								<option>＊選択してください</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
