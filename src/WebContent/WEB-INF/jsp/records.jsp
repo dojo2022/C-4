@@ -45,23 +45,27 @@
 			</p>
 			<p>削除金額</p>
 			<form method="POST" action="/EngelS/recordsServlet" id="record_form">
-				<button onclick="addMorningMenu();return false;">クリック</button>
 
 				<table>
+				<!-- 朝食コーナー -->
 					<tr>
-						<td>
-							<input type="radio" id="morning" name="朝" checked>朝
-							<input type="radio" id="morning" name="昼">昼
-							<input type="radio" id="morning" name="夕">夕
-						</td>
-						<td id="morning"><select id="morningSelect" name="recipeid">
+						<!-- 試験的に導入(保留)
+						<input type="radio" name="mealtime" value="朝">朝
+						<input type="radio" name="mealtime" value="昼">昼
+						<input type="radio" name="mealtime" value="夕">夕
+						-->
+
+						<td id="morning_recipe">
+						<div id="morningRecipe">
+						<input type="checkbox" id="morning_mealtime" name="mealtime" value="朝" checked>朝
+						<select id="morning" name="recipe" onChange="selectFunction()">
 								<option>＊選択してください</option>
 								<!-- データから取得できたのを確認済み -->
 								<c:forEach var="recipe" items="${cardList}">
-									<option><c:out value="${recipe.recipe}" /></option>
+									<option value="${recipe.recipe}"><c:out value="${recipe.recipe}" /></option>
 								</c:forEach>
-						</select></td>
-						<td><select name="savings">
+						</select>
+						<select id="morning_savings" name="savings" onChange="plus()">
 								<!-- お金が自動で表示されるように作る -->
 								<option>＊自動選択</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
@@ -69,25 +73,27 @@
 									<option id="number1"><c:out value="${recipe.cost}" />円
 									</option>
 								</c:forEach>
-						</select></td>
-					</tr>
-					<tr>
-						<td>レシピを増やすもの</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="radio" id="lunch" name="朝">朝
-							<input type="radio" id="lunch" name="昼" checked>昼
-							<input type="radio" id="lunch" name="夕">夕
+						</select>
+						</div>
 						</td>
-						<td><select name="recipeid">
+					</tr>
+					<tr>
+						<td><button onclick="addMorningMenu();return false;">＋</button></td>
+					</tr>
+
+					<!-- 昼食コーナー -->
+					<tr>
+						<td id="lunch_recipe">
+						<div id="lunchRecipe">
+						<input type="checkbox" id="lunch_mealtime" name="mealtime" value="昼"checked>昼
+						<select id="lunch" name="recipe" onChange="selectFunctions()">
 								<option>＊選択してください</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
 									<option><c:out value="${recipe.recipe}" /></option>
 								</c:forEach>
-						</select></td>
-						<td><select name="savings">
+						</select>
+							<select id="lunch_savings" name="savings" onChange="plus()">
 								<!-- お金が自動で表示されるように作る -->
 								<option>＊自動選択</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
@@ -95,25 +101,27 @@
 									<option id="number2"><c:out value="${recipe.cost}" />円
 									</option>
 								</c:forEach>
-						</select></td>
-					</tr>
-					<tr>
-						<td>レシピを増やすもの</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="radio" id="dinner" name="朝">朝
-							<input type="radio" id="dinner" name="昼">昼
-							<input type="radio" id="dinner" name="夕" checked>夕
+						</select>
+						</div>
 						</td>
-						<td><select name="recipeid">
+					</tr>
+					<tr>
+						<td><button onclick="addlunchMenu();return false;">+</button></td>
+					</tr>
+
+					<!-- 夕食コーナー -->
+					<tr>
+						<td id="dinner_recipe">
+						<div id="dinnerRecipe">
+						<input type="checkbox" id="dinner_mealtime" name="mealtime" value="夕" checked>夕
+						<select id="dinner" name="recipeid" onChange="selectFunctionss()">
 								<option>＊選択してください</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
 									<option><c:out value="${recipe.recipe}" /></option>
 								</c:forEach>
-						</select></td>
-						<td><select name="savings">
+						</select>
+						<select id="dinner_savings" name="savings" onChange="plus()">
 								<!-- お金が自動で表示されるように作る -->
 								<option>＊自動選択</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
@@ -121,10 +129,12 @@
 									<option id="number3"><c:out value="${recipe.cost}" />円
 									</option>
 								</c:forEach>
-						</select></td>
+						</select>
+						</div>
+						</td>
 					</tr>
 					<tr>
-						<td>レシピを増やすもの</td>
+						<td><button onclick="adddinnerMenu();return false;">+</button></td>
 					</tr>
 				</table>
 				<p>
