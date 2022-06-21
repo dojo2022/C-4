@@ -2,6 +2,53 @@
 
 @charset "UTF-8";
 
+main{
+	margin:	0 auto 0 auto;
+	/*padding-top: 55px;*/
+	text-align:center;
+}
+
+/*ユーザー記入欄 form周辺設定*/
+form{
+	width: 800px;
+	max-width:900px;
+	/*padding: 	8px;*/
+	text-align:center;
+}
+
+div#table{
+	width:		750px;
+	height:		400px;
+	overflow:	auto;
+}
+
+input[name=recipe] {
+	width:		20em;
+}
+input[name=cost] {
+	width:		4em;
+}
+input[name=time] {
+	width:		4em;
+}
+input[name=url] {
+	width:		20em;
+}
+input {
+    text-align: center;
+}
+textarea[name=remarks] {
+	width:		20em;
+	height:		5em;
+	text-align: center;
+}
+
+
+/*「※は必須項目です」と、※部分を赤字表記に*/
+span{
+	color: #ff0000;
+}
+
 /*エラー内容を赤で表示(ログインjsp準拠)*/
 #err{
 	color: #ff0000;

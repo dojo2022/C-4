@@ -60,6 +60,8 @@
 			<h2>レシピ登録結果</h2>
 
 			<!-- ☆セッションスコープからのデータ反映処理記入 (login.jsp h2下、Slack) -->
+			<p id="err">${result.message2}</p>
+			<!--  <span>${result.message2}</span> -->
 
 
 			レシピが追加できました(画面遷移のみ確認済 データ移動要確認)！
