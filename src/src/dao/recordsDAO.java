@@ -80,9 +80,9 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する 改造ポイント
-			String sql = "SELECT userid, date, mealtime, recipeid, savings, recipe "
-					+ "FROM records WHERE userid LIKE ? AND date LIKE ? AND mealtime LIKE ? AND recipeid LIKE ? AND savings LIKE?"
-					+ "ORDER BY id";
+			String sql = "SELECT userid, date, mealtime, SELECT recipe FROM recipe WHERE id=record.recipeid, savings"
+					+ "FROM record WHERE userid = ?";
+
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -91,26 +91,6 @@ public class recordsDAO {
 				pStmt.setInt(1, param.getUserid());
 			} else {
 				pStmt.setString(1, "%");
-			}
-			if (param.getDate() != null) {
-				pStmt.setString(2, param.getDate());
-			} else {
-				pStmt.setString(2, "%");
-			}
-			if (param.getMealtime() != null) {
-				pStmt.setString(3, "%" + param.getMealtime() + "%");
-			} else {
-				pStmt.setString(3, "%");
-			}
-			if (param.getRecipeid() != 0) {
-				pStmt.setInt(4, param.getRecipeid());
-			} else {
-				pStmt.setString(4, "%");
-			}
-			if (param.getSavings() != 0) {
-				pStmt.setInt(5, param.getSavings());
-			} else {
-				pStmt.setString(5, "%");
 			}
 
 			// SQL文を実行し、結果表を取得する
@@ -123,8 +103,9 @@ public class recordsDAO {
 						rs.getInt("userid"),
 						rs.getString("date"),
 						rs.getString("mealtime"),
-						rs.getInt("recipeid"),
-						rs.getInt("savings"),(""));
+						0,
+						rs.getInt("savings"),
+						rs.getString("SELECT recipe FROM recipe WHERE id=record.recipeid"));
 				cardList.add(card);
 			}
 		} catch (SQLException e) {

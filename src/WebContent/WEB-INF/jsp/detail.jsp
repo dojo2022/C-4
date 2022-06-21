@@ -62,8 +62,8 @@
             <th rowspan=4>節約金額</th>
             <th rowspan=4>備考</th>
      </tr>
-
- 	<% int total = 0 %>
+<!-- エラーの部分を質問する。 -->
+	<c:set var = "total" value = "0"></c:set>
 	<c:forEach var="record" items="${recipe}">
 
  			<!-- 朝昼晩-->
@@ -77,9 +77,8 @@
 
  			<!--  備考 -->
       		<td rowspan=4>${record.remarks}</td>
-			<% total += record.savings %>
-	</c:forEach>
- 	<% total = 0 %>
+		<c:set var = "total" value = "${total + ${record.savings} }"></c:set>
+			</c:forEach>
 
    </div>
 
