@@ -47,15 +47,23 @@
 				<input type="submit" name="btn" value="検索">
 			</form>
 
-			<!-- 費用と所要時間（あの追加されたやつ） -->
-
-			<input type="radio" name="num_of_inq" value="費用">費用
-			<input type="radio" name="num_of_inq" value="所要時間">所要時間
-
+			<!-- 費用と所要時間（追加されたやつ） -->
+		<select>
+			<optgroup label="費用">
+			<option value="up">昇順</option>
+  			<option value="down">降順</option>
+			</optgroup>
+			<optgroup label="時間">
+  			<option value="up">昇順</option>
+  			<option value="down">降順</option>
+			</optgroup>
+		</select>
 
 			<!-- 一覧表 -->
 
 			<table border="1">
+			<h1>Output:</h1>
+			<pre>${recipe}</pre>
 			<div class= "scroll">
 				<tr>
 					<th>レシピ名</th>
@@ -64,10 +72,10 @@
 					<th>詳細ページ</th>
 				</tr>
 				<tr>
-					<td>${e.Name}</td>
-					<td>${e.Cost}円</td>
-					<td>${e.Minutes}分</td>
-					<td><a href="/recipeSearchServlet" + "?recipeId=100
+					<td>${cardlist.recipe}</td>
+					<td>${cardlist.cost}円</td>
+					<td>${cardlist.time}分</td>
+					<td><a href="/EngelS/recipeSearchServlet"
 						class="btn">詳細</a></td>
 				</tr>
 			</div>

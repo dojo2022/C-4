@@ -8,7 +8,9 @@
 <title>記録詳細</title>
 <!-- 共通css,jsへのリンク ★各画面のもここに入れてください-->
 <link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="./css/detail.css">
 <script src="./javascript/common.js"></script>
+<script src="./javascript/detail.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -39,6 +41,7 @@
 				<img src="./img/logo.png">
 			</div>
 		</header>
+	</div>
 		<main>
 			<!--★皆さんが作ってるものをここに入れてください-->
 
@@ -49,37 +52,39 @@
 
 	<!-- フォーム -->
 	<form id="detail" method="GET" action="/EngelS/detailServlet"></form>
-<table border ="1">
-<div class= "scroll">
+	<table border ="1">
+	<div class= "scroll">
 
- <tr>
+	 <tr>
+            <th rowspan=4>日付</th>
+            <th>３食</th>
+            <th>食事内容</th>
+            <th rowspan=4>節約金額</th>
+            <th rowspan=4>備考</th>
+     </tr>
 
-            <td>日付</td>
-            <td>３食</td>
-            <td>食事内容</td>
-            <td>節約金額</td>
-            <td>備考</td>
-        </tr>
-        <tr>
-			　　　 <td rowspan=3>
-			</td>
-	<!--  コピペしただけ -->
-	<c:forEach var="recipe" items="${cardList}">
-   <c:out value="${recipe}" />
+ 	<% int total = 0 %>
+	<c:forEach var="record" items="${recipe}">
 
-<!-- 朝昼晩-->
-  				<td>${recipe.mealtime}</td>
+ 			<!-- 朝昼晩-->
+  			<td>${record.mealtime}</td>
 
- <!--  食事内容 -->
-      		<td>${cardList.recipeid}</td>
- <!--  節約金額 -->
-      			<td>${cardList.savings}</td>
- <!--  備考 -->
-      			<td rowspan=3>${cardList.remarks}</td>
+ 			<!--  食事内容 -->
+      		<td>${record.recipeid}</td>
 
+			 <!--  節約金額 -->
+      		<td>${record.savings}</td>
+
+ 			<!--  備考 -->
+      		<td rowspan=4>${record.remarks}</td>
+			<% total += record.savings %>
 	</c:forEach>
-        </tr>
+ 	<% total = 0 %>
+
    </div>
+
+   <!-- 合計行部分 -->
+            <tfoot id="result2"></tfoot>
     </table>
 
 <table>
@@ -89,29 +94,6 @@
 	</button>
 
 		</main>
-		<footer>
-			<div class="f_logo">
-				<img src="./img/logo.png">
-			</div>
-			<div class="f1">
-				<a class="a1" href="/EngelS/homeServlet">ホーム</a> <a
-					href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a> <a
-					href="/EngelS/recipeAddServlet">レシピ追加</a> <br>
-			</div>
-			<div class="f2">
-				<a href="/EngelS/recordsServlet">1日の食事記録</a> <a
-					href="/EngelS/detailServlet">詳細表示</a> <br>
-			</div>
-			<div class="f3">
-				<a href="/EngelS/goalServlet">目標金額設定</a> | <a
-					href="/EngelS/alertServlet">アラート設定</a> | <a
-					href="/EngelS/newPwServlet">パスワード変更</a>
-			</div>
-			<div class="logout">
-				<a href="/EngelS/loginServlet">ログアウト</a>
-			</div>
-			<p>&copy;3SFY All rights reserved.</p>
-		</footer>
-	</div>
+
 </body>
 </html>

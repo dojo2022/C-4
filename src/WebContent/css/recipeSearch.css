@@ -51,10 +51,14 @@
   /* activeクラスがついたときにオーバーレイを表示する */
   opacity: 1;
   visibility: visible;
+}
 
-  .scroll {
-  width: 50px;
-  height: 50px;
-  overflow: scroll;
+.scroll {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
 }
-}
+
+

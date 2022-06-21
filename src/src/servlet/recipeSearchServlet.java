@@ -45,9 +45,10 @@ public class recipeSearchServlet extends HttpServlet {
 
 		// Step 3:
 		//午後解説ここから
-		request.setAttribute("recipe",rs);
+		request.setAttribute("recipe", eDao.select(new recipeAdd()) == null ? "null" : "not null");
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/test.jsp");
 		dispatcher.forward(request, response);
 
 	}
