@@ -65,83 +65,6 @@
 				</div>
 				<!--  グラフをここに表示-->
 				<canvas id="myChart"></canvas>
-				<script
-					src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
-					integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
-					crossorigin="anonymous" referrerpolicy="no-referrer">
-				</script>
-				<script>
-					var ctx = document.getElementById('myChart').getContext(
-							'2d');
-					var chart = new Chart(ctx, {
-						type : 'line',
-
-						// データを指定
-						data : {
-							labels : Arraylabel(),
-							datasets : [ {
-								label : 'dataset example',
-								borderColor : 'rgb(75, 192, 192)',
-								fill : false,
-								data : Arraydata()
-
-							}, {
-								label : 'quota',
-								borderColor : '#f88',
-								fill : false,
-								data : [ 100, 100, 100, 100, 100, 100, 100 ]
-							} ]
-						},
-
-						// 設定はoptionsに記述
-						options : {
-							//タイトル
-							title : {
-								display : true,
-								text : '線グラフの例'
-							},
-							y: {
-								min: 0,
-							},
-						},
-					});
-
-					//グラフデータの設定
-					function Arraydata(){
-						var hoge = document.getElementsByClassName('savings');
-						var data = [];
-
-						for(let i = 0; i < hoge.length; i++){
-							data.push(hoge[i].textContent);
-						};
-						return data;
-					}
-
-					//ラベルの設定
-					function Arraylabel(){
-						var hoge = document.getElementsByClassName('date');
-						var label = [];
-
-						for(let i = 0; i < hoge.length; i++){
-							label.push(hoge[i].textContent);
-						};
-						return label;
-					}
-
-					//目標金額の日割り計算
-					function Arraylabel(){
-						var hoge = document.getElementsByClassName('date');
-						const goal = document.getElementsByClassName('goal');
-						const daymax = document.getElementsByClassName('daymax');
-
-						var quota = [];
-
-						for(let i = 0; i < hoge.length; i++){
-							quota.push(hoge[i].textContent);
-						};
-						return quota;
-					}
-				</script>
 			</section>
 			<a href="/EngelS/detailServlet">記録詳細へ</a>
 			<div class="rec"><a href="/EngelS/recordsServlet">+今日の記録</a></div>
@@ -171,6 +94,10 @@
 			<p>&copy;3SFY All rights reserved.</p>
 		</footer>
 	</div>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.js">
+</script>
+<script type="text/javascript" src="/EngelS/js/graph.js"></script>
 </body>
 </html>
 
