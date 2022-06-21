@@ -62,8 +62,7 @@ public class recipeSearchServlet extends HttpServlet {
 		//午後解説ここから
 		request.setAttribute("recipe", rs);
 
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/test.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
 		dispatcher.forward(request, response);
 
 
