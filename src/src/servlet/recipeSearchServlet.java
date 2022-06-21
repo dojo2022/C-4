@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.recipeDAO;
 import model.recipeAdd;
+import model.user;
 
 /**
  * Servlet implementation class recipeSearchServlet
@@ -38,14 +40,18 @@ public class recipeSearchServlet extends HttpServlet {
 		 *     Step 3:   Send the data as a response
 		 */
 
+		//useridの取得
+		HttpSession session = request.getSession();
+		user user = (user)session.getAttribute("allList");
+		int userid = user.getId();
 
 		// Step 2:
 		recipeDAO eDao = new recipeDAO();
-		List <recipeAdd> rs = eDao.select(new recipeAdd());
+		List <recipeAdd> rs = eDao.select(new recipeAdd(0, userid, "", 0, 0, "", ""));
 
 		// Step 3:
 		//午後解説ここから
-		request.setAttribute("recipe", eDao.select(new recipeAdd()) == null ? "null" : "not null");
+		request.setAttribute("recipe", rs);
 
 //		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/test.jsp");
