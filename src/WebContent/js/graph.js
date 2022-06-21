@@ -9,7 +9,8 @@ var chart = new Chart(ctx, {
 			label : '1日の削減金額',
 			borderColor : 'rgb(75, 192, 192)',
 			fill : false,
-			data : Arraydata()
+			data : Arraydata(),
+			yAxisID : 'yAxes',
 
 		}, {
 			label : '1日のノルマ',
@@ -22,27 +23,26 @@ var chart = new Chart(ctx, {
 	// 設定はoptionsに記述
 	options : {
 		//タイトル
-		title : {
-			display : true,
-			text : '日々の削減金額'
-		},
-		//y軸の最小値を設定,
-		y: {
-			min: 0,
+		plugins : {
+			title : {
+				display : true,
+				text : '日々の削減金額'
+			}
 		},
 		scales: {
-			xAxes: [{
-				scaleLabel: {
+			xAxes: {
+				title: {
 					display: true,
-					labelString: '日付'
+					text: '日付'
 				}
-			}],
-			yAxes: [{
-				scaleLabel: {
+			},
+			yAxes: {
+				min : 0,		//y軸の最小値設定
+				title: {
 					display: true,
-					labelString: '金額：円'
+					text: '金額：円'
 				}
-			}]
+			}
 		}
 	}
 });
