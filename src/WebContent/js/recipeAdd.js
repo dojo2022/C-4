@@ -3,6 +3,121 @@
 //☆エラーメッセージ、今後各項目で①～を入力してください！②半角数字で～と表示させる
 
 
+/*☆エラー表示関係停止中*/
+ //BC引用必須項目エラー関係
+
+	/*記入に関するエラー関係の変数宣言*/
+	// [登録]ボタンをクリックしたときの処理 */
+	//var recipeformObj = document.getElementById('recipe');
+	var costformObj = document.getElementById('cost');
+	var timeformObj = document.getElementById('time');
+
+	//☆☆jsp上でのエラーメッセージ表示の処理
+	//(resultモデルと同一名のerrからerror_messageに変更中)
+	//var errorMessageObj = document.getElementById('err');
+	var errorMessageObj = document.getElementById('error_message');
+
+	//どこまで動作できているか確認する用のプログラム
+	//alert(formObj.user_id.value);
+	//alert(formObj.ID.value);
+
+/*
+	//必須項目のエラー表示
+	//今後は半角数字表記判定も入れていく
+	//html inputタグ内にonchange,…input要素に文字を入力後、フォーカスが外れたタイミングでイベントが発動
+	//		/^[0-9]+$/	←半角数字のみ(空文字NG)の正規表現
+	// 例：if(str.match(/^[0-9]+$/)){	(matchは変更？)
+
+
+	/*必須項目：フォームが入力された時に処理される(onchange→focusoutに変更)*/
+	//レシピに文字が入力されたか確認(空文字NG)
+
+	 recipe.addEventListener('focusin', e => {
+      console.log('recipe:focusin');
+    });
+	recipe.addEventListener('focusout', e => {
+      if (recipe.value == null || inputValue == "") {
+	    //エラーメッセージを表示させる
+	    errorMessageObj.textContent = '※レシピ名を入力してください！';
+	    return false;
+	  }
+	  errorMessageObj.textContent = null;
+    });
+
+	/*上記テストのため停止中
+	//function recipecheck(){
+		//変数宣言
+		//不要？　var recipeformObj = document.getElementById('recipe');
+		if (recipe.value == null || inputValue == "") {
+	    //エラーメッセージを表示させる
+	    //errorMessageObj.textContent = '※レシピ名を入力してください！';
+	    //return false;
+	  //}
+	  errorMessageObj.textContent = null;
+	};
+	*/
+
+	/*一度保留(上のコードと書き方変更)
+	recipeformObj.onchange = function() {
+		//if (!recipeformObj.recipe.value) { //書き方修正中のため停止中
+
+		//記入フォームに触れた後、未入力またはスペース入力の場合
+		if (recipe.value == null || inputValue == "") {
+	    //エラーメッセージを表示させる
+	    errorMessageObj.textContent = '※レシピ名を入力してください！';
+	    return false;
+	  }
+	  errorMessageObj.textContent = null;
+	};
+	*/
+
+	//費用costに半角数字が入力されたか確認(空文字NG) 関数宣言のパターン
+	costformObj.onchange = function(){	//変数の宣言は12行目
+		//半角数字のみの記入なら、メッセージなしで正常起動
+		if (str.match(/^[0-9]+$/)) {
+		errorMessageObj.textContent = null;
+	  	}
+	  	//半角で入力が無かった場合にエラーメッセージを表示させる
+	    errorMessageObj.textContent = '※費用は半角で入力してください！';
+	    return false;
+	};
+
+
+	/*テスト(実行できず)*/
+	//費用costに半角数字が入力されたか確認(空文字NG) 関数宣言のパターン
+	//function costcheck(){
+		//変数宣言
+		//var costformObj = document.getElementById('cost');
+		//半角数字のみの記入なら、メッセージなしで正常起動
+		//if (str.match(/^[0-9]+$/)) {
+		//errorMessageObj.textContent = null;
+	  	//}
+	  	//半角で入力が無かった場合にエラーメッセージを表示させる
+	    //errorMessageObj.textContent = '※費用は半角で入力してください！';
+	    //return false;
+	//};
+
+
+/*要調整(必須３か所チェック手段)　一旦停止
+	formObj.onsubmit = function() {
+	  //必須項目のいずれか(レシピ名か費用か所要時間)が入力されていない場合
+	  if (!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value) {
+	    //共通のエラーメッセージを表示させる
+	    errorMessageObj.textContent = '※必須項目を入力してください！';
+	    return false;
+	  }
+	  errorMessageObj.textContent = null;
+	};
+*/
+
+	/* [リセット]ボタンをクリックしたときの処理(実装済) */
+	formObj.onreset = function() {
+	  errorMessageObj.textContent = null;
+	};
+
+
+
+
 function init(){
 	//モーダルウィンドウの編集
 
@@ -68,37 +183,4 @@ function onclick_regist(){
 	document.getElementById("hidden_remarks").value = remarks;
 
 }
-
-/*☆エラー表示関係停止中*/
- //BC引用必須項目エラー関係
-
-	/* [登録]ボタンをクリックしたときの処理 */
-	var recipeformObj = document.getElementById('recipe');
-	var costformObj = document.getElementById('cost');
-	var timeformObj = document.getElementById('time');
-	var errorMessageObj = document.getElementById('err');
-
-
-	//確認用プログラム
-	//alert(formObj.user_id.value);
-	//alert(formObj.ID.value);
-
-/*
-	//必須項目のエラー表示
-	//今後は
-	formObj.onsubmit = function() {
-	  //必須項目のいずれか(レシピ名か費用か所要時間)が入力されていない場合
-	  if (!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value) {
-	    //共通のエラーメッセージを表示させる
-	    errorMessageObj.textContent = '※必須項目を入力してください！';
-	    return false;
-	  }
-	  errorMessageObj.textContent = null;
-	};
-*/
-
-	/* [リセット]ボタンをクリックしたときの処理(実装済) */
-	formObj.onreset = function() {
-	  errorMessageObj.textContent = null;
-	};
 

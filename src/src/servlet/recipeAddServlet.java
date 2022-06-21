@@ -1,6 +1,7 @@
 //☆今後のタスク(6/15 14:30)：レシピ追加処理のResultモデルについて(6/15 14:30時点ではモデル未作成)
 //現時点ではコメントアウトでResultモデルを停止中、今後は実装要検討
 //46行目辺りのエラー解消する
+//73行目：セッションスコープにユーザー情報を入れるタイミング確認
 
 package servlet;
 
@@ -15,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.recipeDAO;
+import dao.userDAO;
 import model.recipeAdd;
+import model.result;
 import model.user;
 
 
@@ -29,9 +32,20 @@ public class recipeAddServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		//セッションからユーザー情報を得る
+				HttpSession session = request.getSession();
+				user user = (user)session.getAttribute("allList");
+
+		//ユーザーアイコン部分：${user1.user}と${user1.name}を使えるようにする処理
+				userDAO uDao = new userDAO();
+				user user1 = uDao.select(user);
+				request.setAttribute("user1",user1);
+
 		// レシピ追加ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeAdd.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 	/**
@@ -70,14 +84,42 @@ public class recipeAddServlet extends HttpServlet {
 		//セッションスコープにユーザーIDを格納
 		session.getAttribute(request.getParameter("userid"));
 
-		// レシピ追加処理を行う
-		//現時点ではResultモデルを消去し画面遷移のみ行う普通のフォワード処理にしている、else無し
+		// レシピ追加処理を行う　☆メッセージ格納をsessionからrequestに変更中！
 		recipeDAO bDao = new recipeDAO();
 			if (bDao.insert(new recipeAdd(0, userid, recipe, cost, time, url, remarks ))){	// 登録成功
+				//リクエストスコープに登録完了のメッセージを格納する
+				session.setAttribute("result", (new result("", "レシピが追加できました！", "")));
+
+				result result=(result)session.getAttribute("result");
+				String msg = result.getMessage2();
+
+				System.out.println(msg);
+
+				// レシピ登録結果ページにフォワードする
+				response.sendRedirect("/EngelS/resultServlet");
+				/*移行中：画面遷移処理のみのため一時停止
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
-				System.out.print("レシピ追加完了");
+				*/
+
 				}
+				else {	// 登録失敗の場合(レシピ追加ページにて追加失敗の表示)
+					session.setAttribute("result", (new result("", "レシピを追加できませんでした。", "")));
+
+					result result=(result)session.getAttribute("result");
+					String msg = result.getMessage2();
+
+					System.out.println(msg);
+
+				/*移行中、追って消去
+				request.setAttribute("result",
+				new result("登録エラー", "レシピを追加できませんでした。", "/EngelS/recipeAddServlet"));
+				*/
+
+				//レシピ追加サーブレットにリダイレクトする
+				response.sendRedirect("/EngelS/recipeAddServlet");
+				}
+
 				/*
 				else { // 登録失敗
 				request.setAttribute("result",
@@ -85,9 +127,7 @@ public class recipeAddServlet extends HttpServlet {
 				}
 				*/
 
-		// レシピ登録結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-		dispatcher.forward(request, response);
+
 
 
 		/*元のコード保留中(6/15 13:45)　Resultモデルがある場合の処理
@@ -106,6 +146,18 @@ public class recipeAddServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
 				dispatcher.forward(request, response);
 		*/
+
+		/*☆☆リザルトモデル利用前の正常起動コード(6/20 1300)
+		// レシピ追加処理を行う
+		//現時点ではResultモデルを消去し画面遷移のみ行う普通のフォワード処理にしている、else無し
+		recipeDAO bDao = new recipeDAO();
+			if (bDao.insert(new recipeAdd(0, userid, recipe, cost, time, url, remarks ))){	// 登録成功
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+				dispatcher.forward(request, response);
+				System.out.print("レシピ追加完了");
+				}
+		*/
+
 	}
 
 

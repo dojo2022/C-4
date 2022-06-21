@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.recordsDAO;
+import dao.userDAO;
 import model.records;
 import model.user;
 
@@ -35,6 +36,10 @@ public class detailServlet extends HttpServlet {
 		user user = (user)session.getAttribute("allList");
 		int userid = user.getId();
 
+		//${user1.user}と${user1.name}を使えるようにする処理
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1",user1);
 
 		/*
 		 * Servlet processing:
@@ -53,6 +58,7 @@ public class detailServlet extends HttpServlet {
 
 		// Step 3:
 	request.setAttribute("recipe", rcs);
+	request.setAttribute("total", rcs);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/detail.jsp");
 		dispatcher.forward(request, response);

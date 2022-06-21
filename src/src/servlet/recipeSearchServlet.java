@@ -9,9 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.recipeDAO;
+import dao.userDAO;
 import model.recipeAdd;
+import model.user;
 
 /**
  * Servlet implementation class recipeSearchServlet
@@ -27,6 +30,17 @@ public class recipeSearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+		HttpSession session = request.getSession();
+		user user = (user)session.getAttribute("allList");
+		int userid = user.getId();
+
+
+		//${user1.user}と${user1.name}を使えるようにする処理
+				userDAO uDao = new userDAO();
+				user user1 = uDao.select(user);
+				request.setAttribute("user1",user1);
+
+
 		// リクエストパラメータを取得する
 		request.setCharacterEncoding("UTF-8");
 
@@ -39,17 +53,20 @@ public class recipeSearchServlet extends HttpServlet {
 		 */
 
 
+
 		// Step 2:
 		recipeDAO eDao = new recipeDAO();
-		List <recipeAdd> rs = eDao.select(new recipeAdd());
+		List <recipeAdd> rs = eDao.select(new recipeAdd(0, userid, "", 0, 0, "", ""));
 
 		// Step 3:
 		//午後解説ここから
-		request.setAttribute("recipe", eDao.select(new recipeAdd()) == null ? "null" : "not null");
+		request.setAttribute("recipe", rs);
 
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/test.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
 		dispatcher.forward(request, response);
+
+
+
 
 	}
 

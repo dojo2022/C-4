@@ -33,8 +33,8 @@
 				<ul id="dropmenu" class="dropmenu">
 					<li><a href="#">設定</a>
 						<ul>
-							<li class="username">ニックネーム取得</li>
-							<li>ログインID取得</li>
+							<li class="user">${user1.user}</li>
+							<li class="name">${user1.name}</li>
 							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
@@ -58,33 +58,38 @@
 
 		<main>
 			<h2>レシピ追加</h2>
-			<p>※は必須入力項目です。</p>
+			<p>${result.message1}</p>
+			<!-- エラーメッセージ表示用タグ -->
+			<p id="err">${result.message2}</p>
+
+			<span>※は必須入力項目です。</span>
 
 
- 		<!-- レシピ追加フォーム -->
- 		<!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
+ 			<!-- レシピ追加フォーム -->
+ 			<!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
 
-	<form method="POST" action="/EngelS/recipeAddServlet">
+	<form method="POST" action="/EngelS/recipeAddServlet" id="form">
 		<table>
 			<tr>
 				<td>
-					レシピ名 ※30文字以内
+					<b>レシピ名</b> <span>※</span>30文字以内
 				</td>
 				<td>
-					<input type="text" name="recipe" id="recipe" maxlength="30" >
-				</td>
-			</tr>
-			<tr>
-				<td>
-					費用(円) ※半角数字
-				</td>
-				<td>
-					<input type="text" name="cost" id="cost">円
+					<!-- ☆onchangeの()内、this確認 -->
+					<input type="text" name="recipe" id="recipe" maxlength="30" onchange= "recipecheck()" >
 				</td>
 			</tr>
 			<tr>
 				<td>
-					調理時間(分) ※半角数字
+					<b>費用(円)</b> <span>※</span>半角数字
+				</td>
+				<td>
+					<input type="text" name="cost" id="cost" onchange= "costcheck()">円
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>調理時間(分)</b> <span>※</span>半角数字
 				</td>
 				<td>
 					<input type="text" name="time" id="time">分
@@ -92,7 +97,7 @@
 			</tr>
 			<tr>
 				<td>
-					参考URL
+					<b>参考URL</b>
 				</td>
 				<td>
 					<input type="text" name="url" id="url" maxlength="100">
@@ -100,7 +105,7 @@
 			</tr>
 			<tr>
 				<td>
-					備考<br>
+					<b>備考</b><br>
 				</td>
 				<td>
 					<textarea name="remarks" id="remarks" rows="5" maxlength="200"></textarea>
@@ -119,15 +124,21 @@
 	</form>
 
 
-<!-- エラー表示欄(BCログインjsp準拠) -->
-<span id="error_message"></span>">
+	<!-- ☆表示場所変更中：エラー表示欄(BCログインjsp準拠)→タイトルの下63行目にて表示 -->
+	<!-- resultモデルのエラー表記(err)と統一中、もし不都合あればerror_messageに変更、jsへの反映も -->
+	<span id="error_message"></span>
 
-<!-- オーバーレイ -->
-<div class="overlay"></div>
+	<!-- resultモデルのエラーと差別化　<span id="err"></span>  -->
 
 
-<!-- モーダルウィンドウ -->
-<div class="modal">
+
+
+	<!-- オーバーレイ -->
+	<div class="overlay"></div>
+
+
+	<!-- モーダルウィンドウ -->
+	<div class="modal">
 
 	<!-- ×ボタンのプログラム。現状不要のためコメントアウト -->
 	<!-- <div class="close">&times;</div>  -->
@@ -183,8 +194,8 @@
 
 </div>
 
-<!-- スクロールで高さを出すためのsectionタグ -->
-<section></section>
+		<!-- スクロールで高さを出すためのsectionタグ -->
+		<section></section>
 
 		</main>
 		<footer>
