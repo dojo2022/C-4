@@ -33,7 +33,7 @@ public class homeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		//useridをセッションスコープから取得し変数useridに代入
+		//useridをセッションスコープから取得
 		HttpSession session = request.getSession();
 		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
