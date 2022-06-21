@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.goalDAO;
 import dao.testDAO;
+import dao.userDAO;
 import model.goal;
 import model.records;
 import model.user;
@@ -42,13 +43,17 @@ public class homeServlet extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
 		String date = sdf.format(cl.getTime())+"-01";
 
+		//${user1.user}と${user1.name}を使えるようにする処理
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1",user1);
+
 		//DAOのインスタンスを生成
 		goalDAO gDao = new goalDAO();
 		//Beanを使わずに直接引数に検索条件を指定する。
 		goal goal= gDao.select(0,userid, date,0,0);
 
 		// 検索結果をリクエストスコープに格納する
-		//★セッションスコープじゃないといけない、、？
 		request.setAttribute("goal", goal);
 
 		//グラフデータの作成
