@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.recipeDAO;
+import dao.userDAO;
 import model.recipeAdd;
 import model.result;
 import model.user;
@@ -31,9 +32,20 @@ public class recipeAddServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		//セッションからユーザー情報を得る
+				HttpSession session = request.getSession();
+				user user = (user)session.getAttribute("allList");
+
+		//ユーザーアイコン部分：${user1.user}と${user1.name}を使えるようにする処理
+				userDAO uDao = new userDAO();
+				user user1 = uDao.select(user);
+				request.setAttribute("user1",user1);
+
 		// レシピ追加ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeAdd.jsp");
 		dispatcher.forward(request, response);
+
 	}
 
 	/**

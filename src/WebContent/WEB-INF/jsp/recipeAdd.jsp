@@ -33,8 +33,8 @@
 				<ul id="dropmenu" class="dropmenu">
 					<li><a href="#">設定</a>
 						<ul>
-							<li class="username">ニックネーム取得</li>
-							<li>ログインID取得</li>
+							<li class="user">${user1.user}</li>
+							<li class="name">${user1.name}</li>
 							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
@@ -84,7 +84,7 @@
 					<b>費用(円)</b> <span>※</span>半角数字
 				</td>
 				<td>
-					<input type="text" name="cost" id="cost">円
+					<input type="text" name="cost" id="cost" onchange= "costcheck()">円
 				</td>
 			</tr>
 			<tr>
