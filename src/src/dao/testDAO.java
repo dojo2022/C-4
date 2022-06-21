@@ -11,7 +11,7 @@ import java.util.List;
 import model.records;
 
 public class testDAO {
-	public List<records> select(int id, int userid, String date, int money, int sum) {
+	public List<records> select(int id, int userid, String date, int money, int sum, String recipe) {
 		Connection conn = null;
 		List<records> sample = new ArrayList<records>();
 
@@ -41,7 +41,8 @@ public class testDAO {
 						rs.getString("date"),
 						"",
 						0,
-						rs.getInt("sum(savings)")
+						rs.getInt("sum(savings)"),
+						""
 				);
 				sample.add(g);
 			}
