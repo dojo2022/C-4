@@ -55,7 +55,7 @@ public class homeServlet extends HttpServlet {
 		//DAOのインスタンスを生成
 		testDAO graphDao = new testDAO();
 		//Beanを使わずに直接引数に検索条件を指定する。
-		List<records> sample= graphDao.select(0,userid, date,0,0, "");
+		List<records> sample= graphDao.select(0,userid, date,0,0);
 
 		//グラフデータをリクエストスコープに格納
 		request.setAttribute("graph", sample);
