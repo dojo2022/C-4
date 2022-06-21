@@ -41,43 +41,31 @@ public class recipeDAO {
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
-				if (param.getId() != 0) {
 
-					pStmt.setInt(1, param.getId());
+				if (param.getUserid() != 0) {
+
+					pStmt.setInt(1, param.getUserid());
 				}
 				else {
 					pStmt.setString(1, "%");
 				}
 
-				if (param.getUserid() != 0) {
+				if (param.getRecipe() != "") {
 
-					pStmt.setInt(2, param.getUserid());
+					pStmt.setString(2, "%" + param.getRecipe() + "%");
 				}
 				else {
 					pStmt.setString(2, "%");
 				}
 
-				if (param.getRecipe() != "") {
+				if (param.getRemarks() != "") {
 
-					pStmt.setString(3, "%" + param.getRecipe() + "%");
+					pStmt.setString(3, "%" + param.getRemarks() + "%");
 				}
 				else {
 					pStmt.setString(3, "%");
 				}
 
-				if (param.getCost() != 0) {
-					pStmt.setInt(4, param.getCost());
-				}
-				else {
-					pStmt.setString(4, "%");
-				}
-
-				if (param.getTime() != 0) {
-					pStmt.setInt(5, param.getTime());
-				}
-				else {
-					pStmt.setString(5, "%");
-				}
 
 
 				// SQL文を実行し、結果表を取得する
