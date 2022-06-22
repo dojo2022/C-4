@@ -37,7 +37,7 @@ INSERT INTO recipe VALUES(null, 0, '糖質控え目 ささみと枝豆のナム�
 
 INSERT INTO recipe VALUES(null, 0, 'さっぱり酢味噌冷奴', 150, 10, 'https://www.kurashiru.com/recipes/d285dfed-4aa4-44bd-b9c4-46f0e8126d1c', '簡単');
 
-INSERT INTO recipe VALUES(null, 0, '卵かけご飯', 140, 0, '', '');
+INSERT INTO recipe VALUES(null, 0, '卵かけご飯', 140, 0, '', 'シンプルイズベスト');
 
 INSERT INTO recipe VALUES(null, 1, 'きゅうりの漬物', 100, 0, 'https://www.kurashiru.com/recipes/c184ca35-d856-4948-8243-c2ad5afdf5e9', 'サンプルデータのため調理時間なし');
 
