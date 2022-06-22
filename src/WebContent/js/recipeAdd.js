@@ -3,8 +3,6 @@
 //☆エラーメッセージ、今後各項目で①～を入力してください！②半角数字で～と表示させる
 
 
-/*☆エラー表示関係停止中*/
- //BC引用必須項目エラー関係
 
 	/*記入に関するエラー関係の変数宣言*/
 	// [登録]ボタンをクリックしたときの処理 */
@@ -12,7 +10,7 @@
 	function onload(){
 
 		var recipeformObj = document.getElementById('recipe');
-		var costformObj = document.getElementById('cost');	//☆costの処理記述もonload function内に書く
+		var costformObj = document.getElementById('cost');
 		var timeformObj = document.getElementById('time');
 
 		//☆☆jsp上でのエラーメッセージ表示の処理
@@ -23,11 +21,17 @@
 		//レシピ名focusout時のエラー表示
 		var recipeerrorMessageObj = document.getElementById('recipeerror_message');
 
-		//費用focusout時の未入力エラー表示
+		//費用costのfocusout時未入力エラー表示
 		var costerrorMessageObj = document.getElementById('costerror_message');
 
-		//費用の半角数字エラーチェックの表示
-		var costNumterrorMessageObj = document.getElementById('costnum_error_message');
+		//費用costの半角数字エラーチェック表示
+		var costNumerrorMessageObj = document.getElementById('costnum_error_message');
+
+		//所要時間timeのfocusout時未入力エラー表示
+		var timeerrorMessageObj = document.getElementById('timeerror_message');
+
+		//所要時間timeの半角数字エラーチェック表示
+		var timeNumerrorMessageObj = document.getElementById('timenum_error_message');
 
 		//submit起動時のエラー表示(ボタン下のspanタグ)
 		var errorMessageObj = document.getElementById('error_message');
@@ -55,8 +59,8 @@
 		// 例：if(str.match(/^[0-9]+$/)){	(matchは変更？)
 
 
-		/*必須項目：フォームが入力された時に処理される(onchange→focusoutに変更)*/
-		//レシピに文字が入力されたか確認(空文字NG)
+		/*必須項目：フォームが入力された時に処理される(focusout)*/
+		//レシピ欄チェック(空文字NG)
 
 		recipeformObj.addEventListener('focusin', e => {
 	      console.log('recipe:focusin');
@@ -88,10 +92,12 @@
 		//もし全角も含まれて問題があれば全角チェックの処理
 		//全角を(処理で強制的に)半角に直す
 
-	    //費用・時間の半角数字チェック
+	    //費用の未入力・半角数字チェック
 	    //イベントリスナー使用
 	    //カーソルをクリック(focusin)した時の処理
 	    costformObj.addEventListener('focusin', e => {
+
+	      //コンソール内表示(テスト)
 	      console.log('cost:focusin');
 	    });
 
@@ -100,80 +106,130 @@
 		  console.log('cost:focusout');
 
 		  //変数宣言
-		  let costNumterrorMessageObj = document.getElementById('costnum_error_message');
+		  let costNumerrorMessageObj = document.getElementById('costnum_error_message');
 
 		  //費用欄を読み取る
 		  let cost = document.getElementById('cost');
 
-		  //費用欄が未入力だった場合 ☆☆追ってtrimでスペースあれば削除する機能を入れる
+		  //費用欄の未入力チェック ☆☆追ってtrimでスペースあれば削除する機能を入れる
 		  if (cost.value == null || cost.value =="") {
 
 		  	//(前に半角数字エラーが出ていたら消した上で入力指示エラーを表示する)
-		  	costNumterrorMessageObj.textContent = null;
+		  	costNumerrorMessageObj.textContent = null;
 		  	costerrorMessageObj.textContent = '※費用を入力してください！';
 		  	return false;
 		  }
-	      //入力されていればエラー表示なし
-		  costerrorMessageObj.textContent = null;
+		  else{
+	      	//入力されていればエラー表示なし
+		  	costerrorMessageObj.textContent = null;
+		  }
 
 
 		  //費用cost欄を読み取る
 		  var coststr = document.getElementById('cost').value;
+		  //let cost = document.getElementById('cost');
 
-		  //半角数字での入力があれば
+		  //費用cost欄半角数字チェック
 		  if(coststr.match(/^[0-9]+$/)){
-		  	//エラー表示なし
-		  	costNumterrorMessageObj.textContent = null;
-		  }
 
+		  	//半角数字での入力があればエラー表示なし
+		  	costNumerrorMessageObj.textContent = null;
+		  }
+		  else{
 		  	//半角数字以外なら必須項目入力のエラーを消して半角エラー表示を出す
 		  	//☆☆trimや例外対応の処理確認
 		  	costerrorMessageObj.textContent = null;
-		  	costNumterrorMessageObj.textContent = '※費用は半角数字で入力してください！';
+		  	costNumerrorMessageObj.textContent = '※費用は半角数字で入力してください！';
+		  }
+
+	    });//101行目イベントリスナーのカッコ閉じ
+
+
+	    //所要時間の未入力・半角数字チェック
+	    //カーソルをクリック(focusin)した時の処理
+	    timeformObj.addEventListener('focusin', e => {
+
+	      //コンソール内表示(テスト)
+	      console.log('time:focusin');
 	    });
+
+		//カーソル選択状態から別の部分をクリック(focusout)した時の処理
+		timeformObj.addEventListener('focusout', e => {
+		  console.log('time:focusout');
+
+		  //変数宣言
+		  let timeNumerrorMessageObj = document.getElementById('timenum_error_message');
+
+		  //費用欄を読み取る
+		  let time = document.getElementById('time');
+
+		  //費用欄の未入力チェック ☆☆追ってtrimでスペースあれば削除する機能を入れる
+		  if (time.value == null || time.value =="") {
+
+		  	//(前に半角数字エラーが出ていたら消した上で入力指示エラーを表示する)
+		  	timeNumerrorMessageObj.textContent = null;
+		  	timeerrorMessageObj.textContent = '※所要時間を入力してください！';
+		  	return false;
+		  }
+		  else{
+	      	//入力されていればエラー表示なし
+		  	timeerrorMessageObj.textContent = null;
+		  }
+
+
+		  //所要時間time欄を読み取る
+		  var timestr = document.getElementById('time').value;
+		  //let time = document.getElementById('time');
+
+		  //所要時間time欄半角数字チェック
+		  if(timestr.match(/^[0-9]+$/)){
+
+		  	//半角数字での入力があればエラー表示なし
+		  	timeNumerrorMessageObj.textContent = null;
+		  }
+		  else{
+		  	//半角数字以外なら必須項目入力のエラーを消して半角エラー表示を出す
+		  	//☆☆trimや例外対応の処理確認
+		  	timeerrorMessageObj.textContent = null;
+		  	timeNumerrorMessageObj.textContent = '※所要時間は半角数字で入力してください！';
+		  }
+
+	    });//150行目イベントリスナーのカッコ閉じ
 
     }//functon onloadのカッコ閉じ
 
 
+	/* [リセット]ボタンをクリックしたときの処理(実装済) */
+	formObj.onreset = function() {
+	  errorMessageObj.textContent = null;
+	};
 
 
+	/*登録ボタンクリック時のエラーチェック処理*/
+	//処理上手くいかなければボディタグのonload内に入れることも検討する
+	//function submit(){
 
-	/*上記テストのため停止中
-	//function recipecheck(){
-		//変数宣言
-		//不要？　var recipeformObj = document.getElementById('recipe');
-		//if (recipe.value == null || inputValue == "") {
-	        //エラーメッセージを表示させる
-	        //errorMessageObj.textContent = '※レシピ名を入力してください！';
-	        //return false;
-	    //}
-	        //errorMessageObj.textContent = null;
-	//};
-	*/
+		//必須項目3か所の要素を取得
+		//const submit = document.getElementById('recipe','cost','time');
 
+		//もし3か所のいずれかに記入漏れがあったら
+		//if(!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value){
 
-	//☆☆チェック中：費用costに半角数字が入力されたか確認(空文字NG) 関数宣言のパターン
-	//function costcheck(){
-	//}
+			//「入力に不備があります。チェックしてください。」と表示する
+			//errorMessageObj.textContent = '※入力に不備があります。チェックしてください。';
+			//return false;
+		//}
+		//else{
+			//else：Jsでの判定範囲でエラーがなければエラー表示せずにモジュール画面へ移動
+			//errorMessageObj.textContent = null;
 
-
-
-	/*テスト(実行できず)*/
-	//費用costに半角数字が入力されたか確認(空文字NG) 関数宣言のパターン
-	//function costcheck(){
-		//変数宣言
-		//var costformObj = document.getElementById('cost');
-		//半角数字のみの記入なら、メッセージなしで正常起動
-		//if (str.match(/^[0-9]+$/)) {
-		     //errorMessageObj.textContent = null;
-	  	     //}
-	  	     //半角で入力が無かった場合にエラーメッセージを表示させる
-	         //errorMessageObj.textContent = '※費用は半角で入力してください！';
-	         //return false;
-	    //};
+		//}
 
 
-     /*要調整(必須３か所チェック手段)　一旦停止
+	//}//function submitのカッコ閉じ
+
+
+     /*要調整(必須３か所チェック手段)　一旦停止*/
 	 //formObj.onsubmit = function() {
 	   //必須項目のいずれか(レシピ名か費用か所要時間)が入力されていない場合
 	   //if (!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value) {
@@ -183,16 +239,11 @@
 	      //}
 	      //errorMessageObj.textContent = null;
 	   //};
-     */
-
-	/* [リセット]ボタンをクリックしたときの処理(実装済) */
-	formObj.onreset = function() {
-	  errorMessageObj.textContent = null;
-	};
 
 
 
 
+//モーダルウィンドウ処理制御ファンクション
 function init(){
 	//モーダルウィンドウの編集
 
@@ -204,28 +255,31 @@ function init(){
 	const overlay = document.querySelector('.overlay');
 
 
-	// ボタンをクリックしたら、モダルとオーバーレイに.activeを付ける
-	btn.addEventListener('click', function(e){
-	  // aタグのデフォルトの機能を停止する
-	  e.preventDefault();
-	  // モーダルとオーバーレイにactiveクラスを付与する
-	  modal.classList.add('active');
-	  overlay.classList.add('active');
-	});
+			// ボタンをクリックしたら、モダルとオーバーレイに.activeを付ける
+			btn.addEventListener('click', function(e){
+	  		  // aタグのデフォルトの機能を停止する
+	  		  e.preventDefault();
+	  		  // モーダルとオーバーレイにactiveクラスを付与する
+	  		  modal.classList.add('active');
+	  		  overlay.classList.add('active');
+			});
 
-	// モダルの閉じるボタンをクリックしたら、モダルとオーバーレイのactiveクラスを外す
-	closeBtn.addEventListener('click', function(){
-	  modal.classList.remove('active');
-	  overlay.classList.remove('active');
-	});
+			// モダルの閉じるボタンをクリックしたら、モダルとオーバーレイのactiveクラスを外す
+			closeBtn.addEventListener('click', function(){
+	  		  modal.classList.remove('active');
+	  		  overlay.classList.remove('active');
+			});
 
-	// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
-	overlay.addEventListener('click', function() {
-	  modal.classList.remove('active');
-	  overlay.classList.remove('active');
-	});
+			// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
+			overlay.addEventListener('click', function() {
+	  		  modal.classList.remove('active');
+	  		  overlay.classList.remove('active');
+			});
 
 }
+
+
+
 
 function onclick_regist(){
 	//モーダルウィンドウの表示したい場所に画面の値をセットする。
@@ -258,4 +312,3 @@ function onclick_regist(){
 	document.getElementById("hidden_remarks").value = remarks;
 
 }
-
