@@ -108,7 +108,11 @@ public class recordsDAO {
 				recipe.setRecipe(rs.getString("RECIPE.recipe"));
 				record.setSavings(rs.getInt("RECORD.savings"));
 				recipe.setRemarks(rs.getString("RECIPE.remarks"));
+				//records()にセットした値は以下でリストに入れたが
 				recordList.add(record);
+				//recipeAdd()に入った値をどうすればいいのかわからない
+				//リストがもういっこいるのかやっぱりコンストラクタの値を増やすのか、、？
+				//レシピが増えてるのに気づいた　remarksも増やせばいいのか？？
 			}
 
 		} catch (SQLException e) {
