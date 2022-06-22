@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="./css/detail.css">
 <script src="./javascript/common.js"></script>
 <script src="./javascript/detail.js"></script>
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -52,7 +53,7 @@
 
 	<!-- フォーム -->
 	<form id="detail" method="GET" action="/EngelS/detailServlet"></form>
-	<table border ="1">
+	<table border ="1" class="sortable">
 	<div class= "scroll">
 
 	 <tr>
