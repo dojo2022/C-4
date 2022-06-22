@@ -9,9 +9,10 @@
 <!-- 共通css,jsへのリンク ★各画面のもここに入れてください-->
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/detail.css">
-<script src="./javascript/common.js"></script>
-<script src="./javascript/detail.js"></script>
-<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/detail.js"></script>
+<script
+	src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -43,58 +44,23 @@
 			</div>
 		</header>
 	</div>
-		<main>
-			<!--★皆さんが作ってるものをここに入れてください-->
+
+	<main>
+		<h1>詳細</h1>
+		<c:forEach var="e" items="${recipe}">
+			<form method="POST" action="/EngelS/detailServlet">
+				日付<input type="text" name="date" value="${e.date}"><br>
+				3食<input type="text" name="mealtime" value="${e.mealtime}"><br>
+				食事内容<input type="text" name="recipe" value="${e.recipe}"><br>
+				節約金額<input type="text" name="savings" value="${e.savings}"><br>
+
+			</form>
+			<hr>
+		</c:forEach>
+		<a href="/EngelS/homeServlet">ホームへ戻る</a>
 
 
-
-
-<h1>詳細</h1>
-
-	<!-- フォーム -->
-	<form id="detail" method="GET" action="/EngelS/detailServlet"></form>
-	<table border ="1" class="sortable">
-	<div class= "scroll">
-
-	 <tr>
-            <th rowspan=4>日付</th>
-            <th>３食</th>
-            <th>食事内容</th>
-            <th rowspan=4>節約金額</th>
-            <th rowspan=4>備考</th>
-     </tr>
-<!-- エラーの部分を質問する。 -->
-	<c:set var = "total" value = "0"></c:set>
-	<c:forEach var="record" items="${recipe}">
-
- 			<!-- 朝昼晩-->
-  			<td>${record.mealtime}</td>
-
- 			<!--  食事内容 -->
-      		<td>${record.recipeid}</td>
-
-			 <!--  節約金額 -->
-      		<td>${record.savings}</td>
-
- 			<!--  備考 -->
-      		<td rowspan=4>${record.remarks}</td>
-      		<!-- ${ リクエストスコープに入っているオブジェクトを指定 } -->
-		<c:set var = "total" value = "${ total }${ record.savings }"></c:set>
-			</c:forEach>
-
-   </div>
-
-   <!-- 合計行部分 -->
-            <tfoot id="result2"></tfoot>
-    </table>
-
-<table>
-
-</table>
-		<button onclick="location.href='/homeServlet.java'">戻る
-	</button>
-
-		</main>
+	</main>
 
 </body>
 </html>
