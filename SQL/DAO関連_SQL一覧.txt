@@ -47,6 +47,9 @@ SELECT * FROM record WHERE userid=?;
 SELECT date, SUM(savings) FROM record WHERE userid=? GROUP BY date;
 
 
+//記録詳細データの抽出(recordテーブル＆recipeテーブルで内部結合)
+//-----------------------------------------------------------------
+SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=?;
 
 
 
@@ -79,9 +82,7 @@ SELECT * FROM goal WHERE userid=? and date=?;
 
 //目標金額の更新
 //-----------------------------------------------------------------
-UPDATE goal SET money=?, sum=SELECT SUM(savings) FROM record WHERE userid=1 AND date>=goal.date WHERE userid=1 AND date=?;
-
-
+UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? AND date>=? WHERE userid=? AND date=?
 
 
 
