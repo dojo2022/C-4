@@ -37,7 +37,7 @@ public class recipeDAO {
 				// SQL文を準備する
 				//検索ボックスにてヒットする項目…レシピ名、備考
 				//(費用・所要時間などの数値はソートで取り扱うので対象外。URLも対象外にする)
-				String sql = "select Id, Userid, Recipe, Cost, Time, Url, Remarks from Recipe WHERE Userid = 0 or Userid = ? offset 1"; //WHEREをどうするか確認
+				String sql = "select Id, Userid, Recipe, Cost, Time, Url, Remarks from Recipe WHERE (userid = ? or userid = 0) and (recipe like ? or remarks like ?) and recipe != '外食'"; //WHEREをどうするか確認
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -50,7 +50,6 @@ public class recipeDAO {
 					pStmt.setString(1, "%");
 				}
 
-				/*
 				if (param.getRecipe() != "") {
 
 					pStmt.setString(2, "%" + param.getRecipe() + "%");
@@ -66,7 +65,6 @@ public class recipeDAO {
 				else {
 					pStmt.setString(3, "%");
 				}
-				*/
 
 
 
