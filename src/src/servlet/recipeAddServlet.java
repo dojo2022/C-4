@@ -90,6 +90,8 @@ public class recipeAddServlet extends HttpServlet {
 				//リクエストスコープに登録完了のメッセージを格納する
 				session.setAttribute("result", (new result("", "レシピが追加できました！", "")));
 
+				session.setAttribute("addrecipe", new recipeAdd(0, userid, recipe, cost, time, url, remarks));
+
 				result result=(result)session.getAttribute("result");
 				String msg = result.getMessage2();
 
@@ -107,7 +109,7 @@ public class recipeAddServlet extends HttpServlet {
 					session.setAttribute("result", (new result("", "レシピを追加できませんでした。", "")));
 
 					result result=(result)session.getAttribute("result");
-					String msg = result.getMessage2();
+					String msg = result.getMessage1();
 
 					System.out.println(msg);
 

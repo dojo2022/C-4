@@ -25,7 +25,7 @@
  <!-- onload…onloadが付いているタグの内容が読み込み終わったら -->
 	<!-- "init"(=初期化ファンクション)が実行される -->
 
- <body onload="init();">
+ <body onload="init();onload();">
 	<div class="container">
 		<header>
 			<!--設定ドロップダウンメニュー開始 -->
@@ -59,10 +59,11 @@
 		<main>
 			<h2>レシピ追加</h2>
 			<p>${result.message1}</p>
-			<!-- エラーメッセージ表示用タグ -->
-			<p id="err">${result.message2}</p>
+			<!-- エラーメッセージ(登録失敗)表示用タグ -->
+			<!-- ☆レシピ追加結果と同期してしまうため当jspではmessage2停止中 -->
+			<!-- <p id="err">${result.message2}</p> -->
 
-			<span>※は必須入力項目です。</span>
+			<span>※</span>は必須入力項目です。
 
 
  			<!-- レシピ追加フォーム -->
@@ -76,16 +77,18 @@
 				</td>
 				<td>
 					<!-- ☆onchangeの()内、this確認 -->
-					<input type="text" name="recipe" id="recipe" maxlength="30" onchange= "recipecheck()" >
+					<input type="text" name="recipe" id="recipe" maxlength="30" >
 				</td>
+				<td><span id="recipeerror_message"></span></td>
 			</tr>
 			<tr>
 				<td>
 					<b>費用(円)</b> <span>※</span>半角数字
 				</td>
 				<td>
-					<input type="text" name="cost" id="cost" onchange= "costcheck()">円
+					<input type="text" name="cost" id="cost" >円
 				</td>
+				<td><span id="costerror_message"></span><span id="costnum_error_message"></span></td>
 			</tr>
 			<tr>
 				<td>
