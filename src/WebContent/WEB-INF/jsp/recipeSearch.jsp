@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@
 				<input type="submit" name="btn" value="検索">
 			</form>
 
-			<!-- 費用と所要時間（追加されたやつ） -->
+			<!-- 費用と所要時間（追加されたやつ）
 		<select>
 			<optgroup label="費用">
 			<option value="up">昇順</option>
@@ -60,25 +61,30 @@
   			<option value="down">降順</option>
 			</optgroup>
 		</select>
+		-->
 
 			<!-- 一覧表 -->
-
-			<table border="1" class="sortable">
-			<pre>${recipe}</pre>
 			<div class= "scroll">
-				<tr>
-					<th>レシピ名</th>
-					<th>費用</th>
-					<th>所要時間</th>
-					<th>詳細ページ</th>
-				</tr>
-				<tr>
-					<td>${cardlist.recipe}</td>
-					<td>${cardlist.cost}円</td>
-					<td>${cardlist.time}分</td>
-					<td><a href onclick="location.href='/detailServlet.java'">詳細
-				</a></td>
-				</tr>
+				<table border="1" class="sortable">
+				<!-- <pre>${recipe}</pre>  -->
+
+					<tr>
+						<th>レシピ名</th>
+						<th>費用</th>
+						<th>所要時間</th>
+						<th>詳細ページ</th>
+					</tr>
+					<c:forEach var="e" items="${recipe}">
+					<tr>
+						<td>${e.recipe}</td>
+						<td>${e.cost}円</td>
+						<td>${e.time}分</td>
+						<td><a href onclick="location.hre6f='/detailServlet.java'">詳細
+					</a></td>
+					</tr>
+					</c:forEach>
+				</table>
+			</div>
 
 
 
