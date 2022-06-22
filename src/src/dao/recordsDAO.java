@@ -96,23 +96,19 @@ public class recordsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする 繰り返し表現　取り出したデータを配列に
-			//RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks
 			while (rs.next()) {
 				//Beansのインスタンスを生成
 				records record = new records();
-				recipeAdd recipe = new recipeAdd();
+				//recipeAdd recipe = new recipeAdd();
+				//↑records()の引数の要素を増やしたので使わなかった
 				//実際に表示するデータを1つずつセット
-				record.setUserid(rs.getInt("RECORD.userid"));
-				record.setDate(rs.getString("RECORD.date"));
-				record.setMealtime(rs.getString("RECORD.mealtime"));
-				recipe.setRecipe(rs.getString("RECIPE.recipe"));
-				record.setSavings(rs.getInt("RECORD.savings"));
-				recipe.setRemarks(rs.getString("RECIPE.remarks"));
-				//records()にセットした値は以下でリストに入れたが
+				record.setUserid(rs.getInt("userid"));
+				record.setDate(rs.getString("date"));
+				record.setMealtime(rs.getString("mealtime"));
+				record.setRecipe(rs.getString("recipe"));
+				record.setSavings(rs.getInt("savings"));
+				record.setRemarks(rs.getString("remarks"));
 				recordList.add(record);
-				//recipeAdd()に入った値をどうすればいいのかわからない
-				//リストがもういっこいるのかやっぱりコンストラクタの値を増やすのか、、？
-				//レシピが増えてるのに気づいた　remarksも増やせばいいのか？？
 			}
 
 		} catch (SQLException e) {

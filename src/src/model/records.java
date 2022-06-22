@@ -11,6 +11,7 @@ public class records implements Serializable {
 	private int recipeid;
 	private int savings;
 	private String recipe;
+	private String remarks;
 
 	public int getId() {
 		return id;
@@ -54,9 +55,15 @@ public class records implements Serializable {
 	public void setRecipe(String recipe) {
 		this.recipe = recipe;
 	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 
 
-	public records (int id, int userid, String date, String mealtime, int recipeid, int savings, String recipe) {
+	public records (int id, int userid, String date, String mealtime, int recipeid, int savings, String recipe,String remarks) {
 		super();
 		this.id = id;
 		this.userid = userid;
@@ -65,6 +72,7 @@ public class records implements Serializable {
 		this.recipeid = recipeid;
 		this.savings = savings;
 		this.recipe = recipe;
+		this.remarks = remarks;
 	}
 
 	public records() {
@@ -75,6 +83,7 @@ public class records implements Serializable {
 		this.recipeid = 0;
 		this.savings = 0;
 		this.recipe = "";
+		this.remarks = "";
 	}
 
 }

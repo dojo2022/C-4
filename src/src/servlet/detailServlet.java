@@ -53,7 +53,7 @@ public class detailServlet extends HttpServlet {
 		//記録詳細の表示
 		//useridのみで検索をかける
 		recordsDAO rcsDao = new recordsDAO();
-		List<records> rcs = rcsDao.select(new records(0, userid, "", "", 0, 0, ""));
+		List<records> rcs = rcsDao.select(new records(0, userid, "", "", 0, 0, "",""));
 
 		//検索結果をリクエストスコープに格納　${recipe}で使えるようにする
 		request.setAttribute("recipe", rcs);
