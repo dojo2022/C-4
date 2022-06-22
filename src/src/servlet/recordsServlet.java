@@ -115,15 +115,18 @@ public class recordsServlet extends HttpServlet {
 
 		//リクエストスコープから、備考を取得　忘れないようにする
 		String remarks = request.getParameter("remarks");
+		int count = 0;
 
 		// 登録処理を行う
 		recordsDAO bDao = new recordsDAO();
 		if (request.getParameter("SUBMIT").equals("登録する")) {
 			for (int i = 0; i < mealtime.length; i++) {
-				if (bDao.records_insert(
+				if (bDao.update(
 						new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { // 登録成功
-					/*request.setAttribute("",
-							new Result("登録成功！", "レコードを登録しました。", "/EngelS/homeServlet"));*/
+					count++;
+				}else if (bDao.records_insert(
+						new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { //更新成功
+					count++;
 				} else { // 登録失敗
 					request.setAttribute("result",
 							new result("登録失敗！", "レコードを登録できませんでした。", "/EngelS/Servlet"));
@@ -133,7 +136,9 @@ public class recordsServlet extends HttpServlet {
 
 			//備考登録作業
 			record_noteDAO cDao = new record_noteDAO();
-			if (cDao.insert(new record_note(0, userid, date, remarks))) {
+			if (cDao.update(new record_note(0, userid, date, remarks))) {
+
+			}else if(cDao.insert(new record_note(0, userid, date, remarks))) {
 
 			}
 			// ホームサーブレットにリダイレクトする 備考も含め完全に登録することができたら…

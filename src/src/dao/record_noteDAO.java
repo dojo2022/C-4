@@ -144,7 +144,7 @@ public class record_noteDAO {
 	}
 
 	// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
-/*	更新機能はないので、コメントアウト。もし追加するってなったら、コメント外して使う。（06/15)
+ //更新機能はないので、コメントアウト。もし追加するってなったら、コメント外して使う。（06/15)
  public boolean update(record_note card) {
 		Connection conn = null;
 		boolean result = false;
@@ -156,32 +156,26 @@ public class record_noteDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
-			// SQL文を準備する（ここも改造させる）	whereで検索条件を　指定。この場合のNUMBERは、最後に来なくてはならない。
-			//2022年6月15日、ここから始める。
-			String sql = "update recode_note set userid=?, date=? , remarks=? , id=? , where id = ?";
+			// SQL文を準備する（ここも改造させる）	whereで検索条件を　指定。
+			String sql = "UPDATE record_note set remarks=? WHERE userid=? AND date=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる（改造する。項目が増えるはずだからね）
 
-			if (card.getUserid() != 0) {
-				pStmt.setInt(1, card.getUserid());
+			if (card.getRemarks() != null) {
+				pStmt.setString(1, card.getRemarks());
 			} else {
 				pStmt.setString(1, null);
 			}
-			if (card.getDate() != null) {
-				pStmt.setDate(2, card.getDate());
+			if (card.getUserid() != 0) {
+				pStmt.setInt(2, card.getUserid());
 			} else {
 				pStmt.setString(2, null);
 			}
-			if (card.getRemarks() != null && !card.getRemarks().equals("")) {
-				pStmt.setString(3, card.getRemarks());
+			if (card.getDate() != null && !card.getRemarks().equals("")) {
+				pStmt.setString(3, card.getDate());
 			} else {
 				pStmt.setString(3, null);
-			}
-			if (card.getId() != 0) {
-				pStmt.setInt(4, card.getId());
-			} else {
-				pStmt.setString(4, null);
 			}
 
 			// SQL文を実行する
@@ -206,7 +200,9 @@ public class record_noteDAO {
 		// 結果を返す
 		return result;
 	}
-*/
+
+
+
 	// 引数numberで指定されたレコードを削除し、成功したらtrueを返す
 	//public void delete(String NUMBER) {
 	public boolean delete(String id) {

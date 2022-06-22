@@ -201,4 +201,79 @@ public class recordsDAO {
 		return result;
 	}
 
+	//もし同じ日付が入っていた場合に使う更新用のdao
+	public boolean update(records card) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
+
+			// SQL文を準備する
+			String sql = "UPDATE record set recipeid= SELECT id FROM recipe WHERE recipe=?, savings=? WHERE userid=? AND date=? AND mealtime=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			if (card.getRecipe() != null && !card.getRecipe().equals("")) {
+				pStmt.setString(1, card.getRecipe());
+			}
+			else {
+				pStmt.setString(1, null);
+			}
+			if (card.getSavings() != 0) {
+				pStmt.setInt(2, card.getSavings());
+			}
+			else {
+				pStmt.setString(2, null);
+			}
+			if(card.getUserid() != 0) {
+				pStmt.setInt(3, card.getUserid());
+			}
+			else {
+				pStmt.setString(3, null);
+			}
+			if(card.getDate() != null && !card.getDate().equals("")) {
+				pStmt.setString(4, card.getDate());
+			}
+			else {
+				pStmt.setString(4, null);
+			}
+			if(card.getMealtime() != null && !card.getMealtime().equals("")) {
+				pStmt.setString(5, card.getMealtime());
+			}
+			else {
+				pStmt.setString(5, null);
+			}
+
+
+			// SQL文を実行する
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
+	}
 }
