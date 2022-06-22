@@ -25,6 +25,14 @@ public class newPwServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		user user = (user) session.getAttribute("allList");
+
+		//${user1.user}と${user1.name}を使えるようにする処理
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1",user1);
+
 		// ログインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/newPw.jsp");
 		dispatcher.forward(request, response);
