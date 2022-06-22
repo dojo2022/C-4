@@ -30,12 +30,13 @@ public class detailServlet extends HttpServlet {
 
 
 		request.setCharacterEncoding("UTF-8");
-		//これでもって、データを特定することができる。
 
+		//セッションスコープから現在ログイン中のuseridを取ってきて変数useridに代入(DAOの検索処理で使う)
 		HttpSession session = request.getSession();
 		user user = (user)session.getAttribute("allList");
 		int userid = user.getId();
 
+		//ログインIDとニックネームの表示
 		//${user1.user}と${user1.name}を使えるようにする処理
 		userDAO uDao = new userDAO();
 		user user1 = uDao.select(user);
@@ -49,22 +50,16 @@ public class detailServlet extends HttpServlet {
 		 *     Step 3:   Send the data as a response
 		 */
 
-
-
-		// Step 2:
+		//記録詳細の表示
+		//useridのみで検索をかける
 		recordsDAO rcsDao = new recordsDAO();
-	List<records> rcs = rcsDao.select(new records(0, userid, "", "", 0, 0, ""));
-		//records rcs = recordsというオブジェクトに書き換わる。
+		List<records> rcs = rcsDao.select(new records(0, userid, "", "", 0, 0, ""));
 
-		// Step 3:
-	request.setAttribute("recipe", rcs);
-	request.setAttribute("total", rcs);
+		//検索結果をリクエストスコープに格納　${recipe}で使えるようにする
+		request.setAttribute("recipe", rcs);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/detail.jsp");
 		dispatcher.forward(request, response);
-
-
-
 	}
 
 	/**

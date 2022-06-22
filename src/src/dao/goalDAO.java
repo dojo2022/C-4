@@ -11,6 +11,7 @@ import model.goal;
 public class goalDAO {
 	public goal select(int id, int userid, String date, int money, int sum) {
 		Connection conn = null;
+		//Beansのインスタンスを生成(g)
 		goal g;
 
 		try {

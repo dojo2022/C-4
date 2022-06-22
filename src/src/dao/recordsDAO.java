@@ -68,9 +68,9 @@ public class recordsDAO {
 	}
 
 	//詳細記録で表示するもの
-	public List<records> select(records param) {
+	public List<records> select(records param){
 		Connection conn = null;
-		List<records> cardList = new ArrayList<records>();
+		List<records> recordList = new ArrayList<records>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -79,14 +79,13 @@ public class recordsDAO {
 			// データベースに接続する EL式
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
-			// SQL文を準備する 改造ポイント
-			String sql = "SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=?;\r\n"
-					+ "";
-
+			// SQL文を準備する 改造ポイント 新しいテーブルを作るイメージ
+			String sql =
+			"SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=?";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// SQL文を完成させる 改造ポイント
+			// SQL文を完成させる ?にセッションスコープから取ってきたuseridの値を入れる
 			if (param.getUserid() != 0) {
 				pStmt.setInt(1, param.getUserid());
 			} else {
@@ -97,35 +96,29 @@ public class recordsDAO {
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする 繰り返し表現　取り出したデータを配列に
+			//RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks
 			while (rs.next()) {
-				records card = new records(
-						rs.getInt("id"),
-						rs.getInt("userid"),
-						rs.getString("date"),
-						rs.getString("mealtime"),
-						rs.getInt("recipeid"),
-						rs.getInt("savings"),
-						rs.getString("recipe"));
-				cardList.add(card);
+				//Beansのインスタンスを生成
+				records record = new records();
+				recipeAdd recipe = new recipeAdd();
+				//実際に表示するデータを1つずつセット
+				record.setUserid(rs.getInt("RECORD.userid"));
+				record.setDate(rs.getString("RECORD.date"));
+				record.setMealtime(rs.getString("RECORD.mealtime"));
+				recipe.setRecipe(rs.getString("RECIPE.recipe"));
+				record.setSavings(rs.getInt("RECORD.savings"));
+				recipe.setRemarks(rs.getString("RECIPE.remarks"));
+				recordList.add(record);
 			}
-			//public recipeAdd(int id, int userid, String recipe, int cost, int time, String url, String remarks) {
-			while (rs.next()) {
-				records card = new recipeAdd(
-						rs.getInt("id"),
-						rs.getInt("userid"),
-						rs.getString("recipe"),
-						rs.getInt("cost"),
-						rs.getInt("time"),
-						rs.getString("url"),
-						rs.getString("remarks"));
-				cardList.add(card);
-			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			recordList = null;
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			recordList = null;
+
 		} finally {
 			// データベースを切断
 			if (conn != null) {
@@ -133,12 +126,12 @@ public class recordsDAO {
 					conn.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					 recordList = null;
 				}
 			}
 		}
 		// 結果を返す
-		return cardList;
+		return recordList;
 	}
 
 	// 日々の食事記録を登録
