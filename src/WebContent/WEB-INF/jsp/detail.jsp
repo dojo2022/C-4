@@ -46,20 +46,60 @@
 
 	<main>
 		<h1>詳細</h1>
+	<form id="detail" method="POST" action="/EngelS/detailServlet">
+	<div class= "scroll" style = "width:505px" style = "height:3000px">
+	<table border="1" style = "width:500px">
+		<tr>
+			<th style="width:100px">日付</th>
+			<th style="width:40px">３食</th>
+			<th style="width:70px">食事内容</th>
+			<th style="width:50px">節約金額</th>
+			<th style="width:200px">備考</th>
+		</tr>
+
 		<c:forEach var="e" items="${recipe}">
-			<form method="POST" action="/EngelS/detailServlet">
-				日付<input type="text" name="date" value="${e.date}"><br>
-				3食<input type="text" name="mealtime" value="${e.mealtime}"><br>
-				食事内容<input type="text" name="recipe" value="${e.recipe}"><br>
-				節約金額<input type="text" name="savings" value="${e.savings}"><br>
-				備考		<input type="text" name="remarks" value="${e.remarks}"><br>
-			</form>
-			<hr>
+			<tr>
+				<!-- 日付-->
+				<td class = "td-first">${e.date}</td>
+				<!-- 朝昼晩-->
+				<td class = "td-second">${e.mealtime}</td>
+				<!--  食事内容 -->
+				<td class = "td-third">${e.recipe}</td>
+				<!--  節約金額 -->
+				<td class = "td-fourth">${e.savings}</td>
+				<!--  備考 -->
+				<td class = "td-fifth">${e.remarks}</td>
+			</tr>
 		</c:forEach>
+	</table>
+	</div>
+	</form>
 		<a href="/EngelS/homeServlet">ホームへ戻る</a>
 
 
 	</main>
-
+	<footer>
+			<div class="f_logo">
+				<img src="./img/logo.png">
+			</div>
+			<div class="f1">
+				<a class="a1" href="/EngelS/homeServlet">ホーム</a> <a
+					href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a> <a
+					href="/EngelS/recipeAddServlet">レシピ追加</a> <br>
+			</div>
+			<div class="f2">
+				<a href="/EngelS/recordsServlet">1日の食事記録</a> <a
+					href="/EngelS/detailServlet">詳細表示</a> <br>
+			</div>
+			<div class="f3">
+				<a href="/EngelS/goalServlet">目標金額設定</a> | <a
+					href="/EngelS/alertServlet">アラート設定</a> | <a
+					href="/EngelS/newPwServlet">パスワード変更</a>
+			</div>
+			<div class="logout">
+				<a href="/EngelS/loginServlet">ログアウト</a>
+			</div>
+			<p>&copy;3SFY All rights reserved.</p>
+		</footer>
 </body>
 </html>
