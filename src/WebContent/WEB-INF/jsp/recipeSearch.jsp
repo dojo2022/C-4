@@ -45,8 +45,8 @@
 		</header>
 		<main>
 			<!--★皆さんが作ってるものをここに入れてください-->
-			<form method="get" action=recipeSearch target="_blank">
-				<input type="text" name="query" size="30" maxlength="40" value="">
+			<form method="POST" action="/EngelS/recipeSearchServlet">
+				<input type="text" name="query" size="30" maxlength="40">
 				<input type="submit" name="btn" value="検索">
 			</form>
 
