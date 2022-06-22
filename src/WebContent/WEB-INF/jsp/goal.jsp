@@ -12,8 +12,7 @@
 </head>
 
 <body>
-	<script src="./js/common.js"></script>
-	<script src="./js/goal.js"></script>
+
 	<div class="container">
 		<header>
 			<!--設定ドロップダウンメニュー開始 -->
@@ -45,22 +44,32 @@
 
 		<main>
 			<h1>目標金額設定</h1>
-			<p class="money">今月の目標金額は￥</p><div id="money">${goal.money}</div>
+			<p class="money">今月の目標金額は￥</p>
+			<div id="money">${goal.money}</div>
 			<br>
-			<p class="sum">今月の削減金額は￥</p><div id="sum">${goal.sum}</div>
+			<p class="sum">今月の削減金額は￥</p>
+			<div id="sum">${goal.sum}</div>
 			<br>
-			<p class="sagaku">目標まであと￥</p><div id="sagaku"></div>
-			<form method="POST" action="/EngelS/goalServlet">
-			<div class="ca">
-				<label>設定月<input type="month" name="date"></label>
-			</div>
-			<div class="tx">
-				<label>目標削減金額 <input type="text" name="new_money"> 円
-				</label>
-			</div>
-			<div class="btn">
-				<input type="submit" value="変更" name="change_goal">
-			</div>
+			<p class="sagaku">目標まであと￥</p>
+			<div id="sagaku"></div>
+			<form id="goal_form" method="POST" action="/EngelS/goalServlet">
+				<div class="ca">
+
+					<label>
+						設定月<input type="month" name="date">
+					</label>
+				</div>
+
+				<div class="tx">
+					<label>
+					目標削減金額 ￥<input type="text" name="new_money">
+					</label>
+
+				</div>
+				<div class="btn">
+					<input type="submit" value="変更" name="change_goal">
+					<div id="error"></div>
+				</div>
 			</form>
 			<div class="back">
 				<a href="/EngelS/homeServlet">ホームに戻る</a>
@@ -93,5 +102,8 @@
 			<p>&copy;3SFY All rights reserved.</p>
 		</footer>
 	</div>
+<script src="./js/common.js"></script>
+<script src="./js/goal.js"></script>
 </body>
 </html>
+
