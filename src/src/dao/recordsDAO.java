@@ -147,8 +147,8 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "insert into records(id, userid, date, mealtime, recipeid, savings) values "
-					+ "(null, ?, ?, ?, ?, ? )";
+			String sql = "insert into record(id, userid, date, mealtime, recipeid, savings) values "
+					+ "(null, ?, ?, ?, select id from recipe where recipe=?, ? )";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -167,8 +167,8 @@ public class recordsDAO {
 			} else {
 				pStmt.setString(3, null);
 			}
-			if (card.getRecipeid() != 0) {
-				pStmt.setInt(4, card.getRecipeid());
+			if (card.getRecipe() != null) {
+				pStmt.setString(4, card.getRecipe());
 			} else {
 				pStmt.setInt(4, 0);
 			}
