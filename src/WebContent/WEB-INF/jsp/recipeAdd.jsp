@@ -88,7 +88,9 @@
 				<td>
 					<input type="text" name="cost" id="cost" >円
 				</td>
-				<td><span id="costerror_message"></span><span id="costnum_error_message"></span></td>
+				<td>
+					<span id="costerror_message"></span><span id="costnum_error_message"></span>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -96,6 +98,9 @@
 				</td>
 				<td>
 					<input type="text" name="time" id="time">分
+				</td>
+				<td>
+					<span id="timeerror_message"></span><span id="timenum_error_message"></span>
 				</td>
 			</tr>
 			<tr>
