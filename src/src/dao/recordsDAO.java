@@ -80,8 +80,8 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する 改造ポイント
-			String sql = "SELECT userid, date, mealtime, SELECT recipe FROM recipe WHERE id=record.recipeid, savings"
-					+ "FROM record WHERE userid = ?";
+			String sql = "SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=?;\r\n"
+					+ "";
 
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -103,9 +103,21 @@ public class recordsDAO {
 						rs.getInt("userid"),
 						rs.getString("date"),
 						rs.getString("mealtime"),
-						0,
+						rs.getInt("recipeid"),
 						rs.getInt("savings"),
-						rs.getString("SELECT recipe FROM recipe WHERE id=record.recipeid"));
+						rs.getString("recipe"));
+				cardList.add(card);
+			}
+			//public recipeAdd(int id, int userid, String recipe, int cost, int time, String url, String remarks) {
+			while (rs.next()) {
+				records card = new recipeAdd(
+						rs.getInt("id"),
+						rs.getInt("userid"),
+						rs.getString("recipe"),
+						rs.getInt("cost"),
+						rs.getInt("time"),
+						rs.getString("url"),
+						rs.getString("remarks"));
 				cardList.add(card);
 			}
 		} catch (SQLException e) {

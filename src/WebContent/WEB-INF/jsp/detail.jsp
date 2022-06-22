@@ -48,7 +48,7 @@
 
 
 
-<p>詳細</p>
+<h1>詳細</h1>
 
 	<!-- フォーム -->
 	<form id="detail" method="GET" action="/EngelS/detailServlet"></form>
