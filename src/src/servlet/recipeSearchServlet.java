@@ -36,9 +36,9 @@ public class recipeSearchServlet extends HttpServlet {
 
 
 		//${user1.user}と${user1.name}を使えるようにする処理
-				userDAO uDao = new userDAO();
-				user user1 = uDao.select(user);
-				request.setAttribute("user1",user1);
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1",user1);
 
 
 		// リクエストパラメータを取得する
@@ -52,15 +52,25 @@ public class recipeSearchServlet extends HttpServlet {
 		 *     Step 3:   Send the data as a response
 		 */
 
+		recipeAdd searchterms = (recipeAdd)session.getAttribute("searchterms");
+
+		String recipe = "";
+		String remarks = "";
+
+		if(searchterms != null) {
+			recipe = searchterms.getRecipe();
+			remarks = searchterms.getRemarks();
+		}
 
 
 		// Step 2:
-		recipeDAO eDao = new recipeDAO();
-		List <recipeAdd> rs = eDao.select(new recipeAdd(0, userid, "", 0, 0, "", ""));
+		recipeDAO sDao = new recipeDAO();
+		//List <recipeAdd> rs = eDao.select(new recipeAdd(0, userid, "", 0, 0, "", ""));
+		List<recipeAdd> searchList = sDao.select(new recipeAdd(0, userid, recipe, 0, 0, "", remarks));
 
 		// Step 3:
 		//午後解説ここから
-		request.setAttribute("recipe", rs);
+		request.setAttribute("recipe", searchList);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
 		dispatcher.forward(request, response);
@@ -73,19 +83,30 @@ public class recipeSearchServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		// リクエストパラメータを取得する
+		request.setCharacterEncoding("UTF-8");
 
+		//検索条件を取得
+		String recipe = request.getParameter("query");
+		String remarks = request.getParameter("query");
+
+		//検索条件をセッションスコープに保存
+		recipeAdd searchterms = new recipeAdd(0, 0, recipe, 0, 0, "", remarks);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("searchterms", searchterms);
+
+
+		// recipeSearchServletにリダイレクトする
+		response.sendRedirect("/EngelS/recipeSearchServlet");
 
 
 	}
 
 
 
-	}
 
-//}
+}
 //servletはa connector of "model" and "view". it is the "c" of MVC.
 //
