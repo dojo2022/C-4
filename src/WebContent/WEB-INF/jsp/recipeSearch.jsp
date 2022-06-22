@@ -75,8 +75,8 @@
 					<td>${cardlist.recipe}</td>
 					<td>${cardlist.cost}円</td>
 					<td>${cardlist.time}分</td>
-					<td><a href="/EngelS/recipeSearchServlet"
-						class="btn">詳細</a></td>
+					<td><a href onclick="location.href='/detailServlet.java'">詳細
+				</a></td>
 				</tr>
 			</div>
 			</table>
