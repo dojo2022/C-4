@@ -1,5 +1,9 @@
 @charset "UTF-8";
-
+/*全体背景色など*/
+main{
+	background-color:#ffffd9;
+	height:368px;
+}
 #err{
 	color: #ff0000;
 }
