@@ -42,6 +42,7 @@ public class testDAO {
 						"",
 						0,
 						rs.getInt("sum(savings)"),
+						"",
 						""
 				);
 				sample.add(g);
