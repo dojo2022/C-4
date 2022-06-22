@@ -1,72 +1,77 @@
 @charset "UTF-8";
 main {
 	text-align:center;
+	background-color:#ffffd9;
+	height:850px;
 }
-/*目標金額は￥のところ*/
-.money{
-	font-size:20px;
+/*上の文３つ*/
+.wrapper1{
+	margin-top:20px;
+}
+.wrapper2{
+	margin-top:20px;
+}
+.wrapper3{
+	margin-top:20px;
+	margin-bottom:40px;
+}
+.money,.sum,.sagaku{
+	font-size:25px;
 	display:inline;
 }
-
-.sum{
-	font-size:20px;
-	display:inline;
-}
-
-.sagaku{
-	font-size:20px;
-	display:inline;
-}
-
-/*自動で取得する何円かというところ*/
-#money{
-	font-size:20px;
+#money,#sum,#sagaku{
+	font-size:25px;
 	font-weight:bold;
 	color:orange;
 	display:inline;
 }
-
-#sum{
+.date{
+	text-align:center;
 	font-size:20px;
-	font-weight:bold;
-	color:orange;
-	display:inline;
-}
-#sagaku{
-	font-size:20px;
-	font-weight:bold;
-	color:orange;
-	display:inline;
+	margin-bottom:10px;
 }
 
 /*グラフ*/
+canvas {
+    border: 1px solid silver;
+    background-color:white;
+}
 #myChart{
 	margin-left: auto;
     margin-right: auto;
-    height:300px;
-    display:block;
-    text-align:center;
+    height:330px;
+}
+
+/*記録詳細へ*/
+.det {
+	font-size:30px;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+ .det a:link,.det a:visited,.det a:active {
+  color: #1c1c1c;
+}
+.det a:hover{
+	color:orange;
 }
 
 /*+今日の記録(可能なら良い感じの画像にしたかったが、暫定として四方を線で囲んだ)*/
 .rec{
-	display:block;
-	font-size:40px;
-	margin-bottom:20px;
+	font-size:45px;
+	margin-top:50px;
+	margin-bottom:50px;
 }
 .rec a{
 	background-color:white;
-	border-top:solid 2px orange;
-	border-bottom:solid 2px orange;
-	border-left:solid 2px orange;
-	border-right:solid 2px orange;
-
+	border-top:solid 3px orange;
+	border-bottom:solid 3px orange;
+	border-left:solid 3px orange;
+	border-right:solid 3px orange;
 }
  .rec a:link,.rec a:visited,.rec a:active {
   color: #1c1c1c;
   text-decoration:none;
 }
-
 .rec a:hover{
 	color:orange;
 	text-decoration:none;
