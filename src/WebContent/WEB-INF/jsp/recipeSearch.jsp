@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="./css/recipeSearch.css">
 <script src="./javascript/common.js"></script>
 <script src="./javascript/recipeSearch.js"></script>
+<script
+	src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -61,8 +63,7 @@
 
 			<!-- 一覧表 -->
 
-			<table border="1">
-			<h1>Output:</h1>
+			<table border="1" class="sortable">
 			<pre>${recipe}</pre>
 			<div class= "scroll">
 				<tr>
@@ -78,8 +79,8 @@
 					<td><a href onclick="location.href='/detailServlet.java'">詳細
 				</a></td>
 				</tr>
-			</div>
-			</table>
+
+
 
 
 
