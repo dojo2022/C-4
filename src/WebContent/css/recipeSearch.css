@@ -61,4 +61,6 @@
   scrollbar-width: thin;
 }
 
-
+.table {
+	text-align: center
+}

@@ -90,7 +90,7 @@
 <table>
 
 </table>
-		<button onclick="location.href='./homeServlet.java'">戻る
+		<button onclick="location.href='/homeServlet.java'">戻る
 	</button>
 
 		</main>
