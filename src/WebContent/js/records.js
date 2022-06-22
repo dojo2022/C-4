@@ -1,15 +1,17 @@
 'use strict';
 
 function plus() {
-	let number1 = document.getElementById('number1');
-	let number2 = document.getElementById('number2');
-	let number3 = document.getElementById('number3');
+	let plusList = document.getElementsByName('savings');
+	let total = 0;
 
-	console.log(number1);
-	console.log(number2);
-	console.log(number3);
+	for(let i of plusList){
+		if(Boolean(Number(i.value))){
+			total += Number(i.value);
+		}
+	}
+
 	//結果を戻す
-	document.getElementById('total').textContent = number1 + number2 + number3;
+	document.getElementById('total').textContent = total + '円です!';
 }
 
 //必須項目を入力してくださいとだけを出るようにする。 required=""で実装してみる
@@ -87,7 +89,14 @@ function selectFunction(ele){
 	let index = ele.selectedIndex;			//選択されたコードを取得
 	let saving = ele.nextElementSibling; 	//隣接している次の兄弟要素を取得
 
-	saving.selectedIndex = index;
+	saving.selectedIndex = index;			//金額のプルダウン切替
+
+	//計算処理を呼び出す。plus();
+
+	let total = plus();
+
+	//let total = document.getElementById('total')
+
 	//
 	//const select = document.getElementById('morning');
 	//const savings = document.getElementById('morning_savings');

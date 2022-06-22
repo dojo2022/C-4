@@ -43,7 +43,7 @@ public class record_noteDAO {
 				pStmt.setString(1, "%");
 			}
 			if (param.getDate() != null) {
-				pStmt.setDate(2, param.getDate());
+				pStmt.setString(2, param.getDate());
 			} else {
 				pStmt.setString(2, "%");
 			}
@@ -56,7 +56,7 @@ public class record_noteDAO {
 				record_note card = new record_note(
 						rs.getInt("id"),
 						rs.getInt("userid"),
-						rs.getDate("date"),
+						rs.getString("date"),
 						rs.getString("remarks")
 				);
 				cardList.add(card);
@@ -96,32 +96,27 @@ public class record_noteDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する（ここも改造が必要）
-			String sql = "insert into record_note (id, userid, date, remarks) values (?, ?, ?,?)";
+			String sql = "insert into record_note (id, userid, date, remarks) values (null, ?, ?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (card.getId() != 0) {
+			if (card.getUserid() != 0) {
 				pStmt.setInt(1, card.getUserid());
 			} else {
 				pStmt.setString(1, null);
 			}
-			if (card.getUserid() != 0) {
-				pStmt.setInt(2, card.getUserid());
-			} else {
-				pStmt.setString(2, null);
-			}
 
 			if (card.getDate() != null) {
-				pStmt.setDate(3, card.getDate());
+				pStmt.setString(2, card.getDate());
 			} else {
-				pStmt.setString(3, null);
+				pStmt.setString(2, null);
 
 			}
 
 			if (card.getRemarks() != null && !card.getRemarks().equals("")) {
-				pStmt.setString(4, card.getRemarks());
+				pStmt.setString(3, card.getRemarks());
 			} else {
-				pStmt.setString(4, null);
+				pStmt.setString(3, null);
 
 			}
 

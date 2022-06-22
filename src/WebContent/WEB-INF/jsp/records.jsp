@@ -40,11 +40,11 @@
 			</div>
 		</header>
 		<main>
+			<form method="POST" action="/EngelS/recordsServlet" id="record_form">
 			<p>
 				日付<input type="date" name="date">
 			</p>
 			<p>削除金額</p>
-			<form method="POST" action="/EngelS/recordsServlet" id="record_form">
 
 				<table>
 				<!-- 朝食コーナー -->
@@ -70,7 +70,7 @@
 								<option>＊自動選択</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
-									<option id="number1"><c:out value="${recipe.cost}" />円
+									<option id="number1" value="${recipe.cost}"><c:out value="${recipe.cost}" />円
 									</option>
 								</c:forEach>
 						</select>
@@ -90,7 +90,7 @@
 							<option>＊選択してください</option>
 							<!-- データから取得できたのを確認済み　jsp側に問題か -->
 							<c:forEach var="recipe" items="${cardList}">
-								<option><c:out value="${recipe.recipe}" /></option>
+								<option value="${recipe.recipe}"><c:out value="${recipe.recipe}" /></option>
 							</c:forEach>
 						</select>
 						<select id="lunch_savings" name="savings" onChange="plus()">
@@ -98,7 +98,7 @@
 							<option>＊自動選択</option>
 							<!-- データから取得できたのを確認済み　jsp側に問題か -->
 							<c:forEach var="recipe" items="${cardList}">
-								<option id="number2"><c:out value="${recipe.cost}" />円
+								<option id="number2" value="${recipe.cost}"><c:out value="${recipe.cost}" />円
 								</option>
 							</c:forEach>
 						</select>
@@ -114,11 +114,11 @@
 						<td id="dinner_recipe">
 						<div id="dinnerRecipe">
 						<input type="checkbox" id="dinner_mealtime" name="mealtime" value="夕" checked>夕
-						<select id="dinner" name="recipeid" onChange="selectFunction(this)">
+						<select id="dinner" name="recipe" onChange="selectFunction(this)">
 								<option>＊選択してください</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
-									<option><c:out value="${recipe.recipe}" /></option>
+									<option value="${recipe.recipe}"><c:out value="${recipe.recipe}" /></option>
 								</c:forEach>
 						</select>
 						<select id="dinner_savings" name="savings" onChange="plus()">
@@ -126,7 +126,7 @@
 								<option>＊自動選択</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
-									<option id="number3"><c:out value="${recipe.cost}" />円
+									<option id="number3" value="${recipe.cost}"><c:out value="${recipe.cost}" />円
 									</option>
 								</c:forEach>
 						</select>
@@ -148,7 +148,7 @@
 					<%=request.getAttribute("money")%>
 					円
 				</p>
-				<input type="submit" value="登録する">
+				<input type="submit" name="SUBMIT" value="登録する">
 			</form>
 			<p id="output"></p>
 		</main>

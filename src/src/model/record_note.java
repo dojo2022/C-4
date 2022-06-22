@@ -1,13 +1,12 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 	public class record_note implements Serializable {
 		//テーブルの項目を再現
 		private int id;
 		private int userid;
-		private Date date;
+		private String date;
 		private String remarks;
 
 		//getter, setter
@@ -27,11 +26,11 @@ import java.sql.Date;
 			this.userid = userid;
 		}
 
-		public java.sql.Date getDate() {
+		public String getDate() {
 			return date;
 		}
 
-		public void setDate(Date date) {
+		public void setDate(String date) {
 			this.date = date;
 		}
 
@@ -44,7 +43,7 @@ import java.sql.Date;
 		}
 
 		//コンストラクタ
-		public record_note(int id, int userid, Date date, String remarks) {
+		public record_note(int id, int userid, String date, String remarks) {
 			super();
 			this.id = id;
 			this.userid = userid;
