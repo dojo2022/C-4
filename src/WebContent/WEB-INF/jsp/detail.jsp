@@ -11,8 +11,7 @@
 <link rel="stylesheet" href="./css/detail.css">
 <script src="./js/common.js"></script>
 <script src="./js/detail.js"></script>
-<script
-	src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+
 </head>
 <body>
 	<div class="container">
@@ -53,7 +52,7 @@
 				3食<input type="text" name="mealtime" value="${e.mealtime}"><br>
 				食事内容<input type="text" name="recipe" value="${e.recipe}"><br>
 				節約金額<input type="text" name="savings" value="${e.savings}"><br>
-
+				備考		<input type="text" name="remarks" value="${e.remarks}"><br>
 			</form>
 			<hr>
 		</c:forEach>
