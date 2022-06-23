@@ -68,14 +68,14 @@
 				</div>
 				<div class="btn">
 					<input type="submit" value="変更" name="change_goal">
-					<div id="error"></div>
+
 				</div>
 			</form>
 			<div class="back">
 				<a href="/EngelS/homeServlet">ホームに戻る</a>
 			</div>
-			<!-- 登録できました！のメッセージ -->
-			<p class="msg">${result.message3}</p>
+			<!-- 登録できました！のメッセージ エラーはこれを書き換え-->
+			<p id="msg">${result.message3}</p>
 		</main>
 
 		<footer>

@@ -59,31 +59,40 @@ public class goalServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// リクエストパラメータを取得できた！
-		//カレンダーからは2022-06が取得→SQL文を完成させるところで"-01"結合
-		request.setCharacterEncoding("UTF-8");
-		HttpSession session = request.getSession();
-		user user = (user) session.getAttribute("allList");
-		int userid = user.getId();
-		String date = request.getParameter("date");
-		int money = Integer.parseInt(request.getParameter("new_money"));
+		try {
+			// リクエストパラメータを取得できた！
+			//カレンダーからは2022-06が取得→SQL文を完成させるところで"-01"結合
+			request.setCharacterEncoding("UTF-8");
+			HttpSession session = request.getSession();
+			user user = (user) session.getAttribute("allList");
+			int userid = user.getId();
+			String date = request.getParameter("date");
+			int money = Integer.parseInt(request.getParameter("new_money"));
 
-		//goalDAOのインスタンスを生成
-		goalDAO gDao = new goalDAO();
+			//goalDAOのインスタンスを生成
+			goalDAO gDao = new goalDAO();
 
-		//Daoのupdateメソッドを実行する(dateをString型にした)
-		//コンストラクタ　public result(String message1, String message2, String message3) {
-		if(gDao.update(new goal(0,userid,date,money,0))) {
-			//セッションスコープにメッセージを格納する
-			session.setAttribute("result", (new result("", "", "目標金額を更新しました。")));
-			//ゴールサーブレットにリダイレクトする
+			if(gDao.update(new goal(0,userid,date,money,0))) {
+				//セッションスコープにメッセージを格納する
+				session.setAttribute("result", (new result("", "", "目標金額を更新しました。")));
+				//ゴールサーブレットにリダイレクトする
+				response.sendRedirect("/EngelS/goalServlet");
+			}else if(gDao.insert(new goal(0,userid,date,money,0))) {
+				session.setAttribute("result", (new result("", "", "新規目標金額を設定しました。")));
+				response.sendRedirect("/EngelS/goalServlet");
+			}else{
+				session.setAttribute("result", (new result("", "", "※月を設定してください！")));
+				response.sendRedirect("/EngelS/goalServlet");
+			}
+		}
+		catch (NumberFormatException e) {
+			HttpSession session = request.getSession();
+			session.setAttribute("result", (new result("", "", "※数字を入力してください！")));
 			response.sendRedirect("/EngelS/goalServlet");
-		}else if(gDao.insert(new goal(0,userid,date,money,0))) {
-			session.setAttribute("result", (new result("", "", "新規目標金額を設定しました。")));
-			response.sendRedirect("/EngelS/goalServlet");
-		}else{
-			session.setAttribute("result", (new result("", "", "登録できませんでした")));
-			response.sendRedirect("/EngelS/goalServlet");
+		}
+		finally {
+
 		}
 	}
 }
+

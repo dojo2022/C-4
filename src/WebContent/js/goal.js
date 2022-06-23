@@ -17,8 +17,7 @@ console.log(Error);
 
 goalForm.onsubmit = function(){
 	if(goalForm.new_money.value ==="" ){
-		Error.textContent='※必須項目を入力してください！';
-		document.getElementById("error").style.color = "red";
+		document.getElementById('msg').textContent = '※月と金額を入力してください！';
 		return false;
 	}
 }

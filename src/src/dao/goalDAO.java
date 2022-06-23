@@ -78,7 +78,7 @@ public class goalDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "INSERT into goal (userid,date,money,sum) values (?,?,?,SELECT SUM(savings) FROM record WHERE userid=? AND date>=?)";
+			String sql = "INSERT into goal (userid,date,money,sum) values (?,?,?,SELECT SUM(savings) FROM record WHERE userid=? AND date>=?);";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 

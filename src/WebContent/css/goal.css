@@ -2,39 +2,15 @@
 
 main{
 	text-align:center;
-}
+	background-color:#ffffd9;
+	height:420px;
+	}
 
-/*目標金額は￥のところ*/
-.money{
+.money,.sum,.sagaku{
 	font-size:20px;
 	display:inline;
 }
-
-.sum{
-	font-size:20px;
-	display:inline;
-}
-
-.sagaku{
-	font-size:20px;
-	display:inline;
-}
-
-/*自動で取得する何円かというところ*/
-#money{
-	font-size:20px;
-	font-weight:bold;
-	color:orange;
-	display:inline;
-}
-
-#sum{
-	font-size:20px;
-	font-weight:bold;
-	color:orange;
-	display:inline;
-}
-#sagaku{
+#money,#sum,#sagaku{
 	font-size:20px;
 	font-weight:bold;
 	color:orange;
@@ -69,8 +45,8 @@ span{
 	margin-top:30px;
 }
 
-.msg{
-	color:orange;
+#msg{
+	color:#ff5706;
 	font-size:20px;
 	font-weight:bold;
 	margin-bottom:20px;
