@@ -66,10 +66,13 @@
 					<div hidden>
 						<c:forEach var="List" items="${graph}">
 							<p class="savings">${List.savings}</p>
-							<p class="date">${List.date}</p>
+							<p class="day">${List.date}</p>
 						</c:forEach>
 						<p class="goal">${goal.money}</p>
 						<p class="daymax">${daymax}</p>
+						<c:forEach var="List" items="${RecipeList}">
+							<p class="Random">${List.recipe}</p>
+						</c:forEach>
 					</div>
 					<!--  グラフをここに表示-->
 					<canvas id="myChart"></canvas>
