@@ -28,6 +28,9 @@ public class newPwServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		user user = (user) session.getAttribute("allList");
 
+		//検索条件の削除
+		session.removeAttribute("searchterms");
+
 		//${user1.user}と${user1.name}を使えるようにする処理
 		userDAO uDao = new userDAO();
 		user user1 = uDao.select(user);
