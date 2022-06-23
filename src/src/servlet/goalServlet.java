@@ -35,6 +35,9 @@ public class goalServlet extends HttpServlet {
 		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
 
+		//検索条件の削除
+		session.removeAttribute("searchterms");
+
 		//今ログインしている年月を取得し変数dateに代入
 		Calendar cl = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
