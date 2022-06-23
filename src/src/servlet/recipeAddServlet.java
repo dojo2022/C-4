@@ -34,13 +34,16 @@ public class recipeAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//セッションからユーザー情報を得る
-				HttpSession session = request.getSession();
-				user user = (user)session.getAttribute("allList");
+		HttpSession session = request.getSession();
+		user user = (user)session.getAttribute("allList");
+
+		//検索条件の削除
+		session.removeAttribute("searchterms");
 
 		//ユーザーアイコン部分：${user1.user}と${user1.name}を使えるようにする処理
-				userDAO uDao = new userDAO();
-				user user1 = uDao.select(user);
-				request.setAttribute("user1",user1);
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1",user1);
 
 		// レシピ追加ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeAdd.jsp");
