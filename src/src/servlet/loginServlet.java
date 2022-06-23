@@ -27,8 +27,14 @@ public class loginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		//ログアウト処理
 		session.removeAttribute("allList");
+
+		//初回ログイン判定の初期化
 		session.removeAttribute("onetime");
+
+		//検索条件の削除
+		session.removeAttribute("searchterms");
 
 		// ログインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
