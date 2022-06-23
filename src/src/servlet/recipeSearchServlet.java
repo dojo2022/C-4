@@ -68,9 +68,14 @@ public class recipeSearchServlet extends HttpServlet {
 		//List <recipeAdd> rs = eDao.select(new recipeAdd(0, userid, "", 0, 0, "", ""));
 		List<recipeAdd> searchList = sDao.select(new recipeAdd(0, userid, recipe, 0, 0, "", remarks));
 
+		//検索ヒット数を保存
+		int Listcount = searchList.size();
+		System.out.println(Listcount);
+
 		// Step 3:
-		//午後解説ここから
 		request.setAttribute("recipe", searchList);
+		request.setAttribute("Listcount", Listcount);
+
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
 		dispatcher.forward(request, response);
