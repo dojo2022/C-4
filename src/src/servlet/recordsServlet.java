@@ -73,7 +73,6 @@ public class recordsServlet extends HttpServlet {
 		request.setAttribute("goal", goal);
 
 		//今月の目標金額をgetする
-		goal goals = (goal) session.getAttribute("goal");
 		int goal_money = goal.getMoney();
 
 		//とりあえずdayBigする
@@ -115,32 +114,35 @@ public class recordsServlet extends HttpServlet {
 
 		//リクエストスコープから、備考を取得　忘れないようにする
 		String remarks = request.getParameter("remarks");
-		int count = 0;
 
 		// 登録処理を行う
 		recordsDAO bDao = new recordsDAO();
+		record_noteDAO cDao = new record_noteDAO();
+
+		//重複データの削除
+		if(bDao.delete(new records(0, userid, date, "", 0, 0, "", ""))) {
+			System.out.println("削除しました.");
+		}
+		if(cDao.delete(new record_note(0, userid, date, ""))) {
+			System.out.println("削除しました.");
+		}
+
 		if (request.getParameter("SUBMIT").equals("登録する")) {
 			for (int i = 0; i < mealtime.length; i++) {
-				if (bDao.update(
-						new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { // 登録成功
-					count++;
-				}else if (bDao.records_insert(
-						new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { //更新成功
-					count++;
+				if(bDao.records_insert(new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { //更新成功
+					System.out.println("登録成功");
+
 				} else { // 登録失敗
-					request.setAttribute("result",
-							new result("登録失敗！", "レコードを登録できませんでした。", "/EngelS/Servlet"));
-					//↑result.jsp作ったらコメントアウト外す
+
+					request.setAttribute("result",new result());
+
 				}
 			}
 
-			//備考登録作業
-			record_noteDAO cDao = new record_noteDAO();
-			if (cDao.update(new record_note(0, userid, date, remarks))) {
-
-			}else if(cDao.insert(new record_note(0, userid, date, remarks))) {
-
+			if(cDao.insert(new record_note(0, userid, date, remarks))) {
+				System.out.println("登録成功");
 			}
+
 			// ホームサーブレットにリダイレクトする 備考も含め完全に登録することができたら…
 			response.sendRedirect("/EngelS/homeServlet");
 		}
