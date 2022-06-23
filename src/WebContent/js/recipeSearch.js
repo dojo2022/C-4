@@ -12,42 +12,60 @@
 
 
 
-/* ボタン、モダル、モダルの閉じるボタン、オーバーレイを変数に格納
-まだ、コピペをもってきただけ。*/
+		/* ボタン、モダル、モダルの閉じるボタン、オーバーレイを変数に格納
+		まだ、コピペをもってきただけ。*/
 
-const btn = document.querySelector('.btn');
-const modal = document.querySelector('.modal');
-const closeBtn = document.querySelector('.close');
-const overlay = document.querySelector('.overlay');
+		const btn = document.querySelector('.btn');
+		const modal = document.querySelector('.modal');
+		const closeBtn = document.querySelector('.close');
+		const overlay = document.querySelector('.overlay');
 
-// ボタンをクリックしたら、モダルとオーバーレイに.activeを付ける
-btn.addEventListener('click', function(e){
-  // aタグのデフォルトの機能を停止する
-  e.preventDefault();
+		// ボタンをクリックしたら、モダルとオーバーレイに.activeを付ける
+		btn.addEventListener('click', function(e){
+		  // aタグのデフォルトの機能を停止する
+		  e.preventDefault();
 
- // モーダルとオーバーレイにactiveクラスを付与する
-  modal.classList.add('active');
-  overlay.classList.add('active');
-});
+		 // モーダルとオーバーレイにactiveクラスを付与する
+		  modal.classList.add('active');
+		  overlay.classList.add('active');
+		});
 
-// モダルの閉じるボタンをクリックしたら、モダルとオーバーレイのactiveクラスを外す
-closeBtn.addEventListener('click', function(){
-  modal.classList.remove('active');
-  overlay.classList.remove('active');
-});
+		// モダルの閉じるボタンをクリックしたら、モダルとオーバーレイのactiveクラスを外す
+		closeBtn.addEventListener('click', function(){
+		  modal.classList.remove('active');
+		  overlay.classList.remove('active');
+		});
 
-// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
-overlay.addEventListener('click', function() {
-  modal.classList.remove('active');
-  overlay.classList.remove('active');
-})/**
- *
- */
- // ボタン、モダル、モダルの閉じるボタン、オーバーレイを変数に格納
-const btn = document.querySelector('.btn');
-const modal = document.querySelector('.modal');
-const closeBtn = document.querySelector('.close');
-const overlay = document.querySelector('.overlay');
+		// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
+		overlay.addEventListener('click', function() {
+		  modal.classList.remove('active');
+		  overlay.classList.remove('active');
+		})/**
+		 *
+		 */
+		 // ボタン、モダル、モダルの閉じるボタン、オーバーレイを変数に格納
+		const btn = document.querySelector('.btn');
+		const modal = document.querySelector('.modal');
+		const closeBtn = document.querySelector('.close');
+		const overlay = document.querySelector('.overlay');
+
+
+
+
+		/*
+		//検索件数の表示非表示の処理
+		const vis = document.getElementById('vis');
+		let change = document.getElementById('change');
+
+		//初期状態は非表示
+		vis.style.visibility = 'hidden';
+
+		if(change === 1){
+			//表示
+			vis.style.visibility = 'visible';
+		}
+		*/
+}
 
 
 function onclick_regist(){
