@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.goalDAO;
-import dao.testDAO;
+import dao.recipeDAO;
+import dao.recordsDAO;
 import dao.userDAO;
 import model.goal;
 import model.recipeAdd;
@@ -65,9 +66,9 @@ public class homeServlet extends HttpServlet {
 
 		//グラフデータの作成
 		//DAOのインスタンスを生成
-		testDAO graphDao = new testDAO();
+		recordsDAO graphDao = new recordsDAO();
 		//Beanを使わずに直接引数に検索条件を指定する。
-		List<records> sample= graphDao.select(new records(0,userid, date, "", 0,0, "", ""));
+		List<records> sample= graphDao.selectgraph(new records(0,userid, date, "", 0,0, "", ""));
 
 		//グラフデータをリクエストスコープに格納
 		request.setAttribute("graph", sample);
@@ -111,7 +112,7 @@ public class homeServlet extends HttpServlet {
 
 
 			//表示させるレシピの検索
-			testDAO randomDao = new testDAO();
+			recipeDAO randomDao = new recipeDAO();
 			List<recipeAdd> RecipeList= randomDao.randomSelect(new recipeAdd(0,userid, "", 0, time, "", ""));
 
 			//ログイン中に再度アラートさせないための処理
