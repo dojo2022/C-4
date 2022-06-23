@@ -29,6 +29,10 @@ public class alertServlet extends HttpServlet {
 			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/alert.jsp");
 		dispatcher.forward(request, response);
+
+		//検索条件の初期化
+		HttpSession session = request.getSession();
+		session.removeAttribute("searchterms");
 	}
 
 	/**
