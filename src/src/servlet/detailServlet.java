@@ -36,6 +36,9 @@ public class detailServlet extends HttpServlet {
 		user user = (user)session.getAttribute("allList");
 		int userid = user.getId();
 
+		//検索条件の初期化
+		session.removeAttribute("searchterms");
+
 		//ログインIDとニックネームの表示
 		//${user1.user}と${user1.name}を使えるようにする処理
 		userDAO uDao = new userDAO();
