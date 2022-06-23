@@ -13,6 +13,7 @@
 <script src="./javascript/recipeSearch.js"></script>
 <script
 	src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+	<script src="//listjs.com/assets/javascripts/list.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -62,17 +63,20 @@
 			</optgroup>
 		</select>
 		-->
+			【検索結果】<span id="hits"></span>件見つかりました。<!--検索数が表示されるところ-->
+
 
 			<!-- 一覧表 -->
-			<div class= "scroll">
-				<table border="1" class="sortable">
+
+				<table border="1" class="sortable" style = "width:700px; height:100px">
+
 				<!-- <pre>${recipe}</pre>  -->
 
 					<tr>
-						<th>レシピ名</th>
-						<th>費用</th>
-						<th>所要時間</th>
-						<th>詳細ページ</th>
+						<th style="width:100px">レシピ名</th>
+						<th style="width:50px">費用</th>
+						<th style="width:50px">所要時間</th>
+						<th style="width:30px">詳細ページ</th>
 					</tr>
 					<c:forEach var="e" items="${recipe}">
 					<tr>
@@ -85,9 +89,6 @@
 					</c:forEach>
 				</table>
 			</div>
-
-
-
 
 
 			<!--  how to use the parameter with <a> tag?-->

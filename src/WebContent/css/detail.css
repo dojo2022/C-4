@@ -1,13 +1,13 @@
 @charset "UTF-8";
-.scroll {
-  width: 300px;
-  height: 100px;
-  overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
-}
+
 
 
 .form {
 	text-align: center
 }
+
+main {
+	background-color:#ffffd9;
+	height:850px;
+}
+

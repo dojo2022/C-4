@@ -47,14 +47,14 @@
 	<main>
 		<h1>詳細</h1>
 	<form id="detail" method="POST" action="/EngelS/detailServlet">
-	<div class= "scroll" style = "width:505px" style = "height:3000px">
-	<table border="1" style = "width:500px">
+	<div style = "width:505px">
+	<table border="1" style = "width:700px; height:400px">
 		<tr>
 			<th style="width:100px">日付</th>
 			<th style="width:40px">３食</th>
-			<th style="width:70px">食事内容</th>
-			<th style="width:50px">節約金額</th>
-			<th style="width:200px">備考</th>
+			<th style="width:200px">食事内容</th>
+			<th style="width:70px">節約金額</th>
+			<th style="width:300px">備考</th>
 		</tr>
 
 		<c:forEach var="e" items="${recipe}">
@@ -66,7 +66,7 @@
 				<!--  食事内容 -->
 				<td class = "td-third">${e.recipe}</td>
 				<!--  節約金額 -->
-				<td class = "td-fourth">${e.savings}</td>
+				<td class = "td-fourth">${e.savings}円</td>
 				<!--  備考 -->
 				<td class = "td-fifth">${e.remarks}</td>
 			</tr>
