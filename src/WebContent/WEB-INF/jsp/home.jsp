@@ -18,7 +18,7 @@
 			<!--設定ドロップダウンメニュー開始 -->
 			<nav class="drop">
 				<ul id="dropmenu" class="dropmenu">
-					<li><a href="#">設定</a>
+					<li><img class="menu" src="./img/menu.png" onmouseover="ro(this, './img/menu2.png')"  onmouseout="ro(this, './img/menu.png')" >
 						<ul>
 							<li class="user">${user1.user}</li>
 							<li class="name">${user1.name}</li>
@@ -26,7 +26,8 @@
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
 							<li><a href="/EngelS/loginServlet">ログアウト</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 			</nav>
 			<!-- 設定ドロップダウンメニュー終了 -->
