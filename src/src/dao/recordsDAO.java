@@ -81,7 +81,7 @@ public class recordsDAO {
 
 			// SQL文を準備する 改造ポイント 新しいテーブルを作るイメージ
 			String sql =
-			"SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=?";
+			"SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=? ORDER BY date";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
