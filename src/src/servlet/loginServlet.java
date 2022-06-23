@@ -28,6 +28,7 @@ public class loginServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.removeAttribute("allList");
+		session.removeAttribute("onetime");
 
 		// ログインページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -54,6 +55,9 @@ public class loginServlet extends HttpServlet {
 			// セッションスコープにIDを格納する
 			session.setAttribute("allList", cardList);
 
+			//ランダムレシピ表示管理用
+			int onetime = 0;
+			session.setAttribute("onetime", onetime);
 
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/homeServlet");
@@ -62,10 +66,6 @@ public class loginServlet extends HttpServlet {
 			// リクエストスコープにメッセージを格納する
 			session.setAttribute("result", (new result("", "ログインに失敗しました。", "")));
 
-			result result=(result)session.getAttribute("result");
-			String msg = result.getMessage2();
-
-			System.out.println(msg);
 			// ログインサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/loginServlet");
 		}
