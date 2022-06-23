@@ -1,1 +1,18 @@
 @charset "UTF-8";
+/*全体背景色など*/
+main{
+	background-color:#ffffd9;
+	height: 400px;
+}
+
+button{
+	margin-top: 20px;
+}
+
+#content {
+	width: 550px;
+	height: 150px;
+	margin: auto;
+	margin-top: 50px;
+	text-align: center;
+}
