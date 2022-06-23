@@ -44,6 +44,9 @@ public class recordsServlet extends HttpServlet {
 		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
 
+		//検索条件の初期化
+		session.removeAttribute("searchterms");
+
 		// 検索処理を行う
 		recordsDAO bDao = new recordsDAO();
 		List<recipeAdd> cardList = bDao
