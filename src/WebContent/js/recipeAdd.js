@@ -1,6 +1,8 @@
-//☆49行目以降、費用cost分以降の処理合っているか要確認
-//☆☆エラーメッセージ、必須項目適応させる/*☆エラー表示関係停止中*/
-//☆エラーメッセージ、今後各項目で①～を入力してください！②半角数字で～と表示させる
+//☆☆品質向上用タスク
+//もし全角も含まれて問題があれば全角チェックの処理
+//全角を(処理で強制的に)半角に直す
+//trimメソッドで空欄処理
+
 
 
 
@@ -13,7 +15,7 @@
 		var costformObj = document.getElementById('cost');
 		var timeformObj = document.getElementById('time');
 
-		//☆☆jsp上でのエラーメッセージ表示の処理
+		//jsp上でのエラーメッセージ表示の処理
 		//(resultモデルと同一名のerrからerror_messageに変更中)
 
 		//var errorMessageObj = document.getElementById('err');
@@ -36,31 +38,9 @@
 		//submit起動時のエラー表示(ボタン下のspanタグ)
 		var errorMessageObj = document.getElementById('error_message');
 
-		//どこまで動作できているか確認する用のプログラム
-		//alert(formObj.user_id.value);
-		//alert(formObj.ID.value);
-
-
-		//☆☆6/22タスク
-		//☆☆Jsデバッグの際、中身確認時は変数名カーソル！
-		//まずはサンプル参考に入れてみる
-		//もし全角も含まれて問題があれば全角チェックの処理
-		//全角を半角に直す
-
-		//bodyタグにonloadを付けて、javascriptが適切なタイミングで処理されるようにする
-    	//1つのonload内のファンクションは複数記述可能
-    	//Jsファイルに関して、変数宣言はファンクション内で行う(エラー表示もない)
-    	//onloadが伴うファンクションの大きなカッコ内に、処理したい記述を書いていく！
-
-		//必須項目のエラー表示
-		//今後は半角数字表記判定も入れていく
-		//html inputタグ内にonchange,…input要素に文字を入力後、フォーカスが外れたタイミングでイベントが発動
-		//		/^[0-9]+$/	←半角数字のみ(空文字NG)の正規表現
-		// 例：if(str.match(/^[0-9]+$/)){	(matchは変更？)
-
 
 		/*必須項目：フォームが入力された時に処理される(focusout)*/
-		//レシピ欄チェック(空文字NG)
+		//レシピ欄チェック(空文字は判定できず→trim入れられると〇)
 
 		recipeformObj.addEventListener('focusin', e => {
 	      console.log('recipe:focusin');
@@ -68,6 +48,7 @@
 
 		recipeformObj.addEventListener('focusout', e => {
 
+		  //テスト用
 		  console.log('recipe:focusout');
 
 		  //レシピ欄を読み取る
@@ -86,11 +67,6 @@
 	    );
 
 
-
-		//☆☆6/22タスク
-		//まずはサンプル参考に入れて試す
-		//もし全角も含まれて問題があれば全角チェックの処理
-		//全角を(処理で強制的に)半角に直す
 
 	    //費用の未入力・半角数字チェック
 	    //イベントリスナー使用
@@ -142,7 +118,7 @@
 		  	costNumerrorMessageObj.textContent = '※費用は半角数字で入力してください！';
 		  }
 
-	    });//101行目イベントリスナーのカッコ閉じ
+	    });//81行目イベントリスナーのカッコ閉じ
 
 
 	    //所要時間の未入力・半角数字チェック
@@ -194,51 +170,15 @@
 		  	timeNumerrorMessageObj.textContent = '※所要時間は半角数字で入力してください！';
 		  }
 
-	    });//150行目イベントリスナーのカッコ閉じ
+	    });//132行目イベントリスナーのカッコ閉じ
 
     }//functon onloadのカッコ閉じ
 
 
-	/* [リセット]ボタンをクリックしたときの処理(実装済) */
+	/* [リセット]ボタンをクリックしたときの処理*/
 	formObj.onreset = function() {
 	  errorMessageObj.textContent = null;
 	};
-
-
-	/*登録ボタンクリック時のエラーチェック処理*/
-	//処理上手くいかなければボディタグのonload内に入れることも検討する
-	//function submit(){
-
-		//必須項目3か所の要素を取得
-		//const submit = document.getElementById('recipe','cost','time');
-
-		//もし3か所のいずれかに記入漏れがあったら
-		//if(!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value){
-
-			//「入力に不備があります。チェックしてください。」と表示する
-			//errorMessageObj.textContent = '※入力に不備があります。チェックしてください。';
-			//return false;
-		//}
-		//else{
-			//else：Jsでの判定範囲でエラーがなければエラー表示せずにモジュール画面へ移動
-			//errorMessageObj.textContent = null;
-
-		//}
-
-
-	//}//function submitのカッコ閉じ
-
-
-     /*要調整(必須３か所チェック手段)　一旦停止*/
-	 //formObj.onsubmit = function() {
-	   //必須項目のいずれか(レシピ名か費用か所要時間)が入力されていない場合
-	   //if (!recipeformObj.recipe.value || !costformObj.cost.value || !timeformObj.time.value) {
-	      //共通のエラーメッセージを表示させる
-	      //errorMessageObj.textContent = '※必須項目を入力してください！';
-	      //return false;
-	      //}
-	      //errorMessageObj.textContent = null;
-	   //};
 
 
 
@@ -278,91 +218,90 @@ function init(){
 	  overlay.classList.remove('active');
 	});
 
-}
+}//187行目initファンクションのカッコ閉じ
 
-//モーダルウィンドウの処理前にエラーチェックを行う作業
-//①onclickで内に書く　チェック項目が少ない時とか
-//②check用のfunctionを別に書く　実際に動いているものと←こちらを利用！
+	//モーダルウィンドウの処理前にエラーチェックを行う作業
+	//①onclickで内に書く　チェック項目が少ない時とか
+	//②check用のfunctionを別に書く　実際に動いているものと←こちらを利用
 
-//実装手順
-//①checkfunctionが正常起動しているかアラートのみの実装で確認(モーダルの処理まで確認)→OK
-//②　①確認後、リターンfalseを付けてモーダル処理へ飛ばないか確認
-//→returnだと処理が実行されるため別案検討(Jsにはexitが無いのでtry catch?)
-//try cacthを使った場合、例外が投げられるため、例外取得時の処理を追加する必要あり？
-//③checkファンクションに本格的な実装を進める
-
-//メソッドの処理を終了して呼び出し元のメソッドに戻るにはreturn文を使いますが、
-//return文ではメソッドを抜けた後の処理はそのまま実行されてしまいます。
-
-//check.onclick = function(){
-	//try {
-	//ファンクション内で必要な変数宣言
-	//	const～
-	//ifでエラーチェック処理(エラーがあればの条件式)
-//	if()｛
-	//エラーです
-//	}//エラーがあった場合は実行されない部分にonclick_registの処理を入れる？
-//	else{
-//	}
+	//実装手順
+	//①checkfunctionが正常起動しているかアラートのみの実装で確認(モーダルの処理まで確認)→OK
+	//②　①確認後、リターンfalseを付けてモーダル処理へ飛ばないか確認
+	//→returnだと処理が実行されるため、イベントリスナーと
+	//③checkファンクションに本格的な実装を進める
 
 
-
+//(エラーチェックが完了し、)登録画面に移行するメソッド)
 function onclick_regist(){
 
 	//入力データのチェックをするメソッドを呼び出す
 	//
-	alert("onclick_registfun start");
+	console.log("onclick_registfun start");
 
 	if(check() == false){
 
-		alert("onclick_registfun false");
+		console.log("onclick_registfun false");
 		//checkファンクションがfalseを返したらここでもfalseを返す
 		return false;
 
 	}
 	//エラーが無ければ登録するメソッドを呼び出す
-	alert("onclick_registfun true");
+	console.log("onclick_registfun true");
 	regist();
 	return true;
 
-}
+}//235行目onclick_registファンクションのカッコ閉じ
 
 
-
-//★★★編集中！(212辺りのエラーチェック処理を持ってくる)
-//resistにいかないようにfalse記入も忘れずに！trueも使う
+//登録ボタンクリック時のエラーチェック確定処理！
+//resistの処理に移行しないようにfalse記入も忘れずに！trueも使う
 function check(){
-	//テスト開始用のアラート
-	alert("checkfun start");
+
+	//テスト開始用のコンソール
+	console.log("checkfun start");
 
 	//必須項目部分の変数宣言
 	var recipeformObj = document.getElementById('recipe');
 	var costformObj = document.getElementById('cost');
 	var timeformObj = document.getElementById('time');
 
-	//エラーメッセージ用の変数宣言
+	//半角チェック用の変数宣言
+	var coststr = document.getElementById('cost').value;
+	var timestr = document.getElementById('time').value;
+
+	//必須項目未入力時の変数宣言
 	let errorMessageObj = document.getElementById('error_message');
 
-	//エラーが無いかチェックする処理(未入力の部分があればエラーを返す)
+	//半角数字入力が無かった時の変数宣言
+	let numErrorMessageObj = document.getElementById('numerror_message');
+
+	//必須項目が記入されているか判断
 	if(recipe.value == null || recipe.value =="" ||cost.value == null || cost.value =="" || time.value == null || time.value ==""){
-		//エラーメッセージを表示
-		alert("checkfun false");
+
+		////必須項目に未入力の部分があればエラーメッセージ表示
+		console.log("checkfun false");
 		errorMessageObj.textContent = '※必須項目に未入力の部分があります。チェックしてください。';
 		//falseを返す(initファンクション内イベントリスナー(259行目～)の処理へ移行させない)
 		return false;
 
-		//エラーなく処理されればtrueを返し、onclick_registファンクションへ移行する(現在310行目～記載)
-	}else{
-		alert("checkfun true");
-		return true;
-	}
-}
+	//半角チェック判断
+	}else if(coststr.match(/^[0-9]+$/) && timestr.match(/^[0-9]+$/)){
 
+		//エラーなく処理されればtrueを返し、onclick_registファンクションへ移行する(現在310行目～記載)
+		console.log("checkfun true");
+		return true;
+
+	}else{
+		//半角数字が満たされていなければエラーメッセージ表示(モーダルへは進まない)
+		numErrorMessageObj.textContent = '※費用と所要時間は半角数字で入力してください。';
+		return false;
+	}
+
+}//258行目function checkのカッコ閉じ
 
 
 function regist(){
 	//モーダルウィンドウの表示したい場所に画面の値をセットする。
-	//☆js文51行目、コスト以降合っているか要確認
 	//innerHTML：HTML要素の取得、変更、削除、追加などが可能。
 
 	//レシピ名recipeの分
@@ -390,4 +329,4 @@ function regist(){
 	document.getElementById("modal_remarks").innerHTML = remarks;
 	document.getElementById("hidden_remarks").value = remarks;
 
-}
+}//303行目registファンクションのカッコ閉じ
