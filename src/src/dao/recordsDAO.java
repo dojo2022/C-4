@@ -201,8 +201,8 @@ public class recordsDAO {
 		return result;
 	}
 
-	//もし同じ日付が入っていた場合に使う更新用のdao
-	public boolean update(records card) {
+	//もし同じ日付が入っていた場合に使う削除用のdao
+	public boolean delete(records card) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -214,39 +214,21 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "UPDATE record set recipeid= SELECT id FROM recipe WHERE recipe=?, savings=? WHERE userid=? AND date=? AND mealtime=?";
+			String sql = "DELETE FROM record WHERE userid = ? AND date = ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (card.getRecipe() != null && !card.getRecipe().equals("")) {
-				pStmt.setString(1, card.getRecipe());
+			if (card.getUserid() != 0) {
+				pStmt.setInt(1, card.getUserid());
 			}
 			else {
 				pStmt.setString(1, null);
 			}
-			if (card.getSavings() != 0) {
-				pStmt.setInt(2, card.getSavings());
+			if (card.getDate() != "") {
+				pStmt.setString(2, card.getDate());
 			}
 			else {
 				pStmt.setString(2, null);
-			}
-			if(card.getUserid() != 0) {
-				pStmt.setInt(3, card.getUserid());
-			}
-			else {
-				pStmt.setString(3, null);
-			}
-			if(card.getDate() != null && !card.getDate().equals("")) {
-				pStmt.setString(4, card.getDate());
-			}
-			else {
-				pStmt.setString(4, null);
-			}
-			if(card.getMealtime() != null && !card.getMealtime().equals("")) {
-				pStmt.setString(5, card.getMealtime());
-			}
-			else {
-				pStmt.setString(5, null);
 			}
 
 
