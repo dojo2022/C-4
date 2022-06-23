@@ -134,7 +134,8 @@
 
 	<!-- ☆表示場所変更中：エラー表示欄(BCログインjsp準拠)→タイトルの下63行目にて表示 -->
 	<!-- resultモデルのエラー表記(err)と統一中、もし不都合あればerror_messageに変更、jsへの反映も -->
-	<span id="error_message"></span>
+	<span id="error_message"></span><br>
+	<span id="numerror_message"></span>
 
 	<!-- resultモデルのエラーと差別化　<span id="err"></span>  -->
 
