@@ -77,6 +77,8 @@ public class recipeSearchServlet extends HttpServlet {
 		request.setAttribute("Listcount", Listcount);
 
 
+		//検索時以外の検索結果欄の非表示化
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/recipeSearch.jsp");
 		dispatcher.forward(request, response);
 
@@ -102,6 +104,9 @@ public class recipeSearchServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("searchterms", searchterms);
 
+		//検索結果欄の表示
+		int change = 1;
+		session.setAttribute("change", change);
 
 		// recipeSearchServletにリダイレクトする
 		response.sendRedirect("/EngelS/recipeSearchServlet");
