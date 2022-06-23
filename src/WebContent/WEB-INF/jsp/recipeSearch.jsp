@@ -63,7 +63,11 @@
 			</optgroup>
 		</select>
 		-->
-			【検索結果】<span id="hits"></span>${Listcount}件見つかりました。<!--検索数が表示されるところ-->
+			<!-- 非表示設定用 -->
+			<div id="vis">
+				<p hidden>${change}</p>
+				【検索結果】<span id="hits"></span>${Listcount}件見つかりました。<!--検索数が表示されるところ-->
+			</div>
 
 
 			<!-- 一覧表 -->
