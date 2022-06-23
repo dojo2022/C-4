@@ -145,7 +145,7 @@ public class record_noteDAO {
 
 	// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
  //更新機能はないので、コメントアウト。もし追加するってなったら、コメント外して使う。（06/15)
- public boolean update(record_note card) {
+ public boolean delete(record_note card) {
 		Connection conn = null;
 		boolean result = false;
 
@@ -157,26 +157,24 @@ public class record_noteDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する（ここも改造させる）	whereで検索条件を　指定。
-			String sql = "UPDATE record_note set remarks=? WHERE userid=? AND date=?";
+			String sql = "DELETE FROM record_note WHERE userid = ? AND date = ?;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる（改造する。項目が増えるはずだからね）
 
-			if (card.getRemarks() != null) {
-				pStmt.setString(1, card.getRemarks());
-			} else {
+			// SQL文を完成させる
+			if (card.getUserid() != 0) {
+				pStmt.setInt(1, card.getUserid());
+			}
+			else {
 				pStmt.setString(1, null);
 			}
-			if (card.getUserid() != 0) {
-				pStmt.setInt(2, card.getUserid());
-			} else {
+			if (card.getDate() != "") {
+				pStmt.setString(2, card.getDate());
+			}
+			else {
 				pStmt.setString(2, null);
 			}
-			if (card.getDate() != null && !card.getRemarks().equals("")) {
-				pStmt.setString(3, card.getDate());
-			} else {
-				pStmt.setString(3, null);
-			}
 
 			// SQL文を実行する
 			if (pStmt.executeUpdate() == 1) {
@@ -187,61 +185,6 @@ public class record_noteDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		// 結果を返す
-		return result;
-	}
-
-
-
-	// 引数numberで指定されたレコードを削除し、成功したらtrueを返す
-	//public void delete(String NUMBER) {
-	public boolean delete(String id) {
-		//型			変数名 = 初期値;
-		Connection conn = null;
-		boolean result = false;
-
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
-
-			// SQL文を準備する。下にNUMBERが来ているが、消すときはNUMBERの情報だけで十分であることがわかる。
-			String sql = "delete from BC where id=?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			//			int a = Integer.parseInt("123");
-
-			// SQL文を完成させる
-			pStmt.setString(1, id);
-			// delete from BC where NUMBER='0006'
-
-			//			pStmt.setString(1, "id");
-			//			pStmt.setString(2, "userid");
-			//			pStmt.setString(3, "date");
-			//			pStmt.setString(4, "remarks");
-
-			// SQL文を実行する
-			if (pStmt.executeUpdate() == 1) {
-				result = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-
 			// データベースを切断
 			if (conn != null) {
 				try {
