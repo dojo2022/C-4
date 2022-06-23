@@ -7,7 +7,7 @@
 <title>パスワード変更結果|EngelS</title>
 <!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
-<link rel="stylesheet" type="text/css" href="/EngelS/css/newPw.css">
+<link rel="stylesheet" type="text/css" href="/EngelS/css/showPw.css">
 <script src="./javascript/common.js"></script>
 <script type="text/javascript" src="/EngelS/js/newPw.js"></script>
 </head>
@@ -41,10 +41,10 @@
 			</div>
 		</header>
 		<main>
-
-			<h1>パスワードの変更が完了しました。</h1>
-			<button onclick="location.href='/EngelS/homeServlet'">ホームに戻る</button>
-
+			<div id="content">
+				<h1>パスワードの変更が完了しました。</h1>
+				<button onclick="location.href='/EngelS/homeServlet'">ホームに戻る</button>
+			</div>
 		</main>
 		<footer>
 			<div class="f_logo">
