@@ -126,7 +126,7 @@
 					<!--  actionページ遷移もモーダルへ移動 -->
 					<!--  <a href="#" class="button">登録(モーダルウィンドウを表示)</a> -->
 					<!-- 元文章：<td><input type="submit" name="REGIST" value="登録" class="button"></td> -->
-				<td><a href="#" class="button" id="modal_regist" onclick="onclick_regist()">登録</a></td>
+				<td><a href="#" class="button" id="modal_regist" >登録</a></td>
 			</tr>
 		</table>
 	</form>

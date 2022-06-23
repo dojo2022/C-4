@@ -255,33 +255,112 @@ function init(){
 	const overlay = document.querySelector('.overlay');
 
 
-			// ボタンをクリックしたら、モダルとオーバーレイに.activeを付ける
-			btn.addEventListener('click', function(e){
-	  		  // aタグのデフォルトの機能を停止する
-	  		  e.preventDefault();
-	  		  // モーダルとオーバーレイにactiveクラスを付与する
-	  		  modal.classList.add('active');
-	  		  overlay.classList.add('active');
-			});
+	// ボタンをクリックしたら、モダルとオーバーレイに.activeを付ける
+	btn.addEventListener('click', function(e){
+		if(onclick_regist()){
+			 // aタグのデフォルトの機能を停止する
+			 e.preventDefault();
+			 // モーダルとオーバーレイにactiveクラスを付与する
+			 modal.classList.add('active');
+			 overlay.classList.add('active');
+		}
+	});
 
-			// モダルの閉じるボタンをクリックしたら、モダルとオーバーレイのactiveクラスを外す
-			closeBtn.addEventListener('click', function(){
-	  		  modal.classList.remove('active');
-	  		  overlay.classList.remove('active');
-			});
+	// モダルの閉じるボタンをクリックしたら、モダルとオーバーレイのactiveクラスを外す
+	closeBtn.addEventListener('click', function(){
+	  modal.classList.remove('active');
+	  overlay.classList.remove('active');
+	});
 
-			// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
-			overlay.addEventListener('click', function() {
-	  		  modal.classList.remove('active');
-	  		  overlay.classList.remove('active');
-			});
+	// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
+	overlay.addEventListener('click', function() {
+	  modal.classList.remove('active');
+	  overlay.classList.remove('active');
+	});
+
+}
+
+//モーダルウィンドウの処理前にエラーチェックを行う作業
+//①onclickで内に書く　チェック項目が少ない時とか
+//②check用のfunctionを別に書く　実際に動いているものと←こちらを利用！
+
+//実装手順
+//①checkfunctionが正常起動しているかアラートのみの実装で確認(モーダルの処理まで確認)→OK
+//②　①確認後、リターンfalseを付けてモーダル処理へ飛ばないか確認
+//→returnだと処理が実行されるため別案検討(Jsにはexitが無いのでtry catch?)
+//try cacthを使った場合、例外が投げられるため、例外取得時の処理を追加する必要あり？
+//③checkファンクションに本格的な実装を進める
+
+//メソッドの処理を終了して呼び出し元のメソッドに戻るにはreturn文を使いますが、
+//return文ではメソッドを抜けた後の処理はそのまま実行されてしまいます。
+
+//check.onclick = function(){
+	//try {
+	//ファンクション内で必要な変数宣言
+	//	const～
+	//ifでエラーチェック処理(エラーがあればの条件式)
+//	if()｛
+	//エラーです
+//	}//エラーがあった場合は実行されない部分にonclick_registの処理を入れる？
+//	else{
+//	}
+
+
+
+function onclick_regist(){
+
+	//入力データのチェックをするメソッドを呼び出す
+	//
+	alert("onclick_registfun start");
+
+	if(check() == false){
+
+		alert("onclick_registfun false");
+		//checkファンクションがfalseを返したらここでもfalseを返す
+		return false;
+
+	}
+	//エラーが無ければ登録するメソッドを呼び出す
+	alert("onclick_registfun true");
+	regist();
+	return true;
 
 }
 
 
 
+//★★★編集中！(212辺りのエラーチェック処理を持ってくる)
+//resistにいかないようにfalse記入も忘れずに！trueも使う
+function check(){
+	//テスト開始用のアラート
+	alert("checkfun start");
 
-function onclick_regist(){
+	//必須項目部分の変数宣言
+	var recipeformObj = document.getElementById('recipe');
+	var costformObj = document.getElementById('cost');
+	var timeformObj = document.getElementById('time');
+
+	//エラーメッセージ用の変数宣言
+	let errorMessageObj = document.getElementById('error_message');
+
+	//エラーが無いかチェックする処理(未入力の部分があればエラーを返す)
+	if(recipe.value == null || recipe.value =="" ||cost.value == null || cost.value =="" || time.value == null || time.value ==""){
+		//エラーメッセージを表示
+		alert("checkfun false");
+		errorMessageObj.textContent = '※必須項目に未入力の部分があります。チェックしてください。';
+		//falseを返す(initファンクション内イベントリスナー(259行目～)の処理へ移行させない)
+		return false;
+
+		//エラーなく処理されればtrueを返し、onclick_registファンクションへ移行する(現在310行目～記載)
+	}else{
+		alert("checkfun true");
+		return true;
+	}
+}
+
+
+
+function regist(){
 	//モーダルウィンドウの表示したい場所に画面の値をセットする。
 	//☆js文51行目、コスト以降合っているか要確認
 	//innerHTML：HTML要素の取得、変更、削除、追加などが可能。
