@@ -60,7 +60,7 @@ function Arraydata(){
 
 //ラベルの設定
 function Arraylabel(){
-	var hoge = document.getElementsByClassName('date');
+	var hoge = document.getElementsByClassName('day');
 	var label = [];
 
 	for(let i = 0; i < hoge.length; i++){
@@ -71,7 +71,7 @@ function Arraylabel(){
 
 //目標金額の日割り計算
 function Arrayquota(){
-	var hoge = document.getElementsByClassName('date');
+	var hoge = document.getElementsByClassName('day');
 	const goal = document.getElementsByClassName('goal');
 	const daymax = document.getElementsByClassName('daymax');
 	const quotadata = Math.floor(goal[0].textContent/daymax[0].textContent);
