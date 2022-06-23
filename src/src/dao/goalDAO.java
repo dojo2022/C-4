@@ -21,7 +21,7 @@ public class goalDAO {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
-			// SQL文を準備する
+			//useridと今日の日付を取得して検索
 			String sql = "SELECT * FROM goal WHERE userid=? and date=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -40,7 +40,7 @@ public class goalDAO {
 					rs.getString("date"),
 					rs.getInt("money"),
 					rs.getInt("sum")
-			);
+					);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -191,6 +191,76 @@ public class goalDAO {
 			if (pStmt.executeUpdate() == 1) {
 				result = true;
 			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return result;
+	}
+
+
+	// 引数paramで指定されたレコードを更新し、成功したらtrueを返す OK
+	public boolean sumup(goal param) {
+		Connection conn = null;
+		boolean result = false;
+
+		try {
+			// JDBCドライバを読み込む OK
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する OK
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
+			//sumを再集計する処理
+			String sql = "UPDATE goal set sum=SELECT SUM(savings) FROM record WHERE userid=? AND date>=? WHERE userid=? AND date=?;";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる 改造ポイント
+			// SQL文を完成させる
+			if (param.getUserid() != 0) {
+				pStmt.setInt(1, param.getUserid());
+			}
+			else {
+				pStmt.setInt(1, 0);
+			}
+			if (param.getDate() != null) {
+				pStmt.setString(2, param.getDate());
+			}
+			else {
+				pStmt.setDate(2, null);
+			}
+			if (param.getUserid() != 0) {
+				pStmt.setInt(3, param.getUserid());
+			}
+			else {
+				pStmt.setInt(3, 0);
+			}
+			if (param.getDate() != null) {
+				pStmt.setString(4, param.getDate());
+			}
+			else {
+				pStmt.setDate(4, null);
+			}
+
+			if (pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+
 		}
 		catch (SQLException e) {
 			e.printStackTrace();

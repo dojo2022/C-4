@@ -64,12 +64,8 @@
 					<label>
 					目標削減金額 ￥<input type="text" name="new_money">
 					</label>
-
 				</div>
-				<div class="btn">
-					<input type="submit" value="変更" name="change_goal">
-
-				</div>
+				<input type="submit" value="変更" name="change_goal" class="btnt5">
 			</form>
 			<div class="back">
 				<a href="/EngelS/homeServlet">ホームに戻る</a>

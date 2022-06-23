@@ -42,12 +42,15 @@ public class goalServlet extends HttpServlet {
 
 		//DAOのインスタンスを生成
 		goalDAO gDao = new goalDAO();
-		//Beanを使わずに直接引数に検索条件を指定する。
+
+		//削減金額再計算
+		gDao.sumup(new goal(0,userid,date,0,0));
+
+		//検索をかけ変数goalに検索結果を代入
 		goal goal= gDao.select(0,userid, date,0,0);
 
 		// 検索結果をリクエストスコープに格納
 		request.setAttribute("goal", goal);
-
 
 		// 金額設定画面にフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/goal.jsp");
