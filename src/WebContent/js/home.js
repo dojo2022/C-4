@@ -11,4 +11,24 @@ window.onload=function(){
 	let sagaku=money-sum;
 	console.log(sagaku);
 	document.getElementById('sagaku').innerHTML=(sagaku);
+
+	//レシピのランダムアラート
+	let recipe = document.getElementsByClassName('Random');
+
+	let i = Math.floor(Math.random()*recipe.length);
+
+	console.log(i);
+
+	if(recipe.length == 2){
+		alert('一日頑張りましょう。');
+	} else {
+		alert(recipe[i].textContent + 'を作ってみましょう');
+	}
+
+	//目標金額が未設定だった際の処理
+	if(money === ""){
+		alert('目標金額を設定してください。');
+		window.location.href = '/EngelS/goalServlet';
+	}
+
 }
