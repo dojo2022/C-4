@@ -40,6 +40,9 @@ public class homeServlet extends HttpServlet {
 		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
 
+		//検索条件の初期化
+		session.removeAttribute("searchterms");
+
 
 		//今ログインしている年月を取得し変数dateに代入
 		Calendar cl = Calendar.getInstance();
