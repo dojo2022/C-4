@@ -53,19 +53,17 @@
   visibility: visible;
 }
 
-.scroll {
-  width: 300px;
-  height: 100px;
-  overflow-y: scroll;
-  scrollbar-color: rebeccapurple green;
-  scrollbar-width: thin;
-}
 
-.table {
-	text-align: center
-}
+
 
 main {
 	background-color:#ffffd9;
 	height:666px;
+	text-align: center;
 }
+
+table {
+	margin:auto;
+
+}
+

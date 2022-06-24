@@ -87,8 +87,7 @@
 						<td>${e.recipe}</td>
 						<td>${e.cost}円</td>
 						<td>${e.time}分</td>
-						<td><a href onclick="location.hre6f='/detailServlet.java'">詳細
-					</a></td>
+						<td class="btn">詳細</td>
 					</tr>
 					</c:forEach>
 				</table>

@@ -2,7 +2,7 @@
 	// [詳細]ボタンをクリックしたときの処理
 
 	function onload(){
-
+		console.log('detailed');
 		var recipeformObj = document.getElementById('recipe');
 		var costformObj = document.getElementById('cost');
 		var timeformObj = document.getElementById('time');
@@ -34,6 +34,7 @@
 		closeBtn.addEventListener('click', function(){
 		  modal.classList.remove('active');
 		  overlay.classList.remove('active');
+		  console.log('detailed');
 		});
 
 		// オーバーレイをクリックしたら、モダルとオーバーレイのactiveクラスを外す
@@ -98,3 +99,5 @@ function onclick_regist(){
 
 
 }
+
+window.onload = function () { console.log("mai");};
