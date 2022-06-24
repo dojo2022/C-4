@@ -9,13 +9,13 @@
 <!-- 共通css,jsへのリンク ★各画面のもここに入れてください-->
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/recipeSearch.css">
-<script src="./javascript/common.js"></script>
-<script src="./javascript/recipeSearch.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/recipeSearch.js"></script>
 <script
 	src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 	<script src="//listjs.com/assets/javascripts/list.min.js"></script>
 </head>
-<body>
+<body onload="init();">
 	<div class="container">
 		<header>
 			<!--設定ドロップダウンメニュー開始 -->
@@ -87,7 +87,7 @@
 						<td>${e.recipe}</td>
 						<td>${e.cost}円</td>
 						<td>${e.time}分</td>
-						<td class="btn">詳細</td>
+							<td><a href="#" class="btn" name="modal_regist" >詳細</a></td>
 					</tr>
 					</c:forEach>
 				</table>
