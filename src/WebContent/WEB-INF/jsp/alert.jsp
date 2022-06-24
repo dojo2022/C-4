@@ -10,6 +10,12 @@
 <link rel="stylesheet" href="./css/alert.css">
 <script src="text/javascript" src="/EngelS/js/common.js"></script>
 <script type="text/javascript" src="/EngelS/js/alert.js"></script>
+
+<script src="./javascript/common.js"></script>
+
+<!-- アラートCSSファイルとの連携 -->
+ <link rel="stylesheet" type="text/css" href="/EngelS/css/alert.css">
+
 </head>
 <body>
 	<div class="container">
