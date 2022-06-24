@@ -104,6 +104,10 @@ public class homeServlet extends HttpServlet {
 			alertDAO alDao = new alertDAO();
 			alert days = alDao.select(new alert(0, userid, WEEK[loginWeek], 0, 0, 0, 0, 0, 0));
 
+			//表示させるレシピの検索
+			recipeDAO randomDao = new recipeDAO();
+			List<recipeAdd> RecipeList = null;
+
 			switch(hour) {
 				case 6:
 				case 7:
@@ -111,6 +115,9 @@ public class homeServlet extends HttpServlet {
 				case 9:
 					Maxtime = days.getMorning_max();
 					Mintime = days.getMorning_min();
+					RecipeList= randomDao.randomSelect(userid, Maxtime, Mintime);
+					//時刻をリクエストスコープに格納
+					request.setAttribute("RecipeList", RecipeList);
 					break;
 
 				case 11:
@@ -118,6 +125,9 @@ public class homeServlet extends HttpServlet {
 				case 13:
 					Maxtime = days.getLunch_max();
 					Mintime = days.getLunch_min();
+					RecipeList= randomDao.randomSelect(userid, Maxtime, Mintime);
+					//時刻をリクエストスコープに格納
+					request.setAttribute("RecipeList", RecipeList);
 					break;
 
 				case 18:
@@ -125,16 +135,11 @@ public class homeServlet extends HttpServlet {
 				case 20:
 					Maxtime = days.getDinner_max();
 					Mintime = days.getDinner_min();
+					RecipeList= randomDao.randomSelect(userid, Maxtime, Mintime);
+					//時刻をリクエストスコープに格納
+					request.setAttribute("RecipeList", RecipeList);
 					break;
 			}
-
-
-			//表示させるレシピの検索
-			recipeDAO randomDao = new recipeDAO();
-			List<recipeAdd> RecipeList= randomDao.randomSelect(userid, Maxtime, Mintime);
-
-			//時刻をリクエストスコープに格納
-			request.setAttribute("RecipeList", RecipeList);
 
 
 			//ログイン中に再度アラートさせないための処理
