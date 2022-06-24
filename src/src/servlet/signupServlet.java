@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.alertDAO;
 import dao.userDAO;
+import model.alert;
 import model.result;
 import model.user;
 
@@ -45,6 +47,16 @@ public class signupServlet extends HttpServlet {
 		if (iDao.newuser(new user(0, user, name, pw))) {	// 登録成功時
 			// リクエストスコープにメッセージを格納する
 			request.setAttribute("result", (new result("登録に成功しました。", "", "")));
+
+			//デフォルトのアラート設定
+			alertDAO alDao = new alertDAO();
+			String[] WEEK = {"日", "月", "火", "水", "木", "金", "土"};
+			user registdate = iDao.select(new user(0, user, name, pw));
+			int id = registdate.getId();
+
+			for(int i=0; i < 7; i++) {
+				alDao.insert(new alert(0, id, WEEK[i], 0, 0, 0, 5, 5, 5));
+			}
 
 			// 結果ページにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
