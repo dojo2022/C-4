@@ -5,16 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import model.alert;
 
 public class alertDAO {
 	// 引数paramで検索項目を指定し、検索結果のリストを返す
-	public List<alert> select(alert param) {
+	public alert select(alert param) {
 		Connection conn = null;
-		List<alert> alertList = new ArrayList<alert>();
+		alert alertList;
 
 		try {
 			// JDBCドライバを読み込む
@@ -46,20 +44,18 @@ public class alertDAO {
 			ResultSet rs = selectalert.executeQuery();
 
 			// 結果表をコレクションにコピーする
-			while (rs.next()) {
-				alert card = new alert(
-				rs.getInt("id"),
-				rs.getInt("userid"),
-				rs.getString("days"),
-				rs.getInt("morning_min"),
-				rs.getInt("lunch_min"),
-				rs.getInt("dinner_min"),
-				rs.getInt("morning_max"),
-				rs.getInt("lunch_max"),
-				rs.getInt("dinner_max")
-				);
-				alertList.add(card);
-			}
+			rs.next();
+			alertList = new alert(
+			0,
+			0,
+			rs.getString("days"),
+			rs.getInt("morning_min"),
+			rs.getInt("lunch_min"),
+			rs.getInt("dinner_min"),
+			rs.getInt("morning_max"),
+			rs.getInt("lunch_max"),
+			rs.getInt("dinner_max")
+			);
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
