@@ -175,10 +175,10 @@
     }//functon onloadのカッコ閉じ
 
 
-	/* [リセット]ボタンをクリックしたときの処理*/
-	formObj.onreset = function() {
-	  errorMessageObj.textContent = null;
-	};
+	/* [リセット]ボタンをクリックしたときの処理 停止中(リセットボタンの機能でリセット)*/
+	//formObj.onreset = function() {
+	  //errorMessageObj.textContent = null;
+	//};
 
 
 

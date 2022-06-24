@@ -60,11 +60,12 @@
 			<p id="err">${result.message2}</p>
 			<!--現在Pタグにて記述  <span>${result.message2}</span> -->
 
+  <div class="resultform">
 	<form method="POST" action="/EngelS/recipeAddServlet">
 		<table>
 			<tr>
 				<td>
-					レシピ名
+					<b>レシピ名</b>
 				</td>
 				<td>
 					<input type="text" name="recipe" value="${addrecipe.recipe}" readonly>
@@ -72,7 +73,7 @@
 			</tr>
 			<tr>
 				<td>
-					費用(円)
+					<b>費用(円)</b>
 				</td>
 				<td>
 					<input type="text" name="cost" value="${addrecipe.cost}" readonly>
@@ -80,7 +81,7 @@
 			</tr>
 			<tr>
 				<td>
-					調理時間(分)
+					<b>調理時間(分)</b>
 				</td>
 				<td>
 					<input type="text" name="time" value="${addrecipe.time}" readonly>
@@ -88,7 +89,7 @@
 			</tr>
 			<tr>
 				<td>
-					参考URL
+					<b>参考URL</b>
 				</td>
 				<td>
 					<input type="text" name="url" value="${addrecipe.url}" readonly>
@@ -96,7 +97,7 @@
 			</tr>
 			<tr>
 				<td>
-					備考<br>
+					<b>備考<br></b>
 				</td>
 				<td>
 					<textarea name="remarks"  readonly>${addrecipe.remarks}</textarea>
@@ -104,10 +105,10 @@
 			</tr>
 		</table>
 	</form>
+  </div>
 
-
-		<a href="/EngelS/recipeSearchServlet"><input type="button" value="一覧に戻る"></a>
-		<a href="/EngelS/recipeAddServlet"><input type="button" value="続けて登録する"></a>
+		<a href="/EngelS/recipeSearchServlet"><input type="button" value="一覧に戻る" class="subbutton"></a>
+		<a href="/EngelS/recipeAddServlet"><input type="button" value="続けて登録する" class="subbutton"></a>
 
 
 		</main>

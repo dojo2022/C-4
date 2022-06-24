@@ -69,6 +69,8 @@
  			<!-- レシピ追加フォーム -->
  			<!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
 
+  <!-- フォーム中央揃え用のdivタグ -->
+  <div class="addform">
 	<form method="POST" action="/EngelS/recipeAddServlet" id="form">
 		<table>
 			<tr>
@@ -122,24 +124,17 @@
 			<tr>
 				<td><input type="reset" name="reset" value="リセット" class="subbutton"></td>
 
-					<!-- 登録ボタン…作業後半、クリックしたらモーダルを表示する仕様に変更 -->
-					<!--  actionページ遷移もモーダルへ移動 -->
-					<!--  <a href="#" class="button">登録(モーダルウィンドウを表示)</a> -->
-					<!-- 元文章：<td><input type="submit" name="REGIST" value="登録" class="button"></td> -->
 				<td><a href="#" class="button" id="modal_regist" >登録</a></td>
 			</tr>
 		</table>
 	</form>
+  </div>
 
-
-	<!-- ☆表示場所変更中：エラー表示欄(BCログインjsp準拠)→タイトルの下63行目にて表示 -->
 	<!-- resultモデルのエラー表記(err)と統一中、もし不都合あればerror_messageに変更、jsへの反映も -->
 	<span id="error_message"></span><br>
 	<span id="numerror_message"></span>
 
 	<!-- resultモデルのエラーと差別化　<span id="err"></span>  -->
-
-
 
 
 	<!-- オーバーレイ -->
@@ -162,23 +157,23 @@
 	<!-- ①モーダル内準備  -->
 	<table>
 		<tr>
-			<td>レシピ名</td>
+			<td><b>レシピ名</b></td>
 			<td><div id="modal_recipe"></div></td>
 		</tr>
 		<tr>
-			<td>費用(円)</td>
+			<td><b>費用(円)</b></td>
 			<td><div id="modal_cost"></div>円</td>
 		</tr>
 		<tr>
-			<td>所要時間(分)</td>
+			<td><b>所要時間(分)</b></td>
 			<td><div id="modal_time"></div>分</td>
 		</tr>
 		<tr>
-			<td>URL</td>
+			<td><b>URL</b></td>
 			<td><div id="modal_url"></div></td>
 		</tr>
 		<tr>
-			<td>備考</td>
+			<td><b>備考</b></td>
 			<td><div id="modal_remarks"></div></td>
 		</tr>
 	</table>
@@ -198,7 +193,7 @@
 
 		<!-- 以下、はい(登録)、いいえ(モーダルウィンドウ消去)の追加 -->
 		<input type="submit" name="REGIST" value="はい" class="button">
-		<input type="submit" name="close" value="いいえ" class="button, close">
+		<input type="submit" name="close" value="いいえ" class="subbutton, close">
 	</form>
 
 </div>

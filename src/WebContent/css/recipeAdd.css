@@ -9,17 +9,25 @@ main{
 }
 
 /*ユーザー記入欄 form周辺設定*/
-form{
-	width: 800px;
-	max-width:900px;
-	/*padding: 	8px;*/
-	text-align:center;
-}
+/*formとdivタグのcss停止中(下のformadd実行中)*/
+/*form{*/
+/*	width: 800px; */
+/*	max-width:900px; */
+/*	/*padding: 	8px;*/
+/*	text-align:center; */
+/* } */
 
-div#table{
-	width:		750px;
-	height:		400px;
-	overflow:	auto;
+/* div#table{ */
+/*	width:		750px; */
+/*	height:		400px; */
+/*	overflow:	auto; */
+/* } */
+
+/*フォームタグの外側を更にdivタグで囲いレシピ欄を中央揃え*/
+.addform {
+  width: 300px;/*フォーム周りの横幅*/
+  margin: 0 auto;/*中央寄せ*/
+  padding: 60px 0;
 }
 
 input[name=recipe] {
@@ -68,21 +76,45 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-/* 登録ボタンのデザイン */
+
+/*ボタン共通CSS-確定ボタン*/
+/*確定ボタン*/
+/*各ボタン周辺のマージン消去中：margin: 20px;*/
 .button {
+  border: 2px solid transparent;
   display: inline-block;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 5px 15px;
   background: linear-gradient(to right bottom, #FFA500, #FF6347);
   border-radius: 5px;
   color: #fff;
-  margin: 20px;
   transition: 0.3s;
 }
 
 .button:hover {
   opacity: .8;
+  cursor : pointer;
 }
+
+
+/*ホームへ戻るボタン(サブボタン)*/
+.subbutton {
+  outline: 1px solid black;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFFFFF, #D3D3D3);
+  border-radius: 5px;
+  color: #000000;
+  transition: 0.3s;
+  border : none;
+}
+
+.subbutton:hover {
+  opacity: .8;
+  cursor : pointer;
+}
+
 
 /* オーバーレイ */
 .overlay {

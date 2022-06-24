@@ -15,3 +15,37 @@ span{
 	color:orange;
 	font-weight:bold;
 }
+
+/*レシピ情報部分*/
+/*form {*/
+/*	text-align:center;	*/
+/*	background-color:#ffffd9;	*/
+/*	height:200px;	*/
+/*}	*/
+
+/*フォームタグの外側を更にdivタグで囲いレシピ欄を中央揃え*/
+.resultform {
+  width: 300px;/*フォーム周りの横幅*/
+  margin: 0 auto;/*中央寄せ*/
+  padding: 60px 0;
+}
+
+
+/*画面遷移ボタン(サブボタン)*/
+.subbutton {
+  outline: 1px solid black;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFFFFF, #D3D3D3);
+  border-radius: 5px;
+  color: #000000;
+  transition: 0.3s;
+  border : none;
+  margin : 10px;
+}
+
+.subbutton:hover {
+  opacity: .8;
+  cursor : pointer;
+}
