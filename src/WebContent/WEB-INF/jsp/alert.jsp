@@ -7,7 +7,9 @@
 <title>アラート設定|EngelS</title>
 <!-- 共通css,jsへのリンク-->
 <link rel="stylesheet" href="./css/common.css">
-<script src="./javascript/common.js"></script>
+<link rel="stylesheet" href="./css/alert.css">
+<script src="text/javascript" src="/EngelS/js/common.js"></script>
+<script type="text/javascript" src="/EngelS/js/alert.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -40,36 +42,45 @@
 		</header>
 		<main>
 			<p>アラート設定</p>
-			<form method="POST" action="/EngelS/alertServlet">
-				<input type="checkbox" name="Mon" value="月">月 <input
-					type="checkbox" name="Tue" value="火">火 <input
-					type="checkbox" name="Wed" value="水">水 <input
-					type="checkbox" name="Thu" value="木">木 <input
-					type="checkbox" name="Fri" value="金">金 <input
-					type="checkbox" name="Sat" value="土">土 <input
-					type="checkbox" name="Sun" value="日">日
+			<form method="POST" action="/EngelS/alertServlet" id="alert_form" onclick="alert_confirm()">
+			  <div id="">
+				<input type="checkbox" name="Mon" class="days" value="月">月
+				<input type="checkbox" name="Tue" class="days" value="火">火
+				<input type="checkbox" name="Wed" class="days" value="水">水
+				<input type="checkbox" name="Thu" class="days" value="木">木
+				<input type="checkbox" name="Fri" class="days" value="金">金
+				<input type="checkbox" name="Sat" class="days" value="土">土
+				<input type="checkbox" name="Sun" class="days" value="日">日
+			  </div>
+			  <p id="date_alert"></p>
+
 				<p>調理時間</p>
-				<table>
+
+				<table class="alert_table">
 					<tr>
 						<th>朝</th>
-						<td><input type="text" name="morning_min"></td>
+						<td><input type="text" name="morning_min" id="morning_alertMin"></td>
 						<td>～</td>
-						<td><input type="text" name="morning_max"></td>
+						<td><input type="text" name="morning_max" id="morning_alertMax"></td>
 						<td>分</td>
 					</tr>
 					<tr>
 						<th>昼</th>
-						<td><input type="text" name="lunch_min"></td>
+						<td><input type="text" name="lunch_min" id="lunch_alertMin"></td>
 						<td>～</td>
-						<td><input type="text" name="lunch_max"></td>
+						<td><input type="text" name="lunch_max"  id="lunch_alertMax"></td>
 						<td>分</td>
 					</tr>
 					<tr>
 						<th>夕</th>
-						<td><input type="text" name="dinner_min"></td>
+						<td><input type="text" name="dinner_min" id="dinner_alertMin"></td>
 						<td>～</td>
-						<td><input type="text" name="dinner_max"></td>
+						<td><input type="text" name="dinner_max"  id="dinner_alertMax"></td>
 						<td>分</td>
+					</tr>
+
+					<tr>
+					<td>*デフォルト値は、０～５分で設定しています。</td>
 					</tr>
 					<tr>
 						<td>
@@ -78,10 +89,13 @@
 						</td>
 					</tr>
 				</table>
+
 			</form>
 			<p>${result.message1}</p>
 			<a href="/EngelS/homeServlet"><input type="button" name="SUBMIT"
-				value="ホームに戻る"></a>
+				value="ホームに戻る" class="subbutton"></a>
+			<a id="morning_alert"></a>
+
 		</main>
 		<footer>
 			<div class="f_logo">
