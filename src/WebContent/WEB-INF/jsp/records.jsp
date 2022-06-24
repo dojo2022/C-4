@@ -162,7 +162,7 @@
 				</p>
 				<input type="submit" name="SUBMIT" value="登録する" class="button">
 			</form>
-			<p id="output">${result.message2}</p>
+			<p id="output"></p>
 		</main>
 	</div>
 	<script type="text/javascript" src="/EngelS/js/records.js"></script>
