@@ -37,7 +37,7 @@ public class recipeDAO {
 				// SQL文を準備する
 				//検索ボックスにてヒットする項目…レシピ名、備考
 				//(費用・所要時間などの数値はソートで取り扱うので対象外。URLも対象外にする)
-				String sql = "select Id, Userid, Recipe, Cost, Time, Url, Remarks from Recipe WHERE (userid = ? or userid = 0) and (recipe like ? or remarks like ?) and recipe != '外食'"; //WHEREをどうするか確認
+				String sql = "select Id, Userid, Recipe, Cost, Time, Url, Remarks from Recipe WHERE (userid = ? or userid = 0) and (recipe like ? or remarks like ?) and recipe != '外食' and recipe != '食事なし'"; //WHEREをどうするか確認
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -203,7 +203,7 @@ public class recipeDAO {
 
 
 		//アラートで使用するレシピ検索
-		public List<recipeAdd> randomSelect(recipeAdd randomRecipe) {
+		public List<recipeAdd> randomSelect(int userid, int Maxtime, int Mintime) {
 			Connection conn = null;
 			List<recipeAdd> sample = new ArrayList<recipeAdd>();
 
@@ -215,12 +215,13 @@ public class recipeDAO {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 				// SQL文を準備する
-				String sql = "select recipe from recipe where (userid = 0 or userid = ?) and time <= ? and recipe != '外食';";
+				String sql = "select recipe from recipe where (userid = 0 or userid = ?) and ?<=time and time <= ? and recipe != '外食' and recipe != '食事なし';";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる 改造ポイント
-				pStmt.setInt(1, randomRecipe.getUserid() );
-				pStmt.setInt(2, randomRecipe.getTime() );
+				pStmt.setInt(1, userid);
+				pStmt.setInt(2, Mintime);
+				pStmt.setInt(3, Maxtime);
 
 				// SQL文を実行し、rsという結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
