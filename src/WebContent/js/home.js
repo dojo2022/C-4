@@ -19,9 +19,7 @@ window.onload=function(){
 
 	console.log(i);
 
-	if(recipe.length == 2){
-		alert('一日頑張りましょう。');
-	} else {
+	if(recipe.length != null){
 		alert(recipe[i].textContent + 'を作ってみましょう');
 	}
 
