@@ -65,7 +65,7 @@
 			<div id="graph">
 				<section>
 					<!-- home.cssで指定したのでwidthは消しました -->
-					<div hidden>
+					<div hidden="hidden">
 						<c:forEach var="List" items="${graph}">
 							<p class="savings">${List.savings}</p>
 							<p class="day">${List.date}</p>
