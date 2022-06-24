@@ -1,1 +1,39 @@
 @charset "UTF-8";
+main {
+	background-color:#ffffd9;
+	height:850px;
+}
+
+/*全体的に中央揃え*/
+.container {
+	text-align:center;
+}
+
+/*テーブルを全体的に中央へ*/
+.records_table{
+	margin:auto;
+}
+
+/*サブタイトルを右側へ*/
+#subtitle{
+	margin:0,0,0,200;
+}
+
+/*＋－の位置調整*/
+.plus {
+	position:relative;
+	left:114%;
+	transform: translate(-96%);
+}
+
+/* 登録ボタンのデザイン */
+.button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  background: linear-gradient(to right bottom, #FFA500, #FF6347);
+  border-radius: 5px;
+  color: #fff;
+  margin: 20px;
+  transition: 0.3s;
+}

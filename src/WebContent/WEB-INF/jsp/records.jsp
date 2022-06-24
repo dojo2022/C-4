@@ -8,7 +8,8 @@
 <title>日々の食事記録|EngelS</title>
 <!-- 共通css,jsへのリンク-->
 <link rel="stylesheet" href="./css/common.css">
-<script src="./javascript/common.js"></script>
+<link rel="stylesheet" href="./css/records.css">
+<script src="./js/common.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -40,31 +41,30 @@
 			</div>
 		</header>
 		<main>
-			<form method="POST" action="/EngelS/recordsServlet" id="record_form">
+			<form method="POST" action="/EngelS/recordsServlet" id="record_form" onclick="records_confirm()">
 			<p>
-				日付<input type="date" name="date">
+				日付<input type="date" name="date" id ="date" value="<%=request.getAttribute("datek")%>">
 			</p>
-			<p>削除金額</p>
+			<p id="date_output"></p>
+			<p id="subtitle">削除金額</p>
 
-				<table>
+				<table class="records_table">
 				<!-- 朝食コーナー -->
 					<tr>
-						<!-- 試験的に導入(保留)
-						<input type="radio" name="mealtime" value="朝">朝
-						<input type="radio" name="mealtime" value="昼">昼
-						<input type="radio" name="mealtime" value="夕">夕
-						-->
 
+						<!-- 朝食を選ぶ -->
 						<td id="morning_recipe">
-						<div id="morningRecipe">
+						<div id="morningRecipe" name="morning_option">
 						<input type="checkbox" id="morning_mealtime" name="mealtime" value="朝" checked>朝
 						<select id="morning" name="recipe" onChange="selectFunction(this)">
-								<option>＊選択してください</option>
+								<option value="*選択してください">＊選択してください</option>
 								<!-- データから取得できたのを確認済み -->
 								<c:forEach var="recipe" items="${cardList}">
 									<option value="${recipe.recipe}"><c:out value="${recipe.recipe}" /></option>
 								</c:forEach>
 						</select>
+
+						<!-- 節約金額を判定 -->
 						<select id="morning_savings" name="savings" onChange="plus()">
 								<!-- お金が自動で表示されるように作る -->
 								<option>＊自動選択</option>
@@ -77,22 +77,27 @@
 						</div>
 						</td>
 					</tr>
-					<tr>
-						<td><button onclick="addMorningMenu();return false;">＋</button></td>
+
+					<!-- プルダウンを追加 -->
+					<tr class="plus">
+						<td><button onclick="addMorningMenu();return false;">＋</button>
+						<button onclick="removeMorningMenu();return false;">－</button></td>
 					</tr>
 
 					<!-- 昼食コーナー -->
 					<tr>
+					<!-- 昼食を選択 -->
 						<td id="lunch_recipe">
-						<div id="lunchRecipe">
+						<div id="lunchRecipe" name="lunch_option">
 						<input type="checkbox" id="lunch_mealtime" name="mealtime" value="昼"checked>昼
 						<select id="lunch" name="recipe" onChange="selectFunction(this)">
-							<option>＊選択してください</option>
+							<option value="*選択してください">＊選択してください</option>
 							<!-- データから取得できたのを確認済み　jsp側に問題か -->
 							<c:forEach var="recipe" items="${cardList}">
 								<option value="${recipe.recipe}"><c:out value="${recipe.recipe}" /></option>
 							</c:forEach>
 						</select>
+						<!-- 昼食の節約金額 -->
 						<select id="lunch_savings" name="savings" onChange="plus()">
 							<!-- お金が自動で表示されるように作る -->
 							<option>＊自動選択</option>
@@ -105,22 +110,27 @@
 						</div>
 						</td>
 					</tr>
-					<tr>
-						<td><button onclick="addlunchMenu();return false;">+</button></td>
+
+					<!-- プルダウン追加 -->
+					<tr class="plus">
+						<td><button onclick="addlunchMenu();return false;">＋</button>
+						<button onclick="removelunchMenu();return false;">－</button></td>
 					</tr>
 
 					<!-- 夕食コーナー -->
 					<tr>
+					<!-- 夕食選択 -->
 						<td id="dinner_recipe">
-						<div id="dinnerRecipe">
+						<div id="dinnerRecipe" name="dinner_option">
 						<input type="checkbox" id="dinner_mealtime" name="mealtime" value="夕" checked>夕
 						<select id="dinner" name="recipe" onChange="selectFunction(this)">
-								<option>＊選択してください</option>
+								<option value="*選択してください">＊選択してください</option>
 								<!-- データから取得できたのを確認済み　jsp側に問題か -->
 								<c:forEach var="recipe" items="${cardList}">
 									<option value="${recipe.recipe}"><c:out value="${recipe.recipe}" /></option>
 								</c:forEach>
 						</select>
+						<!-- 夕食節約 -->
 						<select id="dinner_savings" name="savings" onChange="plus()">
 								<!-- お金が自動で表示されるように作る -->
 								<option>＊自動選択</option>
@@ -133,8 +143,10 @@
 						</div>
 						</td>
 					</tr>
-					<tr>
-						<td><button onclick="adddinnerMenu();return false;">+</button></td>
+					<!-- プルダウン追加 -->
+					<tr class="plus">
+						<td><button onclick="adddinnerMenu();return false;">＋</button>
+						<button onclick="removeDinnerMenu();return false;">－</button></td>
 					</tr>
 				</table>
 				<p>
@@ -148,9 +160,9 @@
 					<%=request.getAttribute("money")%>
 					円
 				</p>
-				<input type="submit" name="SUBMIT" value="登録する">
+				<input type="submit" name="SUBMIT" value="登録する" class="button">
 			</form>
-			<p id="output"></p>
+			<p id="output">${result.message2}</p>
 		</main>
 	</div>
 	<script type="text/javascript" src="/EngelS/js/records.js"></script>

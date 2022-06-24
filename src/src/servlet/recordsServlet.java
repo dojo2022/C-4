@@ -84,6 +84,14 @@ public class recordsServlet extends HttpServlet {
 		//リクエストスコープに割ったものを保存させる。
 		request.setAttribute("money", money);
 
+		//現在日付を取得
+		Calendar clk = Calendar.getInstance();
+		SimpleDateFormat sdfk = new SimpleDateFormat("yyyy-MM-dd");
+		String datek = sdfk.format(clk.getTime());
+
+		//リクエストスコープに現在日付を取得
+		request.setAttribute("datek", datek);
+
 		//recordsjspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/records.jsp");
 		dispatcher.forward(request, response);
