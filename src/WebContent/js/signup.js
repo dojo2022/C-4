@@ -48,5 +48,33 @@ function signupfun(){
 			document.getElementById('err').textContent='';
 		}
 
+
+		if(log === name){
+			if(name === pass){
+				document.getElementById('err').textContent='全ての項目で同じ内容が入力されています。';
+				return false;
+			} else {
+				document.getElementById('err').textContent='ログインIDとニックネームで同じ内容が入力されています。';
+				return false;
+			}
+		} else if(name === pass){
+			if(log === pass){
+				document.getElementById('err').textContent='全ての項目で同じ内容が入力されています。';
+				return false;
+			} else {
+				document.getElementById('err').textContent='ニックネームとパスワードで同じ内容が入力されています。';
+				return false;
+			}
+		} else if(log === pass){
+			if(name === pass){
+				document.getElementById('err').textContent='全ての項目で同じ内容が入力されています。';
+				return false;
+			} else {
+				document.getElementById('err').textContent='ログインIDとパスワードで同じ内容が入力されています。';
+				return false;
+			}
+		} else {
+			document.getElementById('err').textContent='';
+		}
  	};
 };
