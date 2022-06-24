@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.alertDAO;
 import dao.goalDAO;
 import dao.recipeDAO;
 import dao.recordsDAO;
 import dao.userDAO;
+import model.alert;
 import model.goal;
 import model.recipeAdd;
 import model.records;
@@ -83,47 +85,61 @@ public class homeServlet extends HttpServlet {
 		//月の最終日をリクエストスコープに格納
 		request.setAttribute("daymax", daymax);
 
-
-		//時刻の取得
-		int hour = cl.get(Calendar.HOUR_OF_DAY);
-		int time = 0;
+		int Maxtime = 0;
+		int Mintime = 0;
 
 		//初めてホーム画面を表示したかを判定
 		int onetime = (Integer)session.getAttribute("onetime");
 
 		if(onetime == 0) {
+
+			//時刻の取得
+			int hour = cl.get(Calendar.HOUR_OF_DAY);
+
+			//曜日の取得
+			String[] WEEK = {"日", "月", "火", "水", "木", "金", "土"};
+			int loginWeek = cl.get(Calendar.DAY_OF_WEEK)-1;
+
+			//ユーザーのアラート設定を呼び出し
+			alertDAO alDao = new alertDAO();
+			alert days = alDao.select(new alert(0, userid, WEEK[loginWeek], 0, 0, 0, 0, 0, 0));
+
 			switch(hour) {
 				case 6:
 				case 7:
 				case 8:
 				case 9:
-					time = 10;
+					Maxtime = days.getMorning_max();
+					Mintime = days.getMorning_min();
 					break;
 
 				case 11:
 				case 12:
 				case 13:
-					time = 5;
+					Maxtime = days.getLunch_max();
+					Mintime = days.getLunch_min();
 					break;
 
 				case 18:
 				case 19:
 				case 20:
-					time = 15;
+					Maxtime = days.getDinner_max();
+					Mintime = days.getDinner_min();
 					break;
 			}
 
 
 			//表示させるレシピの検索
 			recipeDAO randomDao = new recipeDAO();
-			List<recipeAdd> RecipeList= randomDao.randomSelect(new recipeAdd(0,userid, "", 0, time, "", ""));
+			List<recipeAdd> RecipeList= randomDao.randomSelect(userid, Maxtime, Mintime);
+
+			//時刻をリクエストスコープに格納
+			request.setAttribute("RecipeList", RecipeList);
+
 
 			//ログイン中に再度アラートさせないための処理
 			onetime = 1;
 			session.setAttribute("onetime", onetime);
-
-			//時刻をリクエストスコープに格納
-			request.setAttribute("RecipeList", RecipeList);
 		}
 
 		// ホーム画面にフォワードする
