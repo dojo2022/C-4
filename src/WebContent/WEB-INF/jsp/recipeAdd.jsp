@@ -121,11 +121,6 @@
 			</tr>
 			<tr>
 				<td><input type="reset" name="reset" value="リセット" class="subbutton"></td>
-
-					<!-- 登録ボタン…作業後半、クリックしたらモーダルを表示する仕様に変更 -->
-					<!--  actionページ遷移もモーダルへ移動 -->
-					<!--  <a href="#" class="button">登録(モーダルウィンドウを表示)</a> -->
-					<!-- 元文章：<td><input type="submit" name="REGIST" value="登録" class="button"></td> -->
 				<td><a href="#" class="button" id="modal_regist" >登録</a></td>
 			</tr>
 		</table>

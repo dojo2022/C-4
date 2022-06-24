@@ -8,6 +8,10 @@
 <!-- 共通css,jsへのリンク-->
 <link rel="stylesheet" href="./css/common.css">
 <script src="./javascript/common.js"></script>
+
+<!-- アラートCSSファイルとの連携 -->
+ <link rel="stylesheet" type="text/css" href="/EngelS/css/alert.css">
+
 </head>
 <body>
 	<div class="container">
@@ -74,14 +78,14 @@
 					<tr>
 						<td>
 							<!-- 画面が更新されて入力されたものも消えてしまうので、JSで対応する -->
-							<input type="submit" name="SUBMIT" value="確定">
+							<input type="submit" name="SUBMIT" value="確定" class="button">
 						</td>
 					</tr>
 				</table>
 			</form>
 			<p>${result.message1}</p>
 			<a href="/EngelS/homeServlet"><input type="button" name="SUBMIT"
-				value="ホームに戻る"></a>
+				value="ホームに戻る" class="subbutton"></a>
 		</main>
 		<footer>
 			<div class="f_logo">

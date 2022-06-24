@@ -1,1 +1,39 @@
 @charset "UTF-8";
+
+/*ボタン共通CSS-確定ボタン*/
+/*確定ボタン*/
+/*各ボタン周辺のマージン消去中：margin: 20px;*/
+.button {
+  border: 2px solid transparent;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFA500, #FF6347);
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+.button:hover {
+  opacity: .8;
+  cursor : pointer;
+}
+
+
+/*ホームへ戻るボタン(サブボタン)*/
+.subbutton {
+  outline: 1px solid black;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFFFFF, #D3D3D3);
+  border-radius: 5px;
+  color: #000000;
+  transition: 0.3s;
+  border : none;
+}
+
+.subbutton:hover {
+  opacity: .8;
+  cursor : pointer;
+}

@@ -68,8 +68,8 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
-/* 登録ボタンのデザイン */
-.button {
+/* 登録ボタンの元デザイン */
+/*.button {
   display: inline-block;
   text-decoration: none;
   padding: 10px 20px;
@@ -79,10 +79,44 @@ body {
   margin: 20px;
   transition: 0.3s;
 }
+*/
+
+/*登録ボタン*/
+/*各ボタン周辺のマージン消去中：margin: 20px;*/
+.button {
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFA500, #FF6347);
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s;
+}
 
 .button:hover {
   opacity: .8;
+  cursor : pointer;
 }
+
+
+/*リセットボタン(サブボタン)*/
+.subbutton {
+  outline: 1px solid black;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFFFFF, #D3D3D3);
+  border-radius: 5px;
+  color: #000000;
+  transition: 0.3s;
+  border : none;
+}
+
+.subbutton:hover {
+  opacity: .8;
+  cursor : pointer;
+}
+
 
 /* オーバーレイ */
 .overlay {

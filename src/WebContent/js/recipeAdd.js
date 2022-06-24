@@ -176,9 +176,9 @@
 
 
 	/* [リセット]ボタンをクリックしたときの処理*/
-	formObj.onreset = function() {
-	  errorMessageObj.textContent = null;
-	};
+	//formObj.onreset = function() {
+	//  errorMessageObj.textContent = null;
+	//};
 
 
 
