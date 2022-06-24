@@ -8,7 +8,7 @@
 <!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" type="text/css" href="/EngelS/css/login.css">
-<script src="./javascript/common.js"></script>
+<!-- <script type="text/javascript" src="/javascript/common.js"></script> -->
 <script type="text/javascript" src="/EngelS/js/login.js"></script>
 </head>
 <body>
