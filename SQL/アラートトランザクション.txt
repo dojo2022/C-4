@@ -28,12 +28,13 @@ CREATE TABLE alert(
 
 //STEP3.テーブルにテストデータを格納する
 //-----------------------------------------------------------------
-INSERT INTO alert VALUES(null, 1, '月', 5, 5, 5, 10, 20, 30);
-INSERT INTO alert VALUES(null, 1, '水', 10, 10, 10, 23, 33, 120);
-
-INSERT INTO alert VALUES(null, 1, '日', 5, 7, 10, 22, 33, 334);
-INSERT INTO alert VALUES(null, 2, '土', 1, 2, 2, 2, 4, 5);
-INSERT INTO alert VALUES(null, 3, '木', 3, 3, 4, 334, 3344, 33444);
+INSERT INTO alert VALUES(null, 1, '月', 0, 0, 0, 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '火', 0, 0, 0, 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '水', 0, 0, 0, 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '木', 0, 0, 0, 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '金', 0, 0, 0, 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '土', 0, 0, 0, 5, 5, 5);
+INSERT INTO alert VALUES(null, 1, '日', 0, 0, 0, 5, 5, 5);
 
 
 
