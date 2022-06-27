@@ -36,3 +36,16 @@ main {
   margin: 20px;
   transition: 0.3s;
 }
+
+/* マウスでの操作無効 */
+#morning_savings{
+	pointer-events: none;
+}
+
+#lunch_savings{
+	pointer-events: none;
+}
+
+#dinner_savings{
+	pointer-events: none;
+}
