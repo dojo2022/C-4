@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 //節約金額の合計を自動で算出する
 function plus() {
 	let plusList = document.getElementsByName('savings');
@@ -116,14 +118,20 @@ function removeMorningMenu() {
 	const pullMorning = document.getElementsByName('morning_option');
 	console.log(pullMorning);
 
-	//プルダウンで増やしたものを特定する
-	const morningLast = pullMorning[pullMorning.length - 1];
-	console.log(morningLast);
+	//プルダウンを増やしていない場合には削除させない処理
+	if(pullMorning.length - 1 === 0){
+		return false;
+	} else {
+		//プルダウンで増やしたものを特定する
+		const morningLast = pullMorning[pullMorning.length - 1];
+		console.log(morningLast);
 
-	//削除brも
-	morningLast.previousElementSibling.remove();
-	morningLast.remove();
+		//削除brも
+		morningLast.previousElementSibling.remove();
+		morningLast.remove();
 
+		plus();
+	}
 }
 
 //昼食のプルダウンを1つ削除
@@ -132,13 +140,20 @@ function removelunchMenu() {
 	const pullLunch = document.getElementsByName('lunch_option');
 	//console.log(pullMorning);
 
-	//プルダウンで増やしたものを特定する
-	const lunchLast = pullLunch[pullLunch.length - 1];
-	//console.log(morningLast);
+	//プルダウンを増やしていない場合には削除させない処理
+	if(pullLunch.length - 1 === 0){
+		return false;
+	} else {
+		//プルダウンで増やしたものを特定する
+		const lunchLast = pullLunch[pullLunch.length - 1];
+		//console.log(morningLast);
 
-	//削除brも
-	lunchLast.previousElementSibling.remove();
-	lunchLast.remove();
+		//削除brも
+		lunchLast.previousElementSibling.remove();
+		lunchLast.remove();
+
+		plus();
+	}
 
 }
 
@@ -148,14 +163,21 @@ function removeDinnerMenu() {
 	const pullDinner = document.getElementsByName('dinner_option');
 	console.log(pullDinner);
 
-	//プルダウンで増やしたものを特定する
-	const dinnerLast = pullDinner[pullDinner.length - 1];
-	console.log(dinnerLast);
 
-	//削除brも
-	dinnerLast.previousElementSibling.remove();
-	dinnerLast.remove();
+	//プルダウンを増やしていない場合には削除させない処理
+	if(pullDinner.length - 1 === 0){
+		return false;
+	} else {
+		//プルダウンで増やしたものを特定する
+		const dinnerLast = pullDinner[pullDinner.length - 1];
+		console.log(dinnerLast);
 
+		//削除brも
+		dinnerLast.previousElementSibling.remove();
+		dinnerLast.remove();
+
+		plus();
+	}
 }
 
 //レシピと金額連動させる 朝
@@ -169,5 +191,5 @@ function selectFunction(ele) {
 
 	//計算処理を呼び出す。plus();
 
-	let total = plus();
+	plus();
 }
