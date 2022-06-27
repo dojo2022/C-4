@@ -22,8 +22,7 @@ main {
 /*＋－の位置調整*/
 .plus {
 	position:relative;
-	left:114%;
-	transform: translate(-96%);
+	left:60px; /*スクロールすると、ヘッダーに被るので時間があれば対処する*/
 }
 
 /* 登録ボタンのデザイン */
