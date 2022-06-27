@@ -103,20 +103,20 @@ public class record_noteDAO {
 			if (card.getUserid() != 0) {
 				pStmt.setInt(1, card.getUserid());
 			} else {
-				pStmt.setString(1, null);
+				pStmt.setInt(1, 0);
 			}
 
 			if (card.getDate() != null) {
 				pStmt.setString(2, card.getDate());
 			} else {
-				pStmt.setString(2, null);
+				pStmt.setString(2, "");
 
 			}
 
 			if (card.getRemarks() != null && !card.getRemarks().equals("")) {
 				pStmt.setString(3, card.getRemarks());
 			} else {
-				pStmt.setString(3, null);
+				pStmt.setString(3, "");
 
 			}
 
