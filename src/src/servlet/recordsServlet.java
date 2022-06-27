@@ -36,12 +36,18 @@ public class recordsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		//ログインせずにサーブレットが起動されるとログインサーブレットへリダイレクト
+		HttpSession session = request.getSession();
+		user user = (user) session.getAttribute("allList");
+		if (user == null) {
+			response.sendRedirect("/EngelS/loginServlet");
+			return;
+		}
+
 		//recipeAddからレシピ名とcostをSELECTする
 		request.setCharacterEncoding("UTF-8");
 
 		//セッションスコープからuseridを取り出す
-		HttpSession session = request.getSession();
-		user user = (user) session.getAttribute("allList");
 		int userid = user.getId();
 
 		//検索条件の初期化
