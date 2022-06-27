@@ -31,9 +31,15 @@ public class detailServlet extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 
-		//セッションスコープから現在ログイン中のuseridを取ってきて変数useridに代入(DAOの検索処理で使う)
+		//ログインせずにサーブレットが起動されるとログインサーブレットへリダイレクト
 		HttpSession session = request.getSession();
-		user user = (user)session.getAttribute("allList");
+		user user = (user) session.getAttribute("allList");
+		if (user == null) {
+			response.sendRedirect("/EngelS/loginServlet");
+			return;
+		}
+
+		//ユーザーIDを取得
 		int userid = user.getId();
 
 		//検索条件の初期化
