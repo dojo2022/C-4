@@ -311,12 +311,12 @@ function regist(){
 
 	//費用costの分
 	let cost = document.getElementById("cost").value;
-	document.getElementById("modal_cost").innerHTML = cost;
+	document.getElementById("modal_cost").innerHTML = cost + "円";
 	document.getElementById("hidden_cost").value = cost;
 
 	//所要時間timeの分
 	let time = document.getElementById("time").value;
-	document.getElementById("modal_time").innerHTML = time;
+	document.getElementById("modal_time").innerHTML = time + "分";
 	document.getElementById("hidden_time").value = time;
 
 	//参考URLurlの分

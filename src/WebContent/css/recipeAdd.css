@@ -23,11 +23,12 @@ main{
 /*	overflow:	auto; */
 /* } */
 
+
 /*フォームタグの外側を更にdivタグで囲いレシピ欄を中央揃え*/
+/*周囲が間延びするためpadding削除　元コード：padding: 10px 0;*/
 .addform {
-  width: 300px;/*フォーム周りの横幅*/
+  width: 400px;/*フォーム周りの横幅*/
   margin: 0 auto;/*中央寄せ*/
-  padding: 60px 0;
 }
 
 input[name=recipe] {
@@ -51,6 +52,10 @@ textarea[name=remarks] {
 	text-align: center;
 }
 
+/*ユーザー記入欄 注意書きサイズ少し小さく*/
+.notes{
+	font-size: 15px;
+}
 
 /*「※は必須項目です」と、※部分を赤字表記に*/
 span{
@@ -74,6 +79,29 @@ span{
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
+}
+
+/*モーダル内「この内容で登録しますか？」の文字*/
+h3{
+	color:orange;
+	font-weight:bold;
+}
+
+/*モーダル内レシピ情報のレイアウト調整*/
+.modalform{
+  width: 250px;/*フォーム周りの横幅*/
+  margin: 0 auto;/*中央寄せ*/
+  padding: 35px 0;
+}
+
+
+
+/*url長いと場所とるのでフォントサイズ小さく*/
+div#modal_url{
+	font-size:10px;
+	/*領域の端へ来たら自動改行(全文字が見えるようにする)*/
+	/*☆☆まだ上手く反映されてない*/
+	overflow-wrap: break-word;
 }
 
 
@@ -167,16 +195,6 @@ body {
   visibility: visible;
 }
 
-/*モーダルウィンドウの×閉じるボタンは無し。「いいえ」を押すと閉じる仕様へ変更。/*
-/* モーダルウィンドウ内の閉じるボタン */
-/*.modal .close {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  cursor: pointer;
-  font-size: 20px;
-}
-*/
 
 .modal h2 {
   font-size: 18px;
