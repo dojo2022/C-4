@@ -45,61 +45,60 @@
 	</div>
 
 	<main>
-		<h1>詳細</h1>
-	<form id="detail" method="POST" action="/EngelS/detailServlet">
-	<div style = "width:505px">
-	<table border="1" style = "width:700px; height:400px;" align="center">
-		<tr>
-			<th style="width:100px">日付</th>
-			<th style="width:40px">３食</th>
-			<th style="width:200px">食事内容</th>
-			<th style="width:70px">節約金額</th>
-			<th style="width:300px">備考</th>
-		</tr>
+		<h1 style="text-align:center;">詳細</h1>
+		<form id="detail" method="POST" action="/EngelS/detailServlet">
+			<table border="1" style="width: 700px; height: 400px; margin-right:auto; margin-left:auto;" >
+				<tr>
+					<th style="width: 100px">日付</th>
+					<th style="width: 40px">３食</th>
+					<th style="width: 200px">食事内容</th>
+					<th style="width: 70px">節約金額</th>
+					<th style="width: 300px">備考</th>
+				</tr>
 
-		<c:forEach var="e" items="${recipe}">
-			<tr>
-				<!-- 日付-->
-				<td class = "td-first">${e.date}</td>
-				<!-- 朝昼晩-->
-				<td class = "td-second">${e.mealtime}</td>
-				<!--  食事内容 -->
-				<td class = "td-third">${e.recipe}</td>
-				<!--  節約金額 -->
-				<td class = "td-fourth">${e.savings}円</td>
-				<!--  備考 -->
-				<td class = "td-fifth">${e.remarks}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	</div>
-	</form>
+				<c:forEach var="e" items="${recipe}">
+					<tr>
+						<!-- 日付-->
+						<td class="td-first">${e.date}</td>
+						<!-- 朝昼晩-->
+						<td class="td-second">${e.mealtime}</td>
+						<!--  食事内容 -->
+						<td class="td-third">${e.recipe}</td>
+						<!--  節約金額 -->
+						<td class="td-fourth">${e.savings}円</td>
+						<!--  備考 -->
+						<td class="td-fifth">${e.remarks}</td>
+					</tr>
+				</c:forEach>
+			</table>
+
+		</form>
 		<a href="/EngelS/homeServlet">ホームへ戻る</a>
 
 
 	</main>
 	<footer>
-			<div class="f_logo">
-				<img src="./img/logo.png">
-			</div>
-			<div class="f1">
-				<a class="a1" href="/EngelS/homeServlet">ホーム</a> <a
-					href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a> <a
-					href="/EngelS/recipeAddServlet">レシピ追加</a> <br>
-			</div>
-			<div class="f2">
-				<a href="/EngelS/recordsServlet">1日の食事記録</a> <a
-					href="/EngelS/detailServlet">詳細表示</a> <br>
-			</div>
-			<div class="f3">
-				<a href="/EngelS/goalServlet">目標金額設定</a> | <a
-					href="/EngelS/alertServlet">アラート設定</a> | <a
-					href="/EngelS/newPwServlet">パスワード変更</a>
-			</div>
-			<div class="logout">
-				<a href="/EngelS/loginServlet">ログアウト</a>
-			</div>
-			<p>&copy;3SFY All rights reserved.</p>
-		</footer>
+		<div class="f_logo">
+			<img src="./img/logo.png">
+		</div>
+		<div class="f1">
+			<a class="a1" href="/EngelS/homeServlet">ホーム</a> <a
+				href="/EngelS/recipeSearchServlet">レシピ一覧・検索</a> <a
+				href="/EngelS/recipeAddServlet">レシピ追加</a> <br>
+		</div>
+		<div class="f2">
+			<a href="/EngelS/recordsServlet">1日の食事記録</a> <a
+				href="/EngelS/detailServlet">詳細表示</a> <br>
+		</div>
+		<div class="f3">
+			<a href="/EngelS/goalServlet">目標金額設定</a> | <a
+				href="/EngelS/alertServlet">アラート設定</a> | <a
+				href="/EngelS/newPwServlet">パスワード変更</a>
+		</div>
+		<div class="logout">
+			<a href="/EngelS/loginServlet">ログアウト</a>
+		</div>
+		<p>&copy;3SFY All rights reserved.</p>
+	</footer>
 </body>
 </html>
