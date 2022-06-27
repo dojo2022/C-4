@@ -42,8 +42,7 @@ public class recordsDAO {
 
 			// 結果表をコレクションにコピーする 繰り返し表現　取り出したデータを配列に
 			while (rs.next()) {
-				recipeAdd card = new recipeAdd(
-						0, 0, rs.getString("recipe"), rs.getInt("cost"), 0, "", "");
+				recipeAdd card = new recipeAdd(0, 0, rs.getString("recipe"), rs.getInt("cost")*9/10, 0, "", "");
 				cardList.add(card);
 			}
 		} catch (SQLException e) {
