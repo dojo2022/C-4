@@ -33,9 +33,13 @@ public class recipeAddServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//セッションからユーザー情報を得る
+		//ログインせずにサーブレットが起動されるとログインサーブレットへリダイレクト
 		HttpSession session = request.getSession();
-		user user = (user)session.getAttribute("allList");
+		user user = (user) session.getAttribute("allList");
+		if (user == null) {
+			response.sendRedirect("/EngelS/loginServlet");
+			return;
+		}
 
 		//検索条件の削除
 		session.removeAttribute("searchterms");
