@@ -273,7 +273,7 @@ public class recordsDAO {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/dojo6_data/C4", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select record.date, sum(savings) from record, goal where record.userid=? and ?<=record.date group by record.date;";
+			String sql = "select date, sum(savings) from record where userid=? and ?<=date group by date;";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる 改造ポイント
