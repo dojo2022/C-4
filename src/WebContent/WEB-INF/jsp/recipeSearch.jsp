@@ -72,7 +72,10 @@
 						<td>${e.recipe}</td>
 						<td>${e.cost}円</td>
 						<td>${e.time}分</td>
-						<td><a href="#" class="btn" name="modal_regist" >詳細</a></td>
+						<td hidden="hidden">${e.url}分</td>
+						<td hidden="hidden">${e.remarks}分</td>
+						<td><a href="#" class="btn" name="modal_regist"
+						data-recipe="${e.recipe}" data-cost="${e.cost}円"  data-time="${e.time}分" data-url="${e.url}" data-remarks="${e.remarks}">詳細</a></td>
 					</tr>
 					</c:forEach>
 				</table>
@@ -90,24 +93,24 @@
 				<div class="close">×</div>
 				<table>
 					<tr>
-						<th>レシピ名</th>
-						<td>${e.Name}</td>
+						<th>レシピ名：</th>
+						<td id = "modal_recipe"></td>
 					</tr>
 					<tr>
-						<th>費用</th>
-						<td>${e.Cost}円</td>
+						<th>費用：</th>
+						<td id = "modal_cost"></td>
 					</tr>
 					<tr>
-						<th>所要時間</th>
-						<td>${e.Minutes}分</td>
+						<th>所要時間：</th>
+						<td id = "modal_time"></td>
 					</tr>
 					<tr>
-						<th>URL</th>
-						<td>${e.Url}</td>
+						<th>URL：</th>
+						<td id = "modal_url"></td>
 					</tr>
 					<tr>
-						<th>備考</th>
-						<td>${e.Notes}</td>
+						<th>備考：</th>
+						<td id = "modal_remarks"></td>
 					</tr>
 
 				</table>
