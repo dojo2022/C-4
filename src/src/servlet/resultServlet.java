@@ -25,18 +25,23 @@ public class resultServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 結果ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
-		dispatcher.forward(request, response);
 
-		//セッションからユーザー情報を得る
+		//ログインせずにサーブレットが起動されるとログインサーブレットへリダイレクト
 		HttpSession session = request.getSession();
-		user user = (user)session.getAttribute("allList");
+		user user = (user) session.getAttribute("allList");
+		if (user == null) {
+			response.sendRedirect("/EngelS/loginServlet");
+			return;
+		}
 
 		//ユーザーアイコン部分：${user1.user}と${user1.name}を使えるようにする処理
 		userDAO uDao = new userDAO();
 		user user1 = uDao.select(user);
 		request.setAttribute("user1",user1);
+
+		// 結果ページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/result.jsp");
+		dispatcher.forward(request, response);
 	}
 
 
