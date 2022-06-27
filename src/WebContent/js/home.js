@@ -19,7 +19,7 @@ window.onload=function(){
 
 	console.log(i);
 
-	if(recipe.length != null){
+	if(recipe.length != 0){
 		alert(recipe[i].textContent + 'を作ってみましょう');
 	}
 
