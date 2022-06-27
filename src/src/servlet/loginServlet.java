@@ -65,6 +65,9 @@ public class loginServlet extends HttpServlet {
 			int onetime = 0;
 			session.setAttribute("onetime", onetime);
 
+			//ログイン失敗時のメッセージを削除
+			session.removeAttribute("result");
+
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/homeServlet");
 		}
