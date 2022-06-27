@@ -8,10 +8,8 @@
 <!-- 共通css,jsへのリンク-->
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" href="./css/alert.css">
-<script src="text/javascript" src="/EngelS/js/common.js"></script>
+<script type="text/javascript" src="/EngelS/js/common.js"></script>
 <script type="text/javascript" src="/EngelS/js/alert.js"></script>
-
-<script src="./javascript/common.js"></script>
 
 <!-- アラートCSSファイルとの連携 -->
  <link rel="stylesheet" type="text/css" href="/EngelS/css/alert.css">
@@ -25,13 +23,14 @@
 				<ul id="dropmenu" class="dropmenu">
 					<li><a href="#">設定</a>
 						<ul>
-							<li class="username">ニックネーム取得</li>
-							<li>ログインID取得</li>
+							<li class="user">${user1.user}</li>
+							<li class="name">${user1.name}</li>
 							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
 							<li><a href="/EngelS/loginServlet">ログアウト</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
 			</nav>
 			<!-- 設定ドロップダウンメニュー終了 -->
@@ -65,29 +64,26 @@
 				<table class="alert_table">
 					<tr>
 						<th>朝</th>
-						<td><input type="text" name="morning_min" id="morning_alertMin"></td>
+						<td><input type="number" name="morning_min" id="morning_alertMin" min="0" step="1"></td>
 						<td>～</td>
-						<td><input type="text" name="morning_max" id="morning_alertMax"></td>
+						<td><input type="number" name="morning_max" id="morning_alertMax" min="0" step="1"></td>
 						<td>分</td>
 					</tr>
 					<tr>
 						<th>昼</th>
-						<td><input type="text" name="lunch_min" id="lunch_alertMin"></td>
+						<td><input type="number" name="lunch_min" id="lunch_alertMin" min="0" step="1"></td>
 						<td>～</td>
-						<td><input type="text" name="lunch_max"  id="lunch_alertMax"></td>
+						<td><input type="number" name="lunch_max"  id="lunch_alertMax" min="0" step="1"></td>
 						<td>分</td>
 					</tr>
 					<tr>
 						<th>夕</th>
-						<td><input type="text" name="dinner_min" id="dinner_alertMin"></td>
+						<td><input type="number" name="dinner_min" id="dinner_alertMin" min="0" step="1"></td>
 						<td>～</td>
-						<td><input type="text" name="dinner_max"  id="dinner_alertMax"></td>
+						<td><input type="number" name="dinner_max"  id="dinner_alertMax" min="0" step="1"></td>
 						<td>分</td>
 					</tr>
 
-					<tr>
-					<td>*デフォルト値は、０～５分で設定しています。</td>
-					</tr>
 					<tr>
 						<td>
 							<!-- 画面が更新されて入力されたものも消えてしまうので、JSで対応する -->
@@ -95,12 +91,15 @@
 						</td>
 					</tr>
 				</table>
-
 			</form>
+
+			<p>*デフォルト値は、０～５分で設定しています。</p>
+			<p id="morning_alert"></p>
 			<p>${result.message1}</p>
-			<a href="/EngelS/homeServlet"><input type="button" name="SUBMIT"
-				value="ホームに戻る" class="subbutton"></a>
-			<a id="morning_alert"></a>
+
+			<a href="/EngelS/homeServlet">
+				<input type="button" name="SUBMIT"value="ホームに戻る" class="subbutton">
+			</a>
 
 		</main>
 		<footer>
