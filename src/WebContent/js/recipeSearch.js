@@ -9,7 +9,7 @@ function init(){
 	//詳細リンクの要素をすべて取得。
 	const btns = document.getElementsByName('modal_regist');
 
-	const modal = document.querySelector('.modal');
+	const modal = document.querySelector('.modalform');
 	const closeBtn = document.querySelector('.close');
 	const overlay = document.querySelector('.overlay');
 

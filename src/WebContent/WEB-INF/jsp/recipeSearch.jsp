@@ -89,29 +89,37 @@
 			<div class="overlay"></div>
 
 			<!-- モーダルウィンドウ -->
-			<div class="modal">
-				<div class="close">×</div>
-				<table>
-					<tr>
-						<th>レシピ名：</th>
-						<td id = "modal_recipe"></td>
-					</tr>
-					<tr>
-						<th>費用：</th>
-						<td id = "modal_cost"></td>
-					</tr>
-					<tr>
-						<th>所要時間：</th>
-						<td id = "modal_time"></td>
-					</tr>
-					<tr>
-						<th>URL：</th>
-						<td id = "modal_url"></td>
-					</tr>
-					<tr>
-						<th>備考：</th>
-						<td id = "modal_remarks"></td>
-					</tr>
+
+				<div class="modalform">
+  <table>
+	<tr>
+		<td>
+		<!-- レシピ名項目崩れ防止用divタグ -->
+		<!-- モーダル内、一番最初の項目を、<div style="width:任意の数字px;">で囲む -->
+		<!-- 今回最初の項目はレシピなのでレシピ欄を囲んでいる  -->
+		  <div style="width:70px;">
+	          <div class="close">×</div>
+			<b>レシピ名</b>
+		  </div>
+		</td>
+		<td><div id="modal_recipe"></div></td>
+	</tr>
+	<tr>
+		<td class="td_space"><b>費用(円)</b></td>
+		<td><div id="modal_cost"></div></td>
+	</tr>
+	<tr>
+		<td class="td_space"><b>所要時間(分)</b></td>
+		<td><div id="modal_cost"></div></td>
+	<tr>
+		<td class="td_space"><b>URL</b></td>
+		<td><div id="modal_cost"></div></td>
+	</tr>
+	<tr>
+		<td class="td_space"><b>備考</b></td>
+		<td><div id="modal_cost"></div></td>
+	</tr>
+
 
 				</table>
 
