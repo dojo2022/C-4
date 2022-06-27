@@ -1,6 +1,5 @@
 <!--☆今後のタスク： -->
-<!-- メインをセンターへ持ってくる(result.cssでテーブルの高さ、幅設定してセンター？) -->
-<!--レシピ追加サーブレットのスコープと合ってるか確認  -->
+<!-- ユーザー入力部分のレシピ名、 URLの折り返し実装-->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -58,16 +57,22 @@
 
 		<main>
 			<h2>レシピ追加</h2>
-			<p>${result.message1}</p>
-			<!-- エラーメッセージ(登録失敗)表示用タグ -->
-			<!-- ☆レシピ追加結果と同期してしまうため当jspではmessage2停止中 -->
-			<!-- <p id="err">${result.message2}</p> -->
 
-			<span>※</span>は必須入力項目です。
+			<!-- 例外エラー時のresultモデル エラーメッセージ表示「登録に失敗しました」の表示 -->
+			<p>${result.message1}</p>
+
+			<span>※</span>は必須入力項目です。<br>
+
+			<!-- レシピ名のエラーメッセージ -->
+			<span id="recipeerror_message"></span><br>
+			<!-- 費用のエラーメッセージ -->
+			<span id="costerror_message"></span><span id="costnum_error_message"></span><br>
+			<!-- 所要時間のエラーメッセージ -->
+			<span id="timeerror_message"></span><span id="timenum_error_message"></span><br>
+
 
 
  			<!-- レシピ追加フォーム -->
- 			<!-- ☆☆input type=の先の名称確認して反映 ☆☆ -->
 
   <!-- フォーム中央揃え用のdivタグ -->
   <div class="addform">
@@ -75,34 +80,30 @@
 		<table>
 			<tr>
 				<td>
-					<b>レシピ名</b> <span>※</span>30文字以内
+					<b>レシピ名</b><br>
+					<div class="notes"><span>※</span>30文字以内</div>
 				</td>
 				<td>
 					<!-- ☆onchangeの()内、this確認 -->
 					<input type="text" name="recipe" id="recipe" maxlength="30" >
 				</td>
-				<td><span id="recipeerror_message"></span></td>
 			</tr>
 			<tr>
 				<td>
-					<b>費用(円)</b> <span>※</span>半角数字
+					<b>費用(円)</b><br>
+					<div class="notes"><span>※</span>半角数字</div>
 				</td>
 				<td>
 					<input type="text" name="cost" id="cost" >円
 				</td>
-				<td>
-					<span id="costerror_message"></span><span id="costnum_error_message"></span>
-				</td>
 			</tr>
 			<tr>
 				<td>
-					<b>調理時間(分)</b> <span>※</span>半角数字
+					<b>調理時間(分)</b><br>
+					<div class="notes"><span>※</span>半角数字</div>
 				</td>
 				<td>
 					<input type="text" name="time" id="time">分
-				</td>
-				<td>
-					<span id="timeerror_message"></span><span id="timenum_error_message"></span>
 				</td>
 			</tr>
 			<tr>
@@ -121,12 +122,10 @@
 					<textarea name="remarks" id="remarks" rows="5" maxlength="200"></textarea>
 				</td>
 			</tr>
-			<tr>
-				<td><input type="reset" name="reset" value="リセット" class="subbutton"></td>
-
-				<td><a href="#" class="button" id="modal_regist" >登録</a></td>
-			</tr>
 		</table>
+		<input type="reset" name="reset" value="リセット" class="subbutton">
+
+		<a href="#" class="button" id="modal_regist" >登録</a>
 	</form>
   </div>
 
@@ -148,25 +147,35 @@
 	<!-- <div class="close">&times;</div>  -->
 
 	<!-- モーダル内に表示される文章 -->
-    <h2>この内容で登録しますか？</h2>
+    <h3 id="modal_check">この内容で登録しますか？</h3>
 
 	<!-- 入力内容を、以下①②へそれぞれ受け渡す -->
 	<!-- ①モーダル内レイアウト編集しやすくテーブルへテキストのみ反映させる  -->
 	<!-- ②データ受け渡し用のプログラムはhiddenで別でセット -->
 
 	<!-- ①モーダル内準備  -->
-	<table>
+
+	<!-- モーダルのフォーム中央揃え用divタグ -->
+	<div class="modalform">
+	  <table>
 		<tr>
-			<td><b>レシピ名</b></td>
+			<td>
+			   <!-- レシピ名項目崩れ防止用divタグ -->
+			   <!-- モーダル内、一番最初の項目を、<div style="width:任意の数字px;">で囲む -->
+			   <!-- 今回最初の欄レシピなのでレシピ欄を囲んでいる  -->
+			  <div style="width:100px;">
+				<b>レシピ名</b>
+			  </div>
+			</td>
 			<td><div id="modal_recipe"></div></td>
 		</tr>
 		<tr>
-			<td><b>費用(円)</b></td>
-			<td><div id="modal_cost"></div>円</td>
+			<td class="td_space"><b>費用</b>(円)</td>
+			<td><div id="modal_cost"></div></td>
 		</tr>
 		<tr>
-			<td><b>所要時間(分)</b></td>
-			<td><div id="modal_time"></div>分</td>
+			<td class="td_space"><b>所要時間</b>(分)</td>
+			<td><div id="modal_time"></div></td>
 		</tr>
 		<tr>
 			<td><b>URL</b></td>
@@ -176,7 +185,8 @@
 			<td><b>備考</b></td>
 			<td><div id="modal_remarks"></div></td>
 		</tr>
-	</table>
+	  </table>
+	 </div>
 
 
 	<!-- ②データ受け渡し用プログラム -->
@@ -192,8 +202,8 @@
 
 
 		<!-- 以下、はい(登録)、いいえ(モーダルウィンドウ消去)の追加 -->
+		<input type="submit" name="close" value="いいえ" class="subbutton close">
 		<input type="submit" name="REGIST" value="はい" class="button">
-		<input type="submit" name="close" value="いいえ" class="subbutton, close">
 	</form>
 
 </div>
