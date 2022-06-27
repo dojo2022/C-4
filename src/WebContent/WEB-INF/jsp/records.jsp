@@ -17,10 +17,10 @@
 			<!--設定ドロップダウンメニュー開始 -->
 			<nav class="drop">
 				<ul id="dropmenu" class="dropmenu">
-					<li><a href="#">設定</a>
+					<li><img class="menu" src="./img/menu.png" onmouseover="ro(this, './img/menu2.png')"  onmouseout="ro(this, './img/menu.png')" >
 						<ul>
-							<li class="username">ニックネーム取得</li>
-							<li>ログインID取得</li>
+							<li class="user">${user1.user}</li>
+							<li class="name">${user1.name}</li>
 							<li><a href="/EngelS/newPwServlet">パスワード変更</a></li>
 							<li><a href="/EngelS/goalServlet">目標金額設定</a></li>
 							<li><a href="/EngelS/alertServlet">アラート設定</a></li>
