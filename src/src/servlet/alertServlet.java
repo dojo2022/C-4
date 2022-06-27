@@ -27,12 +27,18 @@ public class alertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		//useridをセッションスコープから取得
+		HttpSession session = request.getSession();
+		user user = (user) session.getAttribute("allList");
+		session.setAttribute("user1", user);
+
+		//検索条件の初期化
+		session.removeAttribute("searchterms");
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/alert.jsp");
 		dispatcher.forward(request, response);
 
-		//検索条件の初期化
-		HttpSession session = request.getSession();
-		session.removeAttribute("searchterms");
 	}
 
 	/**
