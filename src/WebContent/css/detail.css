@@ -9,10 +9,11 @@ form {
 main {
 	background-color:#ffffd9;
 	height:850px;
+	text-align: center;
 }
 
 table {
-	margin:auto;
+	margin: 0 auto;
 }
 
 

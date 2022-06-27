@@ -48,7 +48,7 @@
 		<h1>詳細</h1>
 	<form id="detail" method="POST" action="/EngelS/detailServlet">
 	<div style = "width:505px">
-	<table border="1" style = "width:700px; height:400px">
+	<table border="1" style = "width:700px; height:400px;" align="center">
 		<tr>
 			<th style="width:100px">日付</th>
 			<th style="width:40px">３食</th>
