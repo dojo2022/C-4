@@ -20,7 +20,8 @@ function init(){
 		btn.addEventListener('click', function(e){
 		  // aタグのデフォルトの機能を停止する
 		  e.preventDefault();
-
+		  //setting the value for recipe, cost, time, url, remarks
+		  onclick_regist(e);
 
 		  // モーダルとオーバーレイにactiveクラスを付与する
 		  modal.classList.add('active');
@@ -43,12 +44,13 @@ function init(){
 	});
 
 
-function onclick_regist(){
+function onclick_regist(e){
 	//モーダルウィンドウの表示したい場所に画面の値をセットする。
-
-	let recipe = document.getElementById("recipe").value;
-	document.getElementById("modal_recipe").innerHTML = recipe;
-	document.getElementById("hidden_recipe").value = recipe;
+document.getElementById("modal_recipe").innerHTML = e.target.getAttribute("data-recipe")
+document.getElementById("modal_cost").innerHTML = e.target.getAttribute("data-cost")
+document.getElementById("modal_time").innerHTML = e.target.getAttribute("data-time")
+document.getElementById("modal_url").innerHTML = e.target.getAttribute("data-url")
+document.getElementById("modal_remarks").innerHTML = e.target.getAttribute("data-remarks")
 
 }
 }
