@@ -17,7 +17,7 @@
 			<!--設定ドロップダウンメニュー開始 -->
 			<nav class="drop">
 				<ul id="dropmenu" class="dropmenu">
-					<li><a href="#">設定</a>
+					<li><img class="menu" src="./img/menu.png" onmouseover="ro(this, './img/menu2.png')"  onmouseout="ro(this, './img/menu.png')" >
 						<ul>
 							<li class="username">ニックネーム取得</li>
 							<li>ログインID取得</li>
