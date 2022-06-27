@@ -27,11 +27,13 @@ public class alertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		//useridをセッションスコープから取得
+		//ログインせずにサーブレットが起動されるとログインサーブレットへリダイレクト
 		HttpSession session = request.getSession();
 		user user = (user) session.getAttribute("allList");
-		session.setAttribute("user1", user);
+		if (user == null) {
+			response.sendRedirect("/EngelS/loginServlet");
+			return;
+		}
 
 		//検索条件の初期化
 		session.removeAttribute("searchterms");
