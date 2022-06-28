@@ -46,9 +46,9 @@
 			</div>
 		</header>
 		<main>
-			<p>アラート設定</p>
+			<h2>アラート設定</h2>
 			<form method="POST" action="/EngelS/alertServlet" id="alert_form" onclick="alert_confirm()">
-			  <div id="">
+			 	<div id="day">
 				<input type="checkbox" name="Mon" class="days" value="月">月
 				<input type="checkbox" name="Tue" class="days" value="火">火
 				<input type="checkbox" name="Wed" class="days" value="水">水
@@ -56,9 +56,12 @@
 				<input type="checkbox" name="Fri" class="days" value="金">金
 				<input type="checkbox" name="Sat" class="days" value="土">土
 				<input type="checkbox" name="Sun" class="days" value="日">日
-			  </div>
-			  <p id="date_alert"></p>
 
+			 	<p id="date_alert"></p>
+			 	</div>
+
+
+				<div id="day">
 				<p>調理時間</p>
 
 				<table class="alert_table">
@@ -96,12 +99,14 @@
 						</td>
 					</tr>
 				</table>
+				</div>
 			</form>
 
-			<p>*デフォルト値は、０～５分で設定しています。</p>
-			<p id="morning_alert"></p>
-			<p>${result.message1}</p>
-
+			<div id="def">
+				<p>*デフォルト値は、０～５分で設定しています。</p>
+				<p id="morning_alert"></p>
+				<p>${result.message1}</p>
+			</div>
 
 		</main>
 		<footer>
