@@ -15,6 +15,12 @@ main {
 	margin: auto;
 }
 
+/* 備考欄の調整 */
+textarea{
+	width: 25em;
+	height: 5em;
+}
+
 /*サブタイトルを右側へ*/
 #subtitle {
 	margin: 0, 0, 0, 200;
