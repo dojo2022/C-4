@@ -38,12 +38,6 @@ INSERT INTO recipe VALUES(null, 0, '糖質控え目 ささみと枝豆のナム�
 
 INSERT INTO recipe VALUES(null, 0, 'さっぱり酢味噌冷奴', 150, 10, 'https://www.kurashiru.com/recipes/d285dfed-4aa4-44bd-b9c4-46f0e8126d1c', '簡単');
 
-INSERT INTO recipe VALUES(null, 0, '卵かけご飯', 140, 0, '', 'シンプルイズベスト');
-
-INSERT INTO recipe VALUES(null, 1, 'きゅうりの漬物', 100, 0, 'https://www.kurashiru.com/recipes/c184ca35-d856-4948-8243-c2ad5afdf5e9', 'サンプルデータのため調理時間なし');
-
-INSERT INTO recipe VALUES(null, 2, '大根の漬物', 180, 600, '', '寝る前に');
-
 INSERT INTO recipe VALUES(null, 0, 'レンジで簡単チーズオムレツ', 100, 10, 'https://www.kurashiru.com/recipes/d2b4dd92-5611-418b-90c6-9b589c67b6f2', '');
 
 INSERT INTO recipe VALUES(null, 0, 'やみつきキャベツ', 100, 5, 'https://recipe.rakuten.co.jp/recipe/1550008949', '居酒屋のそれ');
@@ -51,6 +45,10 @@ INSERT INTO recipe VALUES(null, 0, 'やみつきキャベツ', 100, 5, 'https://
 INSERT INTO recipe VALUES(null, 0, '白滝きむちラーメン', 225, 15, 'https://cookpad.com/recipe/2577417', 'あったかい気持ちになる');
 
 INSERT INTO recipe VALUES(null, 0, '具なしバター醤油パスタ', 180, 10, 'https://cookpad.com/recipe/286579', '簡単！');
+
+INSERT INTO recipe VALUES(null, 1, '卵かけご飯', 140, 0, '', 'シンプルイズベスト');
+
+INSERT INTO recipe VALUES(null, 1, '自家製カレー', 200, 0, '', 'スパイス多め');
 
 
 //STEP.4テーブルに格納されたデータを確認する
