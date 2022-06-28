@@ -24,18 +24,19 @@ CREATE TABLE record(
 
 //STEP3.テーブルにテストデータを格納する
 //--------------------------------------------------------------------------------
-INSERT INTO record VALUES(null, 1, '2022-6-9', '朝', '8', 126);
-INSERT INTO record VALUES(null, 1, '2022-6-9', '昼', '1', 0);
-INSERT INTO record VALUES(null, 1, '2022-6-9', '夕', '1', 0);
+INSERT INTO record VALUES(null, 1, '2022-06-01', '朝', '8', 135);
+INSERT INTO record VALUES(null, 1, '2022-06-01', '昼', '1', 0);
+INSERT INTO record VALUES(null, 1, '2022-06-01', '夕', '1', 0);
 
-INSERT INTO record VALUES(null, 1, '2022-6-8', '朝', '8', 126);
-INSERT INTO record VALUES(null, 1, '2022-6-8', '朝', '2', 100);
-INSERT INTO record VALUES(null, 1, '2022-6-8', '昼', '1', 0);
-INSERT INTO record VALUES(null, 1, '2022-6-8', '夕', '1', 0);
+INSERT INTO record VALUES(null, 1, '2022-06-02', '朝', '13', 126);
+INSERT INTO record VALUES(null, 1, '2022-06-02', '朝', '4', 90);
+INSERT INTO record VALUES(null, 1, '2022-06-02', '昼', '2', 0);
+INSERT INTO record VALUES(null, 1, '2022-06-02', '夕', '1', 0);
 
-INSERT INTO record VALUES(null, 2, '2022-6-9', '朝', '8', 126);
-INSERT INTO record VALUES(null, 2, '2022-6-9', '昼', '1', 0);
-INSERT INTO record VALUES(null, 2, '2022-6-9', '夕', '1', 0);
+INSERT INTO record VALUES(null, 1, '2022-06-03', '朝', '7', 180);
+INSERT INTO record VALUES(null, 1, '2022-06-03', '朝', '10', 90);
+INSERT INTO record VALUES(null, 1, '2022-06-03', '昼', '1', 0);
+INSERT INTO record VALUES(null, 1, '2022-06-03', '夕', '14', 180);
 
 
 
