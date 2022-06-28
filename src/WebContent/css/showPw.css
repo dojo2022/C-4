@@ -7,12 +7,20 @@ main{
 
 button{
 	margin-top: 20px;
+	border: 2px solid transparent;
+	display: inline-block;
+	text-decoration: none;
+	padding: 5px 15px;
+	background: linear-gradient(to right bottom, #FFA500, #FF6347);
+	border-radius: 5px;
+	color: #fff;
+	transition: 0.3s;
 }
 
 #content {
 	width: 550px;
-	height: 150px;
+	height: 300px;
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 100px;
 	text-align: center;
 }
