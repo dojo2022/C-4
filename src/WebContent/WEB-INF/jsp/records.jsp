@@ -80,8 +80,8 @@
 
 					<!-- プルダウンを追加 -->
 					<tr class="plus">
-						<td><button onclick="addMorningMenu();return false;">＋</button>
-						<button onclick="removeMorningMenu();return false;">－</button></td>
+						<td><button class="plus_bt" onclick="addMorningMenu();return false;">＋</button>
+						<button class="minus" onclick="removeMorningMenu();return false;">－</button></td>
 					</tr>
 
 					<!-- 昼食コーナー -->
@@ -113,8 +113,8 @@
 
 					<!-- プルダウン追加 -->
 					<tr class="plus">
-						<td><button onclick="addlunchMenu();return false;">＋</button>
-						<button onclick="removelunchMenu();return false;">－</button></td>
+						<td><button class="plus_bt" onclick="addlunchMenu();return false;">＋</button>
+						<button class="minus" onclick="removelunchMenu();return false;">－</button></td>
 					</tr>
 
 					<!-- 夕食コーナー -->
@@ -145,8 +145,8 @@
 					</tr>
 					<!-- プルダウン追加 -->
 					<tr class="plus">
-						<td><button onclick="adddinnerMenu();return false;">＋</button>
-						<button onclick="removeDinnerMenu();return false;">－</button></td>
+						<td><button class="plus_bt" onclick="adddinnerMenu();return false;">＋</button>
+						<button class="minus" onclick="removeDinnerMenu();return false;">－</button></td>
 					</tr>
 				</table>
 				<p>

@@ -84,10 +84,15 @@
 						<td>分</td>
 					</tr>
 
-					<tr>
+					<tr id="submital">
 						<td>
 							<!-- 画面が更新されて入力されたものも消えてしまうので、JSで対応する -->
-							<input type="submit" name="SUBMIT" value="確定">
+							<input type="submit" name="SUBMIT" value="確定" class="button">
+						</td>
+						<td>
+							<a href="/EngelS/homeServlet">
+								<input type="button" name="SUBMIT"value="ホームに戻る" class="subbutton">
+							</a>
 						</td>
 					</tr>
 				</table>
@@ -97,9 +102,6 @@
 			<p id="morning_alert"></p>
 			<p>${result.message1}</p>
 
-			<a href="/EngelS/homeServlet">
-				<input type="button" name="SUBMIT"value="ホームに戻る" class="subbutton">
-			</a>
 
 		</main>
 		<footer>

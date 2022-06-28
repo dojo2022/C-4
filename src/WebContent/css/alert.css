@@ -1,10 +1,51 @@
 @charset "UTF-8";
 main {
 	background-color:#ffffd9;
-	height:850px;
+	height:500px;
 }
 
 /*中央揃え*/
 .container {
 	text-align:center;
+}
+
+/*tableを中央揃え*/
+.alert_table {
+	margin:auto;
+}
+
+/*確定ボタンの装飾*/
+.button {
+  border: 2px solid transparent;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFA500, #FF6347);
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+/*戻るボタンの装飾*/
+.subbutton {
+  outline: 1px solid black;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFFFFF, #D3D3D3);
+  border-radius: 5px;
+  color: #000000;
+  transition: 0.3s;
+  border : none;
+}
+
+.subbutton:hover {
+  opacity: .8;
+  cursor : pointer;
+}
+
+/*アラートのsubmitボタン位置編集*/
+#submital {
+	position: relative;
+	left: 152px;
 }
