@@ -44,29 +44,31 @@
 
 			<h2>パスワード変更</h2>
 
-			<!-- パスワード変更フォーム -->
-			<form id="chaform" method="POST" action="/EngelS/newPwServlet"
-				onclick="chafun()">
-				<table>
-					<tr>
-						<td>現在のパスワード</td>
-					</tr>
-					<tr>
-						<td><input type="text" value="${allList.pw}" id="oldpw">
-						</td>
-					</tr>
-					<tr>
-						<td>パスワード<br> ※10文字以内
-						</td>
-					</tr>
-					<tr>
-						<td><input type="password" name="newpw" id="newpw"></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="登録"></td>
-					</tr>
-				</table>
-			</form>
+			<div class="form">
+				<!-- パスワード変更フォーム -->
+				<form id="chaform" method="POST" action="/EngelS/newPwServlet"
+					onclick="chafun()">
+					<table>
+						<tr>
+							<td>現在のパスワード</td>
+						</tr>
+						<tr>
+							<td><input type="text" value="${allList.pw}" id="oldpw">
+							</td>
+						</tr>
+						<tr>
+							<td>パスワード<br> ※10文字以内
+							</td>
+						</tr>
+						<tr>
+							<td><input type="password" name="newpw" id="newpw"></td>
+						</tr>
+						<tr>
+							<td><input type="submit" class="sub" value="登録"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
 
 			<p id="err"></p>
 
