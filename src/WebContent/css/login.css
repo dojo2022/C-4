@@ -17,10 +17,20 @@ input[type=submit] {
   transition: 0.3s;
 }
 
+/* タイトルの調整 */
+h2{
+	width: 300px;
+	height: 50px;
+	margin-left: 40px;
+	margin-top: 10px;
+}
+
 /* フォームの位置調整 */
 .form{
 	width: 500px;
-	margin-left: 50px;
+	height: 500px;
+	margin-left: 60px;
+	margin-top: 10px;
 }
 
 /* ボタンとの間隔調整 */
