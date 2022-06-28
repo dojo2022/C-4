@@ -149,9 +149,17 @@
 						<button class="minus" onclick="removeDinnerMenu();return false;">－</button></td>
 					</tr>
 				</table>
-				<p>
-					備考<input type="text" name="remarks">
-				</p>
+				<table class="records_table">
+					<tr>
+						<td>
+							<p>備考</p><br>
+						</td>
+						<td colspan=2>
+							<textarea name="remarks" id="remarks" rows="5" maxlength="200"></textarea>
+						</td>
+						<td></td>
+					</tr>
+				</table>
 				<p>今日の削減金額は</p>
 				<!-- jsを使って自動で表示させたい -->
 				<p id="total">0円です!</p>
