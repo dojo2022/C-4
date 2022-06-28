@@ -16,7 +16,7 @@ main {
 }
 
 /* 備考欄の調整 */
-textarea{
+textarea {
 	width: 25em;
 	height: 5em;
 }
@@ -24,12 +24,14 @@ textarea{
 /*サブタイトルを右側へ*/
 #subtitle {
 	margin: 0, 0, 0, 200;
+	z-index: 20;
 }
 
 /*＋－の位置調整*/
 .plus {
 	position: relative;
 	left: 60px; /*スクロールすると、ヘッダーに被るので時間があれば対処する*/
+	z-index: 20;
 }
 
 /* 登録ボタンのデザイン */
@@ -61,6 +63,7 @@ textarea{
 #subtitle {
 	position: relative;
 	left: 130px;
+	z-index: 20;
 }
 
 /*＋ボタン修正*/
@@ -73,7 +76,6 @@ textarea{
 	color: #fff;
 	margin: 0px;
 	transition: 0.3s;
-
 }
 
 /*－ボタン修正*/
@@ -86,4 +88,10 @@ textarea{
 	color: #fff;
 	margin: 0px;
 	transition: 0.3s;
+}
+
+/*重なり防止*/
+header {
+	position: fixed;
+	z-index: 30;
 }
