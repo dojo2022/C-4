@@ -4,9 +4,29 @@ main {
 	height:500px;
 }
 
+
+/* コンテンツの配置調整 */
+h2{
+	margin-top: 10px;
+}
+
 /*中央揃え*/
 .container {
 	text-align:center;
+}
+
+/* コンテンツの配置調整 */
+#day{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+
+/* コンテンツの配置調整 */
+#def{
+	width: 360px;
+	height: 200px;
+	margin-left: 530px;
 }
 
 /*tableを中央揃え*/
