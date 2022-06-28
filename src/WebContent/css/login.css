@@ -4,6 +4,31 @@ main{
 	background-color:#ffffd9;
 	height:468px;
 }
+
+/* ボタンのCSS */
+input[type=submit] {
+  border: 2px solid transparent;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFA500, #FF6347);
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s;
+}
+
+/* フォームの位置調整 */
+.form{
+	width: 500px;
+	margin-left: 50px;
+}
+
+/* ボタンとの間隔調整 */
+.sub{
+	width: 6em;
+}
+
+/* エラー部分の色付け */
 #err{
 	color: #ff0000;
 }
