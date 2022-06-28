@@ -1,51 +1,83 @@
 @charset "UTF-8";
+
 main {
-	background-color:#ffffd9;
-	height:850px;
+	background-color: #ffffd9;
+	height: 850px;
 }
 
 /*全体的に中央揃え*/
 .container {
-	text-align:center;
+	text-align: center;
 }
 
 /*テーブルを全体的に中央へ*/
-.records_table{
-	margin:auto;
+.records_table {
+	margin: auto;
 }
 
 /*サブタイトルを右側へ*/
-#subtitle{
-	margin:0,0,0,200;
+#subtitle {
+	margin: 0, 0, 0, 200;
 }
 
 /*＋－の位置調整*/
 .plus {
-	position:relative;
-	left:60px; /*スクロールすると、ヘッダーに被るので時間があれば対処する*/
+	position: relative;
+	left: 60px; /*スクロールすると、ヘッダーに被るので時間があれば対処する*/
 }
 
 /* 登録ボタンのデザイン */
 .button {
-  display: inline-block;
-  text-decoration: none;
-  padding: 10px 20px;
-  background: linear-gradient(to right bottom, #FFA500, #FF6347);
-  border-radius: 5px;
-  color: #fff;
-  margin: 20px;
-  transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	padding: 10px 20px;
+	background: linear-gradient(to right bottom, #FFA500, #FF6347);
+	border-radius: 5px;
+	color: #fff;
+	margin: 20px;
+	transition: 0.3s;
 }
 
 /* マウスでの操作無効 */
-#morning_savings{
+#morning_savings {
 	pointer-events: none;
 }
 
-#lunch_savings{
+#lunch_savings {
 	pointer-events: none;
 }
 
-#dinner_savings{
+#dinner_savings {
 	pointer-events: none;
+}
+
+/*削除金額位置調整*/
+#subtitle {
+	position: relative;
+	left: 130px;
+}
+
+/*＋ボタン修正*/
+.plus_bt {
+	display: inline-block;
+	text-decoration: none;
+	padding: 4px 8px;
+	background: linear-gradient(to right bottom, #FFA500, #FF6347);
+	border-radius: 5px;
+	color: #fff;
+	margin: 0px;
+	transition: 0.3s;
+
+}
+
+/*－ボタン修正*/
+.minus {
+	display: inline-block;
+	text-decoration: none;
+	padding: 4px 8px;
+	background: linear-gradient(to right bottom, #FFA500, #FF6347);
+	border-radius: 5px;
+	color: #fff;
+	margin: 0px;
+	transition: 0.3s;
 }

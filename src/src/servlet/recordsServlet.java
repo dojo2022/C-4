@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import dao.goalDAO;
 import dao.record_noteDAO;
 import dao.recordsDAO;
+import dao.userDAO;
 import model.goal;
 import model.recipeAdd;
 import model.record_note;
@@ -98,6 +99,11 @@ public class recordsServlet extends HttpServlet {
 		//リクエストスコープに現在日付を取得
 		request.setAttribute("datek", datek);
 
+		//${user1.user}と${user1.name}を使えるようにする処理
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1", user1);
+
 		//recordsjspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/records.jsp");
 		dispatcher.forward(request, response);
@@ -137,26 +143,27 @@ public class recordsServlet extends HttpServlet {
 		record_noteDAO cDao = new record_noteDAO();
 
 		//重複データの削除
-		if(bDao.delete(new records(0, userid, date, "", 0, 0, "", ""))) {
+		if (bDao.delete(new records(0, userid, date, "", 0, 0, "", ""))) {
 			System.out.println("削除しました.");
 		}
-		if(cDao.delete(new record_note(0, userid, date, ""))) {
+		if (cDao.delete(new record_note(0, userid, date, ""))) {
 			System.out.println("削除しました.");
 		}
 
 		if (request.getParameter("SUBMIT").equals("登録する")) {
 			for (int i = 0; i < mealtime.length; i++) {
-				if(bDao.records_insert(new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { //更新成功
+				if (bDao.records_insert(
+						new records(0, userid, date, mealtime[i], 0, Integer.parseInt(savings[i]), recipe[i], ""))) { //更新成功
 					System.out.println("登録成功");
 
 				} else { // 登録失敗
 
-					request.setAttribute("result",new result());
+					request.setAttribute("result", new result());
 
 				}
 			}
 
-			if(cDao.insert(new record_note(0, userid, date, remarks))) {
+			if (cDao.insert(new record_note(0, userid, date, remarks))) {
 				System.out.println("登録成功");
 			}
 
