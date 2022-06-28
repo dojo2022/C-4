@@ -19,7 +19,7 @@ CREATE TABLE goal(
   sum INT
 );
 
-//STEP3.※新規登録から行うとどうなるか確認したいので一旦テストデータなしで
+//STEP3.テストデータはなし
 //INSERT into goal (userid,date,money,sum) values (1,'2022-06-01',3000,SELECT SUM(savings) FROM record WHERE userid=1 AND date>='2022-06-01');
 
 //STEP.4テーブルに格納されたデータを確認する
