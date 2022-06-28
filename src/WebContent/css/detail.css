@@ -16,4 +16,19 @@ table {
 	margin: 0 auto;
 }
 
+.subbutton {
+  outline: 1px solid black;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFFFFF, #D3D3D3);
+  border-radius: 5px;
+  color: #000000;
+  transition: 0.3s;
+  border : none;
+}
+.subbutton:hover {
+  opacity: .8;
+  cursor : pointer;
+}
 

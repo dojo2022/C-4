@@ -48,7 +48,7 @@
 			<!--★皆さんが作ってるものをここに入れてください-->
 			<form method="POST" action="/EngelS/recipeSearchServlet">
 				<input type="text" name="query" size="30" maxlength="40">
-				<input type="submit" name="btn" value="検索">
+				<input type="submit" name="btn" class = "button" value="検索">
 			</form>
 
 
@@ -90,46 +90,46 @@
 
 			<!-- モーダルウィンドウ -->
 
-				<div class="modalform">
-  <table>
+	<!-- モーダルのフォーム中央揃え用divタグ -->
+	<div class="modalform">
+	<table>
 	<tr>
-		<td>
-		<!-- レシピ名項目崩れ防止用divタグ -->
-		<!-- モーダル内、一番最初の項目を、<div style="width:任意の数字px;">で囲む -->
-		<!-- 今回最初の項目はレシピなのでレシピ欄を囲んでいる  -->
-		  <div style="width:70px;">
-	          <div class="close">×</div>
-			<b>レシピ名</b>
-		  </div>
-		</td>
-		<td><div id="modal_recipe"></div></td>
-	</tr>
-	<tr>
-		<td class="td_space"><b>費用(円)</b></td>
-		<td><div id="modal_cost"></div></td>
-	</tr>
-	<tr>
-		<td class="td_space"><b>所要時間(分)</b></td>
-		<td><div id="modal_cost"></div></td>
-	<tr>
-		<td class="td_space"><b>URL</b></td>
-		<td><div id="modal_cost"></div></td>
-	</tr>
-	<tr>
-		<td class="td_space"><b>備考</b></td>
-		<td><div id="modal_cost"></div></td>
-	</tr>
+	<td>
+	<!-- レシピ名項目崩れ防止用divタグ -->
+	<!-- モーダル内、一番最初の項目を、<div style="width:任意の数字px;">で囲む -->
+	<!-- 今回最初の項目はレシピなのでレシピ欄を囲んでいる  -->
+	<div style="width:70px;">
+	<div class="close">×</div>
+	<b>レシピ名</b>
+	</div>
+	</td>
+	<td><div id="modal_recipe"></div></td>
+		</tr>
+		<tr>
+			<td class="td_space"><b>費用(円)</b></td>
+			<td><div id="modal_cost"></div></td>
+		</tr>
+		<tr>
+			<td class="td_space"><b>所要時間(分)</b></td>
+			<td><div id="modal_time"></div></td>
+		<tr>
+			<td class="td_space"><b>URL</b></td>
+			<td><div id="modal_url"></div></td>
+		</tr>
+		<tr>
+			<td class="td_space"><b>備考</b></td>
+			<td><div id="modal_remarks"></div></td>
+		</tr>
 
+	</table>
 
-				</table>
-
-			</div>
+	</div>
 
 			<!-- スクロールで高さを出すためのsectionタグ -->
 			<section></section>
 
 
-		</main>
+	</main>
 		<footer>
 			<div class="f_logo">
 				<img src="./img/logo.png">

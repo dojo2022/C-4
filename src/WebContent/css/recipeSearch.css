@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* モーダルウィンドウ */
-.modal {
+.modalform {
   /* 位置の調整(真ん中に表示) */
   position: fixed;
   top: 50%;
@@ -8,7 +8,7 @@
   transform: translate(-50%, -50%);
 }
 /* モーダルウィンドウ内の閉じるボタン */
-.modal .close {
+.modalform .close {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -16,7 +16,7 @@
   font-size: 20px;
 }
 /* モーダルウィンドウ */
-.modal {
+.modalform {
   /* デフォルトでは非表示にしておく */
   opacity: 0;
   visibility: hidden;
@@ -33,7 +33,7 @@
   transform: translate(-50%, -50%);
 }
 /* activeクラスのついたモーダルウィンドウ */
-.modal.active {
+.modalform.active {
   opacity: 1;
   visibility: visible;
 }
@@ -76,3 +76,13 @@ table {
 
 }
 
+.button {
+  border: 2px solid transparent;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 15px;
+  background: linear-gradient(to right bottom, #FFA500, #FF6347);
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.3s;
+}

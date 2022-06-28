@@ -73,7 +73,7 @@
 			</table>
 
 		</form>
-		<a href="/EngelS/homeServlet">ホームへ戻る</a>
+		<a href="/EngelS/homeServlet" class = "subbutton">ホームへ戻る</a>
 
 
 	</main>
