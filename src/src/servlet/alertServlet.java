@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.alertDAO;
+import dao.userDAO;
 import model.alert;
 import model.result;
 import model.user;
@@ -37,6 +38,11 @@ public class alertServlet extends HttpServlet {
 
 		//検索条件の初期化
 		session.removeAttribute("searchterms");
+
+		//${user1.user}と${user1.name}を使えるようにする処理
+		userDAO uDao = new userDAO();
+		user user1 = uDao.select(user);
+		request.setAttribute("user1", user1);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/alert.jsp");
 		dispatcher.forward(request, response);
@@ -76,24 +82,26 @@ public class alertServlet extends HttpServlet {
 
 		alertDAO bDao = new alertDAO();
 		if (request.getParameter("SUBMIT").equals("確定")) {
-			for(int i = 0; i < 7; i++) {
-				if(days[i] != null) {
-					if (bDao.update(new alert(0, userid, days[i], morning_min, lunch_min, dinner_min, morning_max, lunch_max,
-							dinner_max))) {
+			for (int i = 0; i < 7; i++) {
+				if (days[i] != null) {
+					if (bDao.update(
+							new alert(0, userid, days[i], morning_min, lunch_min, dinner_min, morning_max, lunch_max,
+									dinner_max))) {
 						count++;
-					} else if (bDao.insert(new alert(0, userid, days[i], morning_min, lunch_min, dinner_min, morning_max, lunch_max,
-							dinner_max))){
+					} else if (bDao.insert(
+							new alert(0, userid, days[i], morning_min, lunch_min, dinner_min, morning_max, lunch_max,
+									dinner_max))) {
 						count++;
-					}else {
+					} else {
 						err++;
 					}
 				}
 			}
 
-			if(err > 0) {
-				session.setAttribute("result",new result(count + err + "つ中、" + err + "つのアラート設定に失敗しました。", "", ""));
+			if (err > 0) {
+				session.setAttribute("result", new result(count + err + "つ中、" + err + "つのアラート設定に失敗しました。", "", ""));
 			} else {
-				session.setAttribute("result",new result(count + "つのアラート設定を行いました。", "", ""));
+				session.setAttribute("result", new result(count + "つのアラート設定を行いました。", "", ""));
 			}
 			response.sendRedirect("/EngelS/alertServlet");
 		}
