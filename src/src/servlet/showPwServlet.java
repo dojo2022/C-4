@@ -31,6 +31,8 @@ public class showPwServlet extends HttpServlet {
 			return;
 		}
 
+		session.setAttribute("user1", user);
+
 		//確認ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/showPw.jsp");
 		dispatcher.forward(request, response);
