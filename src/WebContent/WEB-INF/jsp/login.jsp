@@ -22,7 +22,7 @@
 
 			<h2>ログイン画面</h2>
 
-			<p>${result.message1}</p>
+			<p>${result.message3}</p>
 
 			<div class="form">
 				<!-- ログインフォーム -->

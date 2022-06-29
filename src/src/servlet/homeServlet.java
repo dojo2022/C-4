@@ -100,7 +100,8 @@ public class homeServlet extends HttpServlet {
 		if(onetime == 0) {
 
 			//時刻の取得
-			int hour = cl.get(Calendar.HOUR_OF_DAY);
+			//int hour = cl.get(Calendar.HOUR_OF_DAY);
+			int hour = 6;
 
 			//曜日の取得
 			String[] WEEK = {"日", "月", "火", "水", "木", "金", "土"};

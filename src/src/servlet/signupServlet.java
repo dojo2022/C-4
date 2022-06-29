@@ -46,7 +46,7 @@ public class signupServlet extends HttpServlet {
 		userDAO iDao = new userDAO();
 		if (iDao.newuser(new user(0, user, name, pw))) {	// 登録成功時
 			// リクエストスコープにメッセージを格納する
-			request.setAttribute("result", (new result("登録に成功しました。", "", "")));
+			request.setAttribute("result", (new result("", "", "登録に成功しました。")));
 
 			//デフォルトのアラート設定
 			alertDAO alDao = new alertDAO();
