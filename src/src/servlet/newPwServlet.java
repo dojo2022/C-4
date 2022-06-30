@@ -67,7 +67,8 @@ public class newPwServlet extends HttpServlet {
 			// セッションスコープにIDを格納する
 			session.setAttribute("allList", cardList);
 
-			request.setAttribute("result", (new result("パスワードの変更が完了しました。", "", "")));
+			//resultの削除
+			session.removeAttribute("result");
 
 			// ホームサーブレットにリダイレクトする
 			response.sendRedirect("/EngelS/showPwServlet");

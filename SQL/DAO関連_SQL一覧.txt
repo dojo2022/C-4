@@ -1,14 +1,24 @@
 
 userテーブル関連
 
+//ユーザー情報の検索
+//-------------------------------------------------
+select * from user where user = ? and pw = ?;
+
+
 //新規ユーザー登録
 //-------------------------------------------------
-INSERT INTO user VALUES(null, ?, ?, ?);
+INSERT INTO user (userid, user, name, pw) VALUES (null, ?, ?, ?);
 
 
 //パスワード変更
 //-------------------------------------------------
 UPDATE user SET pw=? WHERE userid=?;
+
+
+//ユーザー情報の有無の判定
+//-------------------------------------------------
+select count(*) from user where user = ? and pw = ?;
 
 
 
@@ -18,51 +28,64 @@ recipeテーブル関連
 
 //ユーザーごとのレシピ検索
 //-------------------------------------------------
-SELECT * FROM recipe WHERE userid=0 OR userid=?;
+select Id, Userid, Recipe, Cost, Time, Url, Remarks from Recipe WHERE (userid = ? or userid = 0) and (recipe like ? or remarks like ?) and recipe != '外食' and recipe != '食事なし';
 
 
 //ユーザーによるレシピ登録
 //-------------------------------------------------
-INSERT INTO recipe VALUES(null, ?, ?, ?, ?, ?, ?);
+insert into recipe (userid, recipe, cost, time, url, remarks) values (?, ?, ?, ?, ?, ?);
+
+
+//アラート用のレシピ検索
+//-------------------------------------------------
+select recipe from recipe where (userid = 0 or userid = ?) and ?<=time and time <= ? and recipe != '外食' and recipe != '食事なし';
 
 
 
 
-※以降のSQL文は要修正します。
 
 recordテーブル関連
 
 //食事記録の登録
 //-------------------------------------------------
-INSERT INTO record VALUES(null, ?, ?, ?, ?, ?);
+insert into record(id, userid, date, mealtime, recipeid, savings) values (null, ?, ?, ?, select id from recipe where recipe=?, ? );
 
 
 //食事記録の検索
 //-------------------------------------------------
-SELECT * FROM record WHERE userid=?;
+SELECT recipe, cost FROM recipe WHERE userid=0 or userid = ?;
 
 
 //グラフデータの抽出
 //-----------------------------------------------------------------
-SELECT date, SUM(savings) FROM record WHERE userid=? GROUP BY date;
+select date, sum(savings) from record where userid=? and ?<=date group by date;
 
 
 //記録詳細データの抽出(recordテーブル＆recipeテーブルで内部結合)
 //-----------------------------------------------------------------
-SELECT RECORD.userid, RECORD.date,RECORD.mealtime, RECIPE.recipe,RECORD.savings, RECIPE.remarks FROM RECIPE INNER JOIN RECORD ON RECIPE.id = RECORD.recipeid WHERE RECORD.userid=?;
+SELECT record.userid, record.date, record.mealtime, recipe.recipe,  record.savings, record_note.remarks from record, record_note, recipe where record.userid=? and record.date=record_note.date and record.recipeid=recipe.id order by date;
 
+
+//食事記録の削除
+//-----------------------------------------------------------------
+DELETE FROM record WHERE userid = ? AND date = ?;
 
 
 record_noteテーブル関連
 
 //備考の登録
 //-------------------------------------------------
-INSERT INTO record_note VALUES(null, ?, ?, ?);
+insert into record_note (id, userid, date, remarks) values (null, ?, ?,?);
 
 
 //備考の検索
 //-----------------------------------------------------------------
-SELECT * FROM record_note WHERE userid=?;
+select * from record_note where userid = ? and date = ?;
+
+
+//備考の削除
+//-----------------------------------------------------------------
+DELETE FROM record_note WHERE userid = ? AND date = ?;
 
 
 
@@ -72,7 +95,7 @@ goalテーブル関連
 
 //目標金額の登録
 //-----------------------------------------------------------------
-INSERT INTO goal VALUES(null, ?, ?, ?, 0);
+INSERT into goal (userid,date,money,sum) values (?,?,?,SELECT SUM(savings) FROM record WHERE userid=? AND date>=?);
 
 
 //目標金額の検索
@@ -82,7 +105,24 @@ SELECT * FROM goal WHERE userid=? and date=?;
 
 //目標金額の更新
 //-----------------------------------------------------------------
-UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? AND date>=? WHERE userid=? AND date=?
+UPDATE goal set money=?,sum=SELECT SUM(savings) FROM record WHERE userid=? AND date>=? WHERE userid=? AND date=?;
+
+//再集計用
+UPDATE goal set sum=SELECT SUM(savings) FROM record WHERE userid=? AND date>=? WHERE userid=? AND date=?;
 
 
 
+
+
+alertテーブル関連
+//アラート時間の登録
+//-----------------------------------------------------------------
+insert into alert values (null, ?, ?, ?, ?, ?, ?, ?, ?);
+
+//アラート時間の検索
+//-----------------------------------------------------------------
+SELECT days, morning_min, lunch_min, dinner_min, morning_max, lunch_max, dinner_max FROM alert WHERE userid=? AND days=?;
+
+//アラート時間の更新
+//-----------------------------------------------------------------
+update alert set morning_min=?, lunch_min=?, dinner_min=?, "morning_max=?, lunch_max=?, dinner_max=? where userid=? AND days=?;

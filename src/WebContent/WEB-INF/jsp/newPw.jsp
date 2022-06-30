@@ -8,7 +8,7 @@
 <!-- 共通css,jsへのリンク 各画面のもここに-->
 <link rel="stylesheet" href="./css/common.css">
 <link rel="stylesheet" type="text/css" href="/EngelS/css/newPw.css">
-<script src="./javascript/common.js"></script>
+<script src="./js/common.js"></script>
 <script type="text/javascript" src="/EngelS/js/newPw.js"></script>
 </head>
 <body>
@@ -68,9 +68,10 @@
 						</tr>
 					</table>
 				</form>
-			</div>
 
 			<p id="err"></p>
+
+			</div>
 
 		</main>
 		<footer>
